@@ -1,0 +1,5 @@
+spatial_label,injected_pdfs,label_contract_satisfied,added_glyphs,frac_glyphs_inside,frac_glyphs_clipped,frac_glyphs_outside,frac_glyphs_below_page
+extreme_off_page,549,549,110072,0.0,0.0,1.0,0.0
+inside_page,6955,0,8227593,0.0063,0.0426,0.9512,0.9512
+near_margin,1689,1689,342836,0.1389,0.1758,0.6853,0.6853
+negative_off_page,581,0,116605,0.0,0.2963,0.7037,0.7024

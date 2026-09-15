@@ -16,6 +16,8 @@ This directory is the compact research record for:
 
 | Path | Contents |
 | --- | --- |
+| [`ERRATA.md`](ERRATA.md) | Documented corrections to how this corpus is described. Read first. |
+| [`errata/`](errata/) | Measured evidence tables and figures behind each erratum. |
 | [`RESULTS.md`](RESULTS.md) | Paper-facing tables, exact artifact values, and metric provenance. |
 | [`DATASET.md`](DATASET.md) | Corpus composition, schema, split design, and availability. |
 | [`ENVIRONMENT.md`](ENVIRONMENT.md) | Captured Python and dependency versions. |

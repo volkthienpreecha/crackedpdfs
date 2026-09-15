@@ -71,6 +71,15 @@ The fast reproduction manifest pins downloads to immutable dataset revision `02d
 
 The `dataset_split` column in `metadata.parquet` and `labels.parquet` preserves the generation-layer assignment recorded in the original publication table. The paper's model evaluation used `data/splits.json`, whose counts are the 23,766 / 2,637 / 2,919 split shown above. Use `splits.json` for reproducing paper results.
 
+## Known issues
+
+The [2026-09 erratum](ERRATA.md) documents these issues in this corpus. No file or label changes:
+
+- `spatial_regime` and the other regime fields record the requested placement. Realized placement is `straddles_page_edge` for every label except `extreme_off_page`, with most injected glyphs below the page.
+- Every injected PDF contains `DATASET_SAMPLE_ID` and `MESSAGE_TYPE=` and no confounder does; `SYSTEM_POLICY_DO_NOT_REMOVE` and `DOCUMENT_LAYOUT_NOTE` are also role-specific. Strip them before scoring a detector on raw text.
+- Injected payloads are longer than their confounders in 8,849 of 8,982 non-acrostic pairs, so payload length is a paired-ranking shortcut.
+- `in_page_split_text_objects` has no `strong` samples.
+
 ## Limitations
 
 The corpus uses synthetic, one-page benign documents and controlled injection generators. It does not represent arbitrary real-world PDFs, scanned documents, OCR-only ingestion, adaptive attacks, all parser implementations, or all hidden-document attack families.

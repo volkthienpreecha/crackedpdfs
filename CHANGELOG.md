@@ -4,6 +4,10 @@ All notable changes to this repository are recorded here. The format follows [Ke
 
 ## [Unreleased]
 
+### Documented
+
+- [`paper-v1/ERRATA.md`](paper-v1/ERRATA.md) (2026-09-14): the v1 corpus's spatial labels record requested rather than realized placement, matched pairs differ in a bookkeeping marker and in payload length, and `in_page_split_text_objects` has no strong samples. Evidence tables and figures are in `paper-v1/errata/2026-09-placement/`.
+
 ### Fixed
 
 - **Generator:** injection config resolution is idempotent. Paper v1 re-resolved configs in the ADA bridge, which turned page-relative regime anchors into absolute points and placed payloads at the bottom-left page corner, mostly below the page.

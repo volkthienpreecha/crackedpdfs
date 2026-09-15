@@ -1,0 +1,16 @@
+family,pairs,text_density_per_page_rank_accuracy,paper_hybrid_heldout_paired_rank_accuracy
+existing_stream_patch,635,0.9913,
+header_footer_like,651,0.9969,
+in_page_invisible_text,637,0.9812,
+in_page_low_contrast_text,682,0.9853,1.0
+in_page_split_text_objects,462,1.0,
+in_page_tiny_text,660,0.9962,
+in_page_white_text,660,0.9826,
+layout_mimicry,669,0.9948,1.0
+margin_microtext,618,0.9935,1.0
+microglyph_steganography,696,1.0,1.0
+near_margin_normal_font,654,0.9931,
+plain_single_block,647,0.983,
+semantic_fragmentation,639,1.0,1.0
+split_text_objects,672,1.0,
+steganographic_acrostic,792,0.351,0.42424242424242425

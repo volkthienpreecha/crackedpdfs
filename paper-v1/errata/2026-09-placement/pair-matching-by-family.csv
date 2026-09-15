@@ -1,0 +1,16 @@
+family,pairs,same_realized_class,mean_injected_glyphs,mean_confounder_glyphs,injected_longer,confounder_longer
+existing_stream_patch,635,1.0,203.0,183.0,624,0
+header_footer_like,651,1.0,203.3,184.9,647,0
+in_page_invisible_text,637,1.0,203.8,184.3,613,0
+in_page_low_contrast_text,682,1.0,204.8,184.0,662,0
+in_page_split_text_objects,462,1.0,198.3,175.8,462,0
+in_page_tiny_text,660,1.0,203.5,185.3,655,0
+in_page_white_text,660,1.0,203.5,184.9,637,0
+layout_mimicry,669,1.0,201.8,184.8,662,0
+margin_microtext,618,1.0,203.3,188.0,610,0
+microglyph_steganography,696,1.0,192.7,171.7,696,0
+near_margin_normal_font,654,1.0,203.7,188.2,645,0
+plain_single_block,647,1.0,203.9,183.9,625,0
+semantic_fragmentation,639,1.0,197.8,178.6,639,0
+split_text_objects,672,1.0,195.5,171.8,672,0
+steganographic_acrostic,792,1.0,8823.7,10617.2,278,514

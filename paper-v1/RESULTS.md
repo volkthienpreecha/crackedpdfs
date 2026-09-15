@@ -105,6 +105,8 @@ These are limitation tests, not the primary success criterion. `Target-family F1
 | In-page low-contrast text | 682 | 0.7848101266 | 682 | 1.0000000000 |
 | Margin microtext | 618 | 0.8323232323 | 618 | 1.0000000000 |
 
+> **Erratum:** acrostic payloads in this corpus sit below the page rather than on it, and matched pairs differ in payload length. Placement is identical within every pair, so it does not explain the 0.424 paired rank, but a single frozen length feature ranks the same pairs at 0.351 and the other held-out families at 0.985 or higher. See [`ERRATA.md`](ERRATA.md#finding-2-matched-pairs-differ-in-a-marker-and-in-length).
+
 The exact source tables are:
 
 - [`metrics/holdout-target-family-focus-metrics.csv`](metrics/holdout-target-family-focus-metrics.csv);

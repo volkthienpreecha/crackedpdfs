@@ -1,0 +1,5 @@
+token,injected_attack_pdfs,benign_confounder_pdfs,pdfs_per_role
+DATASET_SAMPLE_ID,9774,0,9774
+MESSAGE_TYPE=,9774,0,9774
+SYSTEM_POLICY_DO_NOT_REMOVE,8982,0,9774
+DOCUMENT_LAYOUT_NOTE,0,8982,9774

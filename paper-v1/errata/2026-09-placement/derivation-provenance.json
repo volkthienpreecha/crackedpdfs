@@ -1,0 +1,10 @@
+{
+  "audit_jsonl_sha256": "bb977bcf59af8e43fe0dfdd70d44ad8f27ca32c4897243afdffb17e72828f50c",
+  "audit_record_status_counts": {
+    "audited": 19548
+  },
+  "features_parquet_sha256": "4726c8176c8b9dd7f0a24e6ea9a9d4f7263184562619f30d5f182dc380d32b80",
+  "generated_tables": 5,
+  "paper_metrics_sha256": "176df2232240f5bdd727ffbd0bdcdaad5f036203fb54ed424c5cc774ed8065a7",
+  "paper_metrics_source": "holdout-matched-counterfactual-metrics.csv"
+}

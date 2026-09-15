@@ -6,6 +6,8 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21735803.svg)](https://doi.org/10.5281/zenodo.21735803)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB.svg)](https://www.python.org/downloads/release/python-3137/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/volkthienpreecha/crackedpdfs/actions/workflows/ci.yml/badge.svg)](https://github.com/volkthienpreecha/crackedpdfs/actions/workflows/ci.yml)
+[![Erratum](https://img.shields.io/badge/Erratum-2026--09-e4572e.svg)](paper-v1/ERRATA.md)
 
 [![Paper](https://img.shields.io/badge/Paper-read-b31b1b.svg)](https://arxiv.org/abs/2607.19396)
 [![Dataset](https://img.shields.io/badge/Dataset-Hugging_Face-ffd21e.svg)](https://huggingface.co/datasets/volkthienpreecha/crackedpdfs)
@@ -27,6 +29,8 @@ Benign source documents were produced with [PDFAutoGen](https://github.com/volkt
 
 > **Claim boundary:** CrackedPDFs measures controlled, generator-produced PDF attacks. It does not establish robustness to arbitrary real-world documents, OCR-only pipelines, adaptive attackers, unseen parsers, or unseen attack generators.
 
+> **Erratum (2026-09-13):** in the v1 corpus, `spatial_regime` labels record the requested placement, not where text landed. Every injected payload except `extreme_off_page` starts at the bottom-left page corner, and most of it sits below the page. Matched confounders share that geometry, but differ from injected PDFs in a bookkeeping marker and in payload length. No file, label, split, or frozen metric changes. Read [`paper-v1/ERRATA.md`](paper-v1/ERRATA.md) before evaluating a detector on raw v1 PDFs.
+
 ## What is in this repository
 
 | Path | Purpose |
@@ -36,6 +40,7 @@ Benign source documents were produced with [PDFAutoGen](https://github.com/volkt
 | `src/backend/services/dataset-mode/` | Paired benchmark construction and validation. |
 | `src/backend/services/processing/layers/02-watermarking/` | PDF injection mechanisms and validation helpers. |
 | `lightweight-detector/` | Feature extraction, grouped splitting, baselines, learned models, audits, and evaluation. |
+| [`tools/crackedpdfs-audit/`](tools/crackedpdfs-audit/) | Independent placement and visibility audit: measures where every glyph lands and checks spatial labels against the file. |
 | `scripts/run_crackedpdfs_experiment.ps1` | Current end-to-end experiment runner. |
 
 Generated PDFs, local databases, model binaries, and full feature tables remain excluded from Git. They are published in the [Hugging Face dataset](https://huggingface.co/datasets/volkthienpreecha/crackedpdfs); `paper-v1/` is the compact, reviewable paper record.
@@ -116,6 +121,27 @@ For paper review, start with:
 The complete public dataset is at [Hugging Face](https://huggingface.co/datasets/volkthienpreecha/crackedpdfs) and is archived at [Zenodo](https://doi.org/10.5281/zenodo.21735803). It contains all 29,322 PDFs, row-level metadata, frozen features, labels, paper evaluation splits, metrics, and SHA-256 checksums. The large binaries remain outside Git so the repository stays cloneable.
 
 The release manifest pins the fast reproduction command to dataset revision `02d7e0be03b09d6a29c7e4d388440bc1f5a4907b`. See [`paper-v1/DATASET.md`](paper-v1/DATASET.md) for schema, split semantics, and limitations.
+
+## Audit a corpus
+
+Labels are claims; `crackedpdfs-audit` checks them against the files. It reads glyph geometry, render mode, and fill color straight from each content stream, so it shares nothing with the generator it audits.
+
+```bash
+pip install -e "tools/crackedpdfs-audit[parquet]"
+crackedpdfs-audit file injected/sample_0009.injected.pdf --reference benign/sample_0009.benign.pdf --label inside_page
+crackedpdfs-audit reveal injected/sample_0009.injected.pdf reveal.png --reference benign/sample_0009.benign.pdf
+crackedpdfs-audit corpus --root pdfs --metadata data/metadata.parquet --out audit --render
+```
+
+<p align="center">
+  <img src="paper-v1/errata/2026-09-placement/v1-acrostic-off-page.png" alt="A v1 acrostic PDF rendered on an expanded canvas: the document fills the page and the whole acrostic paragraph sits below the page edge" width="260">
+</p>
+
+The generator now enforces the same contracts at write time: in regime mode it refuses to emit a PDF whose measured glyph geometry contradicts its label.
+
+## Contributing
+
+Contributions, replications, and error reports are welcome. Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), report label or release problems with the [dataset issue form](https://github.com/volkthienpreecha/crackedpdfs/issues/new?template=dataset-issue.yml), and report vulnerabilities privately as described in [`SECURITY.md`](SECURITY.md). Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Citation
 
