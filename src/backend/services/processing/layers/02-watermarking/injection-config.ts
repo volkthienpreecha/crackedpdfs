@@ -365,6 +365,17 @@ export function resolveInjectionConfig(input: unknown): InjectionConfig {
         "Adjusted rendering_regime from normal_visible to white_text for header_footer_like."
       );
     }
+    if (base.coordinates_mode === "regime") {
+      // The injector always anchors this family in the header or footer band,
+      // so an off-page or in-page spatial label would be false.
+      if (base.spatial_regime !== "near_margin") {
+        base.compatibility_notes.push(
+          `Adjusted spatial_regime from ${base.spatial_regime} to near_margin for header_footer_like.`
+        );
+      }
+      base.spatial_regime = "near_margin";
+      base.coordinates = [...SPATIAL_REGIME_COORDINATES.near_margin];
+    }
   }
 
   if (base.attack_family === "near_margin_normal_font") {
@@ -513,7 +524,8 @@ export function resolveInjectionConfig(input: unknown): InjectionConfig {
     }
     base.rendering_regime = "normal_visible";
     base.render_mode = 0;
-    base.font_size = Math.max(base.font_size, 8);
+    // Body-text size; at 12pt the strong acrostic cannot fit on one page.
+    base.font_size = 8;
     base.color = [0, 0, 0];
     base.artifact_wrapper = false;
     base.artifact_regime = "no_artifact";

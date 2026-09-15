@@ -38,17 +38,20 @@ class StructuralPlacementTests(unittest.TestCase):
         page.Contents = pikepdf.Array(streams)
         return pdf, page
 
-    def test_append_new_stream_appends_to_end(self):
+    def test_append_new_stream_appends_after_isolated_original(self):
         pdf, page = self.create_pdf_with_single_stream(b"OLD")
 
         INJECT_POLICY._apply_structural_placement(
             page, pdf, b"NEW", "append_new_stream"
         )
 
+        # Original content is bracketed in a balanced q/Q so its graphics state
+        # cannot leak into the appended text.
         self.assertIsInstance(page.Contents, pikepdf.Array)
-        self.assertEqual(len(page.Contents), 2)
-        self.assertEqual(stream_bytes(page.Contents[0]), b"OLD")
-        self.assertEqual(stream_bytes(page.Contents[1]), b"NEW")
+        self.assertEqual(len(page.Contents), 3)
+        self.assertEqual(stream_bytes(page.Contents[0]), b"q")
+        self.assertEqual(stream_bytes(page.Contents[1]), b"OLD")
+        self.assertEqual(stream_bytes(page.Contents[2]), b"Q\nNEW")
 
     def test_prepend_stream_inserts_at_start(self):
         pdf, page = self.create_pdf_with_single_stream(b"OLD")
@@ -78,10 +81,13 @@ class StructuralPlacementTests(unittest.TestCase):
             page, pdf, b"NEW", "inject_into_existing_stream"
         )
 
-        merged = stream_bytes(page.Contents)
-        self.assertIn(b"OLD", merged)
-        self.assertIn(b"NEW", merged)
-        self.assertIn(b"\n", merged)
+        # A leading q isolates the original; the injected bytes stay inside the
+        # trailing content stream, closed by Q immediately before them.
+        self.assertIsInstance(page.Contents, pikepdf.Array)
+        self.assertEqual(len(page.Contents), 2)
+        self.assertEqual(stream_bytes(page.Contents[0]), b"q")
+        merged = stream_bytes(page.Contents[1])
+        self.assertEqual(merged, b"OLD\nQ\nNEW")
 
     def test_inject_into_existing_stream_merges_last_stream_in_array(self):
         pdf, page = self.create_pdf_with_stream_array([b"FIRST", b"SECOND"])
@@ -91,13 +97,10 @@ class StructuralPlacementTests(unittest.TestCase):
         )
 
         self.assertIsInstance(page.Contents, pikepdf.Array)
-        self.assertEqual(len(page.Contents), 2)
-        self.assertEqual(stream_bytes(page.Contents[0]), b"FIRST")
-
-        merged = stream_bytes(page.Contents[1])
-        self.assertIn(b"SECOND", merged)
-        self.assertIn(b"NEW", merged)
-        self.assertIn(b"\n", merged)
+        self.assertEqual(len(page.Contents), 3)
+        self.assertEqual(stream_bytes(page.Contents[0]), b"q")
+        self.assertEqual(stream_bytes(page.Contents[1]), b"FIRST")
+        self.assertEqual(stream_bytes(page.Contents[2]), b"SECOND\nQ\nNEW")
 
 
 if __name__ == "__main__":

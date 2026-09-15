@@ -318,3 +318,18 @@ test("resolver and Python validator agree on malformed coordinate arrays", () =>
   assert.equal(resolved.coordinates.length, 2);
   assert.deepEqual(validateWithPython(resolved), resolved);
 });
+
+test("layout-constrained families carry labels the injector can honor", () => {
+  for (const spatial_regime of ["extreme_off_page", "negative_off_page", "inside_page", "near_margin"]) {
+    const headerFooter = assertResolvedInjectionConfig(
+      resolveInjectionConfig({ attack_family: "header_footer_like", spatial_regime })
+    );
+    assert.equal(headerFooter.spatial_regime, "near_margin");
+    assert.deepEqual(validateWithPython(headerFooter), headerFooter);
+  }
+
+  const acrostic = assertResolvedInjectionConfig(
+    resolveInjectionConfig({ attack_family: "steganographic_acrostic", font_size: 14 })
+  );
+  assert.equal(acrostic.font_size, 8);
+});
