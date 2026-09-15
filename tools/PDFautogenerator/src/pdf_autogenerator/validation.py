@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import fitz
+import pymupdf as fitz
 from PIL import Image
 from pypdf import PdfReader
 

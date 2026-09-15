@@ -10,7 +10,7 @@ import hashlib
 import json
 import re
 
-import fitz
+import pymupdf as fitz
 from PIL import Image
 from pypdf import PdfReader
 

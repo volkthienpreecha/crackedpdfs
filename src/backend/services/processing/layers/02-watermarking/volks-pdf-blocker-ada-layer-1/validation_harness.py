@@ -266,7 +266,7 @@ def _run_renderer_visibility_check(input_pdf: str, marker: str, dpi: int = 200) 
     }
 
     try:
-        import fitz  # type: ignore
+        import pymupdf as fitz  # type: ignore
         from PIL import Image  # type: ignore
         import pytesseract  # type: ignore
     except Exception as exc:
