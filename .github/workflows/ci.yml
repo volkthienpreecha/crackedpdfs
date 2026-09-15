@@ -20,7 +20,9 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-          cache-dependency-path: tools/PDFautogenerator/pyproject.toml
+          cache-dependency-path: |
+            tools/PDFautogenerator/pyproject.toml
+            tools/crackedpdfs-audit/pyproject.toml
       - uses: actions/setup-node@v4
         with:
           node-version: "22"

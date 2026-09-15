@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crackedpdfs-audit"
+version = "0.1.0"
+description = "Measure where PDF text actually lands: off-page, clipped, invisible, tiny, or low contrast."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["pdf", "prompt-injection", "hidden-text", "benchmark", "audit"]
+dependencies = [
+  "numpy>=1.26",
+  "pdfminer.six>=20240706",
+  "pikepdf>=9.0.0",
+  "Pillow>=10.1",
+  "pypdfium2>=4.30",
+]
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=16"]
+test = ["pytest>=8"]
+
+[project.scripts]
+crackedpdfs-audit = "crackedpdfs_audit.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+extend = "../../ruff.toml"
+target-version = "py311"
