@@ -8,6 +8,7 @@ import {
   type InjectionConfig,
 } from "./injection-config";
 import { getPythonExecutable } from "./python-utils";
+import { PDF_ATTACK_FAMILIES, PDF_ATTACK_STRENGTHS } from "@/lib/pdf-benchmark-taxonomy";
 
 const PYTHON_BIN = getPythonExecutable();
 const INJECT_POLICY_SCRIPT = path.join(
@@ -235,5 +236,85 @@ test("margin_microtext resolves to near-margin tiny text", () => {
   assert.equal(resolved.rendering_regime, "tiny_font");
   assert.equal(resolved.render_mode, 0);
   assert.equal(resolved.font_size <= 1.2, true);
+  assert.deepEqual(validateWithPython(resolved), resolved);
+});
+
+test("resolution is idempotent across the full 4,320-config regime grid", () => {
+  const spatialRegimes = ["extreme_off_page", "negative_off_page", "near_margin", "inside_page"];
+  const renderingRegimes = ["invisible_render_mode", "tiny_font", "white_text", "normal_visible"];
+  const structuralRegimes = ["append_new_stream", "prepend_stream", "inject_into_existing_stream"];
+  let checked = 0;
+
+  for (const attack_family of PDF_ATTACK_FAMILIES) {
+    for (const attack_strength of PDF_ATTACK_STRENGTHS) {
+      for (const spatial_regime of spatialRegimes) {
+        for (const rendering_regime of renderingRegimes) {
+          for (const structural_regime of structuralRegimes) {
+            for (const artifact_wrapper of [true, false]) {
+              const once = resolveInjectionConfig({
+                attack_family,
+                attack_strength,
+                spatial_regime,
+                rendering_regime,
+                structural_regime,
+                artifact_wrapper,
+              });
+              const twice = resolveInjectionConfig(once);
+              assert.deepEqual(twice, once);
+              assert.notEqual(twice, once);
+              assert.notEqual(twice.coordinates, once.coordinates);
+              checked += 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  assert.equal(checked, 15 * 3 * 4 * 4 * 3 * 2);
+});
+
+test("regime anchors are never promoted to absolute coordinate overrides", () => {
+  // Paper v1 regression: the ADA bridge re-resolved configs, so [0.12, 0.78]
+  // became absolute points and payloads landed below the page.
+  const acrostic = resolveInjectionConfig({ attack_family: "steganographic_acrostic" });
+  assert.equal(acrostic.coordinates_mode, "regime");
+  assert.deepEqual(acrostic.coordinates, [0.12, 0.78]);
+
+  const partial = resolveInjectionConfig({
+    spatial_regime: "inside_page",
+    coordinates: [0.5, 0.5],
+    coordinates_mode: "regime",
+  });
+  assert.equal(partial.coordinates_mode, "regime");
+
+  assert.deepEqual(resolveInjectionConfig(resolveInjectionConfig(partial)), partial);
+});
+
+test("explicit coordinates still resolve as overrides", () => {
+  const resolved = resolveInjectionConfig({ coordinates: [72, 144] });
+  assert.equal(resolved.coordinates_mode, "override");
+  assert.deepEqual(resolved.coordinates, [72, 144]);
+  assert.deepEqual(resolveInjectionConfig(resolved), resolved);
+});
+
+test("resolver and Python validator agree on malformed coordinate arrays", () => {
+  // A three-element coordinate array must not pass either side's contract, so
+  // the resolved fast path cannot smuggle a config that Python then rejects.
+  assert.throws(
+    () => assertResolvedInjectionConfig({
+      ...resolveInjectionConfig({}),
+      coordinates: [72, 144, 200] as unknown as [number, number],
+    }),
+    /length-2/
+  );
+
+  // A malformed array on the input side is dropped, not promoted, so the
+  // regime default survives and the two validators agree.
+  const resolved = resolveInjectionConfig({
+    coordinates: [72, 144, 200] as unknown as [number, number],
+  });
+  assert.equal(resolved.coordinates_mode, "regime");
+  assert.equal(resolved.coordinates.length, 2);
   assert.deepEqual(validateWithPython(resolved), resolved);
 });

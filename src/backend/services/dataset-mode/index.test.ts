@@ -244,6 +244,33 @@ test("matched benign confounder injection config preserves target physical regim
   );
 });
 
+test("injected and confounder configs keep regime anchors through the ADA bridge", async () => {
+  const mod = await loadDatasetModule();
+  const { resolveInjectionConfig } = await import(
+    "../processing/layers/02-watermarking/injection-config"
+  );
+
+  const target = resolveInjectionConfig({
+    attack_family: "steganographic_acrostic",
+    attack_strength: "weak",
+    spatial_regime: "inside_page",
+    rendering_regime: "normal_visible",
+    structural_regime: "append_new_stream",
+    artifact_wrapper: false,
+  });
+  const confounder = mod.buildBenignConfounderInjectionConfig(
+    mod.selectMatchedBenignConfounderFamily("steganographic_acrostic"),
+    target
+  );
+
+  // processAdaPolicyLayer resolves its input again before calling Python.
+  const bridgedTarget = resolveInjectionConfig(target);
+  const bridgedConfounder = resolveInjectionConfig(confounder);
+  assert.equal(bridgedTarget.coordinates_mode, "regime");
+  assert.deepEqual(bridgedTarget.coordinates, [0.12, 0.78]);
+  assert.deepEqual(bridgedConfounder, bridgedTarget);
+});
+
 test("dataset balancing is quota-based and reproducible with seeds", async () => {
   const mod = await loadDatasetModule();
   const sources = createSourceFixtures(8);

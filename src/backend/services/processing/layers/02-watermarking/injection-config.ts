@@ -185,7 +185,69 @@ function parseColor(value: unknown): [number, number, number] | undefined {
   return [clamp(r), clamp(g), clamp(b)];
 }
 
+function cloneInjectionConfig(config: InjectionConfig): InjectionConfig {
+  return {
+    ...config,
+    coordinates: [...config.coordinates],
+    color: [...config.color],
+    compatibility_notes: [...config.compatibility_notes],
+  };
+}
+
+const RESOLVED_CONFIG_KEYS: readonly (keyof InjectionConfig)[] = [
+  "spatial_regime",
+  "rendering_regime",
+  "structural_regime",
+  "artifact_wrapper",
+  "artifact_regime",
+  "attack_family",
+  "attack_strength",
+  "font_size",
+  "coordinates",
+  "coordinates_mode",
+  "render_mode",
+  "color",
+  "compatibility_notes",
+];
+
+export function isResolvedInjectionConfig(input: unknown): input is InjectionConfig {
+  if (!isObject(input) || RESOLVED_CONFIG_KEYS.some((key) => !(key in input))) {
+    return false;
+  }
+  if (
+    typeof input.artifact_wrapper !== "boolean" ||
+    typeof input.font_size !== "number" ||
+    typeof input.render_mode !== "number" ||
+    !Array.isArray(input.coordinates) ||
+    !Array.isArray(input.color) ||
+    !Array.isArray(input.compatibility_notes) ||
+    input.compatibility_notes.some((note) => typeof note !== "string")
+  ) {
+    return false;
+  }
+  try {
+    assertResolvedInjectionConfig(input as unknown as InjectionConfig);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Resolve a partial injection request into a complete, validated config.
+ *
+ * Resolution is idempotent: resolveInjectionConfig(resolveInjectionConfig(x))
+ * deep-equals resolveInjectionConfig(x). Paper v1 violated this. The ADA layer
+ * re-resolved an already resolved config, its page-relative regime anchors
+ * (for example [0.5, 0.5]) were re-read as explicit coordinate overrides, and
+ * the injector placed them as absolute PDF points at the bottom-left corner.
+ * See paper-v1/ERRATA.md.
+ */
 export function resolveInjectionConfig(input: unknown): InjectionConfig {
+  if (isResolvedInjectionConfig(input)) {
+    return cloneInjectionConfig(input);
+  }
+
   const base: InjectionConfig = {
     ...DEFAULT_INJECTION_CONFIG,
     coordinates: [...DEFAULT_INJECTION_CONFIG.coordinates],
@@ -252,8 +314,10 @@ export function resolveInjectionConfig(input: unknown): InjectionConfig {
   }
 
   // Independent overrides (higher precedence than regime presets)
+  // Coordinates tagged as regime anchors are page-relative placeholders, not
+  // absolute points, so they must never be promoted to an override.
   const coordinates = parseCoordinates(input.coordinates);
-  if (coordinates) {
+  if (coordinates && input.coordinates_mode !== "regime") {
     base.coordinates = coordinates;
     base.coordinates_mode = "override";
   }
@@ -514,6 +578,9 @@ export function assertResolvedInjectionConfig(
     );
   }
 
+  if (!Array.isArray(config.coordinates) || config.coordinates.length !== 2) {
+    throw new Error("Invalid resolved coordinates: expected a length-2 array.");
+  }
   const [x, y] = config.coordinates;
   if (!Number.isFinite(x) || !Number.isFinite(y)) {
     throw new Error("Invalid resolved coordinates: expected finite [x, y].");
