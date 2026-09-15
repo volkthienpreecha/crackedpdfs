@@ -1,0 +1,32 @@
+name: Proposal
+description: Suggest a new attack family, detector baseline, metric, tool, or workflow improvement.
+title: "[proposal] "
+labels: [enhancement, needs-triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: dropdown
+    id: claims
+    attributes:
+      label: Does this change benchmark claims?
+      options:
+        - "No"
+        - "Yes, it adds a new versioned release or metric"
+        - "Yes, it corrects an existing claim"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

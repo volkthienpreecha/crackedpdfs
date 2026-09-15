@@ -7,7 +7,6 @@ import json
 import sys
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = REPO_ROOT / "paper-v1" / "reproducibility" / "source-file-hashes.json"
 SCAFFOLD_PATHS = {

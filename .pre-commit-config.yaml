@@ -1,0 +1,21 @@
+# pip install pre-commit && pre-commit install
+# Hooks cover maintained tooling only; the frozen paper record is excluded.
+exclude: ^(paper-v1/|lightweight-detector/)
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.7
+    hooks:
+      - id: ruff-check
+        files: ^(tools/crackedpdfs-audit/|scripts/|tests/|src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1/test_placement_contract\.py)
+      - id: ruff-format
+        files: ^(tools/crackedpdfs-audit/|src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1/test_placement_contract\.py)
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+        exclude: ^tsconfig\.json$
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: detect-private-key

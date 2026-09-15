@@ -1,0 +1,43 @@
+name: Dataset or label issue
+description: A label, split, metadata field, or file in a released corpus does not match what the file contains.
+title: "[dataset] "
+labels: [dataset, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Reports like this are how benchmark errors get found. The most useful reports name exact files and show measured evidence, for example from `crackedpdfs-audit file <pdf> --reference <original> --label <label>`.
+  - type: input
+    id: release
+    attributes:
+      label: Release and revision
+      description: Dataset version and Hugging Face revision or Zenodo DOI.
+      placeholder: paper v1, revision 245bc98ec7e838346ee6fd5bdf5fed1b16d2a3e5
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Affected files
+      description: pdf_id values or corpus-relative paths.
+      placeholder: injected/sample_0009.injected.pdf
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the label or documentation says
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What the file actually contains
+      description: Include measurements, renders, or tool output.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Possible impact on reported results
+      description: Optional. Which metrics, families, or claims could this affect?

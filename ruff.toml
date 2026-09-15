@@ -1,0 +1,12 @@
+# Ruff covers maintained Python tooling only. The frozen May 25 detector
+# snapshot (lightweight-detector/) and legacy injector scripts are excluded so
+# formatting never alters paper provenance.
+line-length = 110
+target-version = "py313"
+
+[lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[lint.per-file-ignores]
+"tests/*" = ["B018"]

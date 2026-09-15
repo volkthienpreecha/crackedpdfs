@@ -7,11 +7,12 @@ import hashlib
 import json
 import shutil
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = REPO_ROOT / "paper-v1" / "reproducibility" / "download-manifest.json"
@@ -45,7 +46,22 @@ def safe_artifact_path(root: Path, relative: str) -> Path:
     return target
 
 
-def download_file(url: str, destination: Path) -> None:
+RETRYABLE_HTTP_STATUS = {408, 425, 429, 500, 502, 503, 504}
+
+
+def _is_retryable(error: Exception) -> bool:
+    if isinstance(error, urllib.error.HTTPError):
+        return error.code in RETRYABLE_HTTP_STATUS
+    return isinstance(error, (urllib.error.URLError, TimeoutError, ConnectionError))
+
+
+def download_file(
+    url: str,
+    destination: Path,
+    attempts: int = 4,
+    backoff_seconds: float = 2.0,
+    sleep=time.sleep,
+) -> None:
     scheme = urllib.parse.urlsplit(url).scheme.lower()
     if scheme not in {"http", "https"}:
         raise ReproductionError(
@@ -54,9 +70,22 @@ def download_file(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = destination.with_suffix(destination.suffix + ".part")
     request = urllib.request.Request(url, headers={"User-Agent": "crackedpdfs-reproducer/1.0"})
-    with urllib.request.urlopen(request, timeout=120) as response, temporary.open("wb") as output:
-        shutil.copyfileobj(response, output)
-    temporary.replace(destination)
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response, temporary.open("wb") as output:
+                shutil.copyfileobj(response, output)
+            temporary.replace(destination)
+            return
+        except Exception as error:
+            temporary.unlink(missing_ok=True)
+            if attempt == attempts or not _is_retryable(error):
+                raise
+            delay = backoff_seconds * 2 ** (attempt - 1)
+            print(
+                f"Download attempt {attempt}/{attempts} failed ({error}); retrying in {delay:g}s",
+                file=sys.stderr,
+            )
+            sleep(delay)
 
 
 def materialize_and_verify_artifacts(

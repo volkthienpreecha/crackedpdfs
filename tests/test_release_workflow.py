@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import io
 import json
 import subprocess
 import sys
 from pathlib import Path
 
 import pytest
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -225,3 +225,44 @@ def test_smoke_validation_reports_missing_injected_output(tmp_path: Path) -> Non
 
     with pytest.raises(RuntimeError, match="Injection did not produce a PDF"):
         smoke.validate_pdf_pair(tmp_path / "benign.pdf", tmp_path / "missing.pdf")
+
+
+def test_download_file_retries_transient_failures(tmp_path: Path, monkeypatch) -> None:
+    reproducer = _load_script("scripts/reproduce_results.py", "reproducer_retry_test")
+    calls: list[str] = []
+    delays: list[float] = []
+
+    class Response(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+    def flaky_urlopen(request, timeout):
+        calls.append(request.full_url)
+        if len(calls) < 3:
+            raise reproducer.urllib.error.URLError("connection reset")
+        return Response(b"release bytes")
+
+    monkeypatch.setattr(reproducer.urllib.request, "urlopen", flaky_urlopen)
+    destination = tmp_path / "artifact.bin"
+    reproducer.download_file("https://example.invalid/a.bin", destination, sleep=delays.append)
+
+    assert destination.read_bytes() == b"release bytes"
+    assert len(calls) == 3
+    assert delays == [2.0, 4.0]
+
+
+def test_download_file_does_not_retry_client_errors(tmp_path: Path, monkeypatch) -> None:
+    reproducer = _load_script("scripts/reproduce_results.py", "reproducer_no_retry_test")
+    calls: list[int] = []
+
+    def missing(request, timeout):
+        calls.append(1)
+        raise reproducer.urllib.error.HTTPError(request.full_url, 404, "Not Found", None, None)
+
+    monkeypatch.setattr(reproducer.urllib.request, "urlopen", missing)
+    with pytest.raises(reproducer.urllib.error.HTTPError):
+        reproducer.download_file("https://example.invalid/a.bin", tmp_path / "a.bin", sleep=lambda _: None)
+    assert calls == [1]

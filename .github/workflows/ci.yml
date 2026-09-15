@@ -1,48 +1,141 @@
-name: Paper artifact CI
+name: CI
 
 on:
   push:
     branches: [main]
   pull_request:
+  merge_group:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  PYTHON_VERSION: "3.13"
+  NODE_VERSION: "22"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  FORCE_COLOR: "1"
+
 jobs:
-  smoke:
+  source-integrity:
+    name: Frozen source snapshot
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Verify the May 25 detector source is byte-exact
+        run: python scripts/verify_source_snapshot.py
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          enable-cache: false
+      - name: Ruff (maintained Python tooling)
+        run: |
+          uvx ruff@0.16.7 check tools/crackedpdfs-audit scripts/reproduce_results.py \
+            scripts/verify_source_snapshot.py scripts/smoke_benchmark.py tests \
+            src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1/test_placement_contract.py
+          uvx ruff@0.16.7 format --check tools/crackedpdfs-audit \
+            src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1/test_placement_contract.py
+      - name: actionlint
+        run: uvx --from actionlint-py@1.7.12.24 actionlint -color
+      - name: zizmor (workflow security)
+        run: uvx zizmor@1.30.1 --offline --min-severity medium .github/workflows
+
+  python:
+    name: Python tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.13"
+          python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
           cache-dependency-path: |
             tools/PDFautogenerator/pyproject.toml
             tools/crackedpdfs-audit/pyproject.toml
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-      - run: make smoke
+      - name: Generator, injector placement contract, audit tool, and release tests
+        run: make test-python PYTHON=python
 
-  reproduce-results:
+  typescript:
+    name: TypeScript tests
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.13"
-      - run: make reproduce-results
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: |
+            tools/PDFautogenerator/pyproject.toml
+            tools/crackedpdfs-audit/pyproject.toml
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - name: Resolver, dataset-mode, and Python contract tests
+        run: make test-ts PYTHON=python
+      - name: Typecheck
+        run: make typecheck
+
+  reproduce-results:
+    name: Reproduce paper table
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Download hash-pinned artifacts and rebuild the table
+        run: make reproduce-results PYTHON=python
       - name: Compare reproduced paper table
         run: diff --strip-trailing-cr -u paper-v1/metrics/hard-setting-summary.csv reproduced-results/hard-setting-summary.csv
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
         with:
           name: reproduced-paper-results
           path: reproduced-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  ci-ok:
+    name: CI ok
+    if: always()
+    needs: [source-integrity, lint, python, typescript, reproduce-results]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require every job to pass
+        env:
+          RESULTS: ${{ toJSON(needs.*.result) }}
+        run: |
+          echo "$RESULTS"
+          jq -e 'all(. == "success")' <<< "$RESULTS" > /dev/null || {
+            echo "At least one required job did not succeed." >&2
+            exit 1
+          }

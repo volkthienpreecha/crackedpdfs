@@ -1,0 +1,10 @@
+# Code owners must have write access to the repository, so only the repository
+# owner is listed here. Karthik Subramanian reviews the same paths as a named
+# reviewer without being a code owner (he currently has read access only).
+*                                   @volkthienpreecha
+
+# The paper record and the attack generator change benchmark claims.
+/paper-v1/                          @volkthienpreecha
+/src/backend/services/processing/   @volkthienpreecha
+/src/backend/services/dataset-mode/ @volkthienpreecha
+/lightweight-detector/              @volkthienpreecha
