@@ -1,0 +1,659 @@
+{
+  "split": {
+    "path": "/Users/karthik/crackedpdfs-work/v1/test_split.csv",
+    "n": 2919,
+    "injected": 973,
+    "benign_confounder": 973,
+    "benign_original": 973
+  },
+  "detectors": [
+    {
+      "detector": "phantomlint",
+      "run": {
+        "command_template": "/Users/karthik/crackedpdfs-work/baselines/phantom-lint/.venv/bin/phantomlint <pdf> --output <dir> --analyze nlp  (executed in-process by phantomlint_worker.py with identical component defaults)",
+        "commit": "7f6200145abf9d1592118780e117d14541a18dae",
+        "detector": "phantomlint",
+        "errors": 0,
+        "files": 180,
+        "flag_rule": "at least one hidden suspicious phrase reported (console script exit status 1)",
+        "invocations": 1,
+        "license": "BSD-3-Clause",
+        "options": {
+          "analyze": "nlp",
+          "bad_list": "built-in DEFAULT_BADLIST",
+          "diff": "word_exact",
+          "dpi": 300,
+          "split": "noop",
+          "threshold": 0.75
+        },
+        "python": "Python 3.12.13",
+        "reports_dir": "/Users/karthik/crackedpdfs-work/baselines/phantomlint_reports/nlp",
+        "repository": "https://github.com/tobycmurray/phantom-lint",
+        "score_rule": "number of characters highlighted as hidden in hidden_suspicious_phrases.txt",
+        "subsample": "60 triads sampled with seed 0, stratified by attack family",
+        "timeout_seconds": 600.0,
+        "timeouts": 2,
+        "version": "0.1 (setup.py)",
+        "wall_clock_seconds": 2649.8,
+        "workers": 2
+      },
+      "full_split": {
+        "n": 180,
+        "positives": 60,
+        "negatives": 120,
+        "tp": 1,
+        "fp": 0,
+        "tn": 120,
+        "fn": 59,
+        "accuracy": 0.6722222222222223,
+        "precision": 1.0,
+        "recall": 0.016666666666666666,
+        "f1": 0.03278688524590164,
+        "roc_auc": 0.5083333333333333
+      },
+      "paired_subset": {
+        "n": 120,
+        "positives": 60,
+        "negatives": 60,
+        "tp": 1,
+        "fp": 0,
+        "tn": 60,
+        "fn": 59,
+        "accuracy": 0.5083333333333333,
+        "precision": 1.0,
+        "recall": 0.016666666666666666,
+        "f1": 0.03278688524590164,
+        "roc_auc": 0.5083333333333333
+      },
+      "paired_ranking": {
+        "pairs": 60,
+        "wins": 1,
+        "ties": 59,
+        "accuracy": 0.5083333333333333
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 60,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "benign_original": {
+          "n": 60,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "injected_attack": {
+          "n": 60,
+          "flagged": 1,
+          "rate": 0.016666666666666666
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 5,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "header_footer_like": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "in_page_invisible_text": {
+          "n": 5,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "in_page_split_text_objects": {
+          "n": 3,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "in_page_tiny_text": {
+          "n": 4,
+          "flagged": 1,
+          "rate": 0.25
+        },
+        "in_page_white_text": {
+          "n": 3,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "layout_mimicry": {
+          "n": 5,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "margin_microtext": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "microglyph_steganography": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "near_margin_normal_font": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "plain_single_block": {
+          "n": 3,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "semantic_fragmentation": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "split_text_objects": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "steganographic_acrostic": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        }
+      },
+      "techniques_among_flagged": {
+        "hidden_suspicious_text": 1
+      },
+      "errors": 0,
+      "timeouts": 2,
+      "seconds_per_file_mean": 25.397155555555557,
+      "seconds_per_file_max": 600.087
+    },
+    {
+      "detector": "phantomlint_passthrough",
+      "run": {
+        "command_template": "/Users/karthik/crackedpdfs-work/baselines/phantom-lint/.venv/bin/phantomlint <pdf> --output <dir> --analyze passthrough  (executed in-process by phantomlint_worker.py with identical component defaults)",
+        "commit": "7f6200145abf9d1592118780e117d14541a18dae",
+        "detector": "phantomlint_passthrough",
+        "errors": 0,
+        "files": 180,
+        "flag_rule": "at least one hidden suspicious phrase reported (console script exit status 1)",
+        "invocations": 1,
+        "license": "BSD-3-Clause",
+        "options": {
+          "analyze": "passthrough",
+          "bad_list": "built-in DEFAULT_BADLIST",
+          "diff": "word_exact",
+          "dpi": 300,
+          "split": "noop",
+          "threshold": 0.75
+        },
+        "python": "Python 3.12.13",
+        "reports_dir": "/Users/karthik/crackedpdfs-work/baselines/phantomlint_reports/passthrough",
+        "repository": "https://github.com/tobycmurray/phantom-lint",
+        "score_rule": "number of characters highlighted as hidden in hidden_suspicious_phrases.txt",
+        "subsample": "60 triads sampled with seed 0, stratified by attack family",
+        "timeout_seconds": 600.0,
+        "timeouts": 4,
+        "version": "0.1 (setup.py)",
+        "wall_clock_seconds": 2413.8,
+        "workers": 2
+      },
+      "full_split": {
+        "n": 180,
+        "positives": 60,
+        "negatives": 120,
+        "tp": 54,
+        "fp": 58,
+        "tn": 62,
+        "fn": 6,
+        "accuracy": 0.6444444444444445,
+        "precision": 0.48214285714285715,
+        "recall": 0.9,
+        "f1": 0.627906976744186,
+        "roc_auc": 0.8631944444444445
+      },
+      "paired_subset": {
+        "n": 120,
+        "positives": 60,
+        "negatives": 60,
+        "tp": 54,
+        "fp": 54,
+        "tn": 6,
+        "fn": 6,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 0.9,
+        "f1": 0.6428571428571429,
+        "roc_auc": 0.7797222222222222
+      },
+      "paired_ranking": {
+        "pairs": 60,
+        "wins": 54,
+        "ties": 6,
+        "accuracy": 0.95
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 60,
+          "flagged": 54,
+          "rate": 0.9
+        },
+        "benign_original": {
+          "n": 60,
+          "flagged": 4,
+          "rate": 0.06666666666666667
+        },
+        "injected_attack": {
+          "n": 60,
+          "flagged": 54,
+          "rate": 0.9
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 5,
+          "flagged": 5,
+          "rate": 1.0
+        },
+        "header_footer_like": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "in_page_invisible_text": {
+          "n": 5,
+          "flagged": 5,
+          "rate": 1.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "in_page_split_text_objects": {
+          "n": 3,
+          "flagged": 3,
+          "rate": 1.0
+        },
+        "in_page_tiny_text": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "in_page_white_text": {
+          "n": 3,
+          "flagged": 3,
+          "rate": 1.0
+        },
+        "layout_mimicry": {
+          "n": 5,
+          "flagged": 5,
+          "rate": 1.0
+        },
+        "margin_microtext": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "microglyph_steganography": {
+          "n": 4,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "near_margin_normal_font": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "plain_single_block": {
+          "n": 3,
+          "flagged": 3,
+          "rate": 1.0
+        },
+        "semantic_fragmentation": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "split_text_objects": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "steganographic_acrostic": {
+          "n": 4,
+          "flagged": 2,
+          "rate": 0.5
+        }
+      },
+      "techniques_among_flagged": {
+        "hidden_suspicious_text": 112
+      },
+      "errors": 0,
+      "timeouts": 4,
+      "seconds_per_file_mean": 26.273172222222225,
+      "seconds_per_file_max": 600.064
+    },
+    {
+      "detector": "hidden_text_detector",
+      "run": {
+        "command_template": "/Users/karthik/crackedpdfs-work/baselines/hidden-text-detector/.venv/bin/python /Users/karthik/crackedpdfs-work/baselines/hidden-text-detector/scripts/scan.py --json <pdf>",
+        "commit": "ce9e505dc1c128701e921e8d7e1a133c7ff28db8",
+        "detector": "hidden_text_detector",
+        "errors": 0,
+        "files": 2919,
+        "flag_rule": "any finding with severity CRITICAL",
+        "license": "MIT",
+        "python": "Python 3.13.3",
+        "repository": "https://github.com/wppoland/hidden-text-detector",
+        "score_rule": "critical_count + 0.1 * warning_count",
+        "timeout_seconds": 120.0,
+        "timeouts": 0,
+        "version": "unversioned (no release tags); commit SHA identifies the build",
+        "wall_clock_seconds": 1116.8,
+        "workers": 6
+      },
+      "full_split": {
+        "n": 2919,
+        "positives": 973,
+        "negatives": 1946,
+        "tp": 709,
+        "fp": 709,
+        "tn": 1237,
+        "fn": 264,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.5,
+        "recall": 0.7286742034943474,
+        "f1": 0.5930572982015893,
+        "roc_auc": 0.6821685508735869
+      },
+      "paired_subset": {
+        "n": 1946,
+        "positives": 973,
+        "negatives": 973,
+        "tp": 709,
+        "fp": 709,
+        "tn": 264,
+        "fn": 264,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 0.7286742034943474,
+        "f1": 0.5930572982015893,
+        "roc_auc": 0.5
+      },
+      "paired_ranking": {
+        "pairs": 973,
+        "wins": 0,
+        "ties": 973,
+        "accuracy": 0.5
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 973,
+          "flagged": 709,
+          "rate": 0.7286742034943474
+        },
+        "benign_original": {
+          "n": 973,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "injected_attack": {
+          "n": 973,
+          "flagged": 709,
+          "rate": 0.7286742034943474
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 73,
+          "flagged": 73,
+          "rate": 1.0
+        },
+        "header_footer_like": {
+          "n": 68,
+          "flagged": 57,
+          "rate": 0.8382352941176471
+        },
+        "in_page_invisible_text": {
+          "n": 74,
+          "flagged": 74,
+          "rate": 1.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 62,
+          "flagged": 62,
+          "rate": 1.0
+        },
+        "in_page_split_text_objects": {
+          "n": 46,
+          "flagged": 46,
+          "rate": 1.0
+        },
+        "in_page_tiny_text": {
+          "n": 68,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "in_page_white_text": {
+          "n": 51,
+          "flagged": 51,
+          "rate": 1.0
+        },
+        "layout_mimicry": {
+          "n": 79,
+          "flagged": 79,
+          "rate": 1.0
+        },
+        "margin_microtext": {
+          "n": 61,
+          "flagged": 61,
+          "rate": 1.0
+        },
+        "microglyph_steganography": {
+          "n": 66,
+          "flagged": 66,
+          "rate": 1.0
+        },
+        "near_margin_normal_font": {
+          "n": 70,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "plain_single_block": {
+          "n": 52,
+          "flagged": 34,
+          "rate": 0.6538461538461539
+        },
+        "semantic_fragmentation": {
+          "n": 57,
+          "flagged": 57,
+          "rate": 1.0
+        },
+        "split_text_objects": {
+          "n": 66,
+          "flagged": 49,
+          "rate": 0.7424242424242424
+        },
+        "steganographic_acrostic": {
+          "n": 80,
+          "flagged": 0,
+          "rate": 0.0
+        }
+      },
+      "techniques_among_flagged": {
+        "Text in invisible render mode (mode 3)": 610,
+        "Text not visible in the rendered page": 478,
+        "Sub-legible font size": 254,
+        "Text positioned outside the page": 76
+      },
+      "errors": 0,
+      "timeouts": 0,
+      "seconds_per_file_mean": 2.27815587529976,
+      "seconds_per_file_max": 13.879
+    },
+    {
+      "detector": "pdf_injection_scanner",
+      "run": {
+        "command_template": "/Users/karthik/crackedpdfs-work/baselines/pdf-injection-scanner/.venv/bin/pdf-scan --json <pdf>",
+        "commit": "88555839b5af2e9221d3abc04ff622d6a59537b3",
+        "detector": "pdf_injection_scanner",
+        "errors": 0,
+        "files": 2919,
+        "flag_rule": "any finding (the tool has no severity-based verdict)",
+        "license": "MIT",
+        "python": "Python 3.13.3",
+        "repository": "https://github.com/Andy8647/pdf-injection-scanner",
+        "score_rule": "high_count + 0.1 * medium_count",
+        "timeout_seconds": 120.0,
+        "timeouts": 0,
+        "version": "0.2.1 (pyproject.toml)",
+        "wall_clock_seconds": 1627.5,
+        "workers": 6
+      },
+      "full_split": {
+        "n": 2919,
+        "positives": 973,
+        "negatives": 1946,
+        "tp": 958,
+        "fp": 958,
+        "tn": 988,
+        "fn": 15,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.5,
+        "recall": 0.9845837615621789,
+        "f1": 0.6632052613361025,
+        "roc_auc": 0.7436309651441965
+      },
+      "paired_subset": {
+        "n": 1946,
+        "positives": 973,
+        "negatives": 973,
+        "tp": 958,
+        "fp": 958,
+        "tn": 15,
+        "fn": 15,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 0.9845837615621789,
+        "f1": 0.6632052613361025,
+        "roc_auc": 0.49497004950730356
+      },
+      "paired_ranking": {
+        "pairs": 973,
+        "wins": 55,
+        "ties": 739,
+        "accuracy": 0.4362795477903392
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 973,
+          "flagged": 958,
+          "rate": 0.9845837615621789
+        },
+        "benign_original": {
+          "n": 973,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "injected_attack": {
+          "n": 973,
+          "flagged": 958,
+          "rate": 0.9845837615621789
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 73,
+          "flagged": 73,
+          "rate": 1.0
+        },
+        "header_footer_like": {
+          "n": 68,
+          "flagged": 68,
+          "rate": 1.0
+        },
+        "in_page_invisible_text": {
+          "n": 74,
+          "flagged": 74,
+          "rate": 1.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 62,
+          "flagged": 62,
+          "rate": 1.0
+        },
+        "in_page_split_text_objects": {
+          "n": 46,
+          "flagged": 46,
+          "rate": 1.0
+        },
+        "in_page_tiny_text": {
+          "n": 68,
+          "flagged": 68,
+          "rate": 1.0
+        },
+        "in_page_white_text": {
+          "n": 51,
+          "flagged": 51,
+          "rate": 1.0
+        },
+        "layout_mimicry": {
+          "n": 79,
+          "flagged": 79,
+          "rate": 1.0
+        },
+        "margin_microtext": {
+          "n": 61,
+          "flagged": 61,
+          "rate": 1.0
+        },
+        "microglyph_steganography": {
+          "n": 66,
+          "flagged": 66,
+          "rate": 1.0
+        },
+        "near_margin_normal_font": {
+          "n": 70,
+          "flagged": 70,
+          "rate": 1.0
+        },
+        "plain_single_block": {
+          "n": 52,
+          "flagged": 52,
+          "rate": 1.0
+        },
+        "semantic_fragmentation": {
+          "n": 57,
+          "flagged": 57,
+          "rate": 1.0
+        },
+        "split_text_objects": {
+          "n": 66,
+          "flagged": 51,
+          "rate": 0.7727272727272727
+        },
+        "steganographic_acrostic": {
+          "n": 80,
+          "flagged": 80,
+          "rate": 1.0
+        }
+      },
+      "techniques_among_flagged": {
+        "Off-Page Text": 1916,
+        "White/Invisible Text": 494,
+        "Tiny Text": 470,
+        "Suspicious Pattern": 34
+      },
+      "errors": 0,
+      "timeouts": 0,
+      "seconds_per_file_mean": 3.304241178485783,
+      "seconds_per_file_max": 16.594
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "split_consistency": {
+    "rows_in_split_file": 29322,
+    "rows_missing_from_table": 0,
+    "rows_compared": 29322,
+    "rows_agree": 19281,
+    "agreement_rate": 0.65756087579292,
+    "crosstab_frozen_rows_by_column": {
+      "test": {
+        "test": 165,
+        "train": 2481,
+        "validation": 273
+      },
+      "train": {
+        "test": 2517,
+        "train": 18960,
+        "validation": 2289
+      },
+      "validation": {
+        "test": 129,
+        "train": 2352,
+        "validation": 156
+      }
+    }
+  },
+  "payload_overlap": {
+    "injected_rows": 9774,
+    "distinct_payloads": 104,
+    "payloads_per_message_type": {
+      "agent_tool_manipulation": 13,
+      "data_exfiltration": 13,
+      "instruction_override": 13,
+      "policy_framing": 13,
+      "refusal_suppression": 13,
+      "summarization_steering": 13,
+      "system_extraction": 13,
+      "task_hijack": 13
+    },
+    "uses_per_payload": {
+      "min": 72,
+      "median": 93.5,
+      "max": 114
+    },
+    "distinct_payloads_by_split": {
+      "train": 104,
+      "validation": 104,
+      "test": 104
+    },
+    "payloads_in_all_three_splits": 104,
+    "test_injected_rows": 973,
+    "test_injected_rows_with_payload_seen_in_train": 973,
+    "test_payloads_unseen_in_train": [],
+    "documents_per_payload": {
+      "median": 84.5,
+      "max": 104
+    }
+  },
+  "file_sha256": {
+    "labels.parquet": "41838450b245e22761293db57f05997cd9819a86abe2cc1f362f7cccc9724927",
+    "splits.json": "5ab6a6236cd13613fb194896e38eb6f85c131746df799485e800eab6cff338c3",
+    "metadata.parquet": "41838450b245e22761293db57f05997cd9819a86abe2cc1f362f7cccc9724927"
+  },
+  "identical_files": [
+    [
+      "labels.parquet",
+      "metadata.parquet"
+    ]
+  ]
+}

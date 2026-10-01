@@ -1,0 +1,601 @@
+{
+  "n_folds": 5,
+  "folds": [
+    {
+      "fold": 0,
+      "train_rows": 15966,
+      "val_rows": 1797,
+      "cells": {
+        "C2": 4707,
+        "C2p": 5304,
+        "C3": 1548
+      },
+      "models": {
+        "hybrid_symmetric_sanitizer": {
+          "threshold": 0.7105567991209273,
+          "C2": {
+            "cell": "C2",
+            "rows": 4707,
+            "threshold": 0.7105567991209273,
+            "f1": 0.991321118611379,
+            "positives": 1569,
+            "negatives": 3138,
+            "roc_auc": 0.9999733930304363,
+            "pr_auc": 0.9999469196062541,
+            "paired_rank_vs_confounder": {
+              "pairs": 1569,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1569,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C2p": {
+            "cell": "C2p",
+            "rows": 5304,
+            "threshold": 0.7105567991209273,
+            "f1": 0.7991858887381276,
+            "positives": 1768,
+            "negatives": 3536,
+            "roc_auc": 0.9984703233451403,
+            "pr_auc": 0.9966544297787671,
+            "paired_rank_vs_confounder": {
+              "pairs": 1768,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1768,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C3": {
+            "cell": "C3",
+            "rows": 1548,
+            "threshold": 0.7105567991209273,
+            "f1": 0.825,
+            "positives": 516,
+            "negatives": 1032,
+            "roc_auc": 0.9985446337359534,
+            "pr_auc": 0.9969216295453914,
+            "paired_rank_vs_confounder": {
+              "pairs": 516,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 516,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "train_rows": 16560,
+      "val_rows": 1917,
+      "cells": {
+        "C2": 4230,
+        "C2p": 5439,
+        "C3": 1176
+      },
+      "models": {
+        "hybrid_symmetric_sanitizer": {
+          "threshold": 0.5968021995290476,
+          "C2": {
+            "cell": "C2",
+            "rows": 4230,
+            "threshold": 0.5968021995290476,
+            "f1": 0.9968073785030153,
+            "positives": 1410,
+            "negatives": 2820,
+            "roc_auc": 0.9999748503596398,
+            "pr_auc": 0.9999497642207781,
+            "paired_rank_vs_confounder": {
+              "pairs": 1410,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1410,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C2p": {
+            "cell": "C2p",
+            "rows": 5439,
+            "threshold": 0.5968021995290476,
+            "f1": 0.8507273877292852,
+            "positives": 1813,
+            "negatives": 3626,
+            "roc_auc": 0.998550336191184,
+            "pr_auc": 0.9968361056182712,
+            "paired_rank_vs_confounder": {
+              "pairs": 1813,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1813,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C3": {
+            "cell": "C3",
+            "rows": 1176,
+            "threshold": 0.5968021995290476,
+            "f1": 0.8621190130624092,
+            "positives": 392,
+            "negatives": 784,
+            "roc_auc": 0.9982461734693878,
+            "pr_auc": 0.9966212327339898,
+            "paired_rank_vs_confounder": {
+              "pairs": 392,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 392,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "train_rows": 16170,
+      "val_rows": 1866,
+      "cells": {
+        "C2": 4305,
+        "C2p": 5586,
+        "C3": 1395
+      },
+      "models": {
+        "hybrid_symmetric_sanitizer": {
+          "threshold": 0.6817382854233646,
+          "C2": {
+            "cell": "C2",
+            "rows": 4305,
+            "threshold": 0.6817382854233646,
+            "f1": 0.9944016794961511,
+            "positives": 1435,
+            "negatives": 2870,
+            "roc_auc": 0.9999626072915782,
+            "pr_auc": 0.9999256990547727,
+            "paired_rank_vs_confounder": {
+              "pairs": 1435,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1435,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C2p": {
+            "cell": "C2p",
+            "rows": 5586,
+            "threshold": 0.6817382854233646,
+            "f1": 0.8178934010152284,
+            "positives": 1862,
+            "negatives": 3724,
+            "roc_auc": 0.9986765382844867,
+            "pr_auc": 0.9972179029875672,
+            "paired_rank_vs_confounder": {
+              "pairs": 1862,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1862,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C3": {
+            "cell": "C3",
+            "rows": 1395,
+            "threshold": 0.6817382854233646,
+            "f1": 0.8217446270543616,
+            "positives": 465,
+            "negatives": 930,
+            "roc_auc": 0.9973014221297261,
+            "pr_auc": 0.9941367502481198,
+            "paired_rank_vs_confounder": {
+              "pairs": 465,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 465,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "train_rows": 18003,
+      "val_rows": 1986,
+      "cells": {
+        "C2": 4911,
+        "C2p": 3495,
+        "C3": 927
+      },
+      "models": {
+        "hybrid_symmetric_sanitizer": {
+          "threshold": 0.655242000281009,
+          "C2": {
+            "cell": "C2",
+            "rows": 4911,
+            "threshold": 0.655242000281009,
+            "f1": 0.9954001839926403,
+            "positives": 1637,
+            "negatives": 3274,
+            "roc_auc": 0.9999557797705697,
+            "pr_auc": 0.9999123936147869,
+            "paired_rank_vs_confounder": {
+              "pairs": 1637,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1637,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C2p": {
+            "cell": "C2p",
+            "rows": 3495,
+            "threshold": 0.655242000281009,
+            "f1": 0.8225806451612904,
+            "positives": 1165,
+            "negatives": 2330,
+            "roc_auc": 0.9974683637569305,
+            "pr_auc": 0.9946969826301281,
+            "paired_rank_vs_confounder": {
+              "pairs": 1165,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1165,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C3": {
+            "cell": "C3",
+            "rows": 927,
+            "threshold": 0.655242000281009,
+            "f1": 0.8279773156899811,
+            "positives": 309,
+            "negatives": 618,
+            "roc_auc": 0.997324074946848,
+            "pr_auc": 0.9947055248047357,
+            "paired_rank_vs_confounder": {
+              "pairs": 309,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 309,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "train_rows": 17232,
+      "val_rows": 2481,
+      "cells": {
+        "C2": 5157,
+        "C2p": 3486,
+        "C3": 966
+      },
+      "models": {
+        "hybrid_symmetric_sanitizer": {
+          "threshold": 0.5879894473313407,
+          "C2": {
+            "cell": "C2",
+            "rows": 5157,
+            "threshold": 0.5879894473313407,
+            "f1": 0.9965116279069768,
+            "positives": 1719,
+            "negatives": 3438,
+            "roc_auc": 0.9999778338868094,
+            "pr_auc": 0.999955839496556,
+            "paired_rank_vs_confounder": {
+              "pairs": 1719,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1719,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C2p": {
+            "cell": "C2p",
+            "rows": 3486,
+            "threshold": 0.5879894473313407,
+            "f1": 0.8948863636363636,
+            "positives": 1162,
+            "negatives": 2324,
+            "roc_auc": 0.9987765174294423,
+            "pr_auc": 0.9973522067348681,
+            "paired_rank_vs_confounder": {
+              "pairs": 1162,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 1162,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          },
+          "C3": {
+            "cell": "C3",
+            "rows": 966,
+            "threshold": 0.5879894473313407,
+            "f1": 0.8945578231292517,
+            "positives": 322,
+            "negatives": 644,
+            "roc_auc": 0.9982494888314494,
+            "pr_auc": 0.9961574365761794,
+            "paired_rank_vs_confounder": {
+              "pairs": 322,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            },
+            "paired_rank_vs_original": {
+              "pairs": 322,
+              "accuracy": 1.0,
+              "ties": 0,
+              "reversed": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "assignment": {
+    "documents_per_fold": {
+      "0": 997,
+      "1": 997,
+      "2": 997,
+      "3": 996,
+      "4": 996
+    },
+    "payloads_per_fold": {
+      "0": 24,
+      "1": 24,
+      "2": 24,
+      "3": 16,
+      "4": 16
+    }
+  },
+  "pooled": {
+    "hybrid_symmetric_sanitizer": {
+      "C2": {
+        "rows": 23310,
+        "f1": 0.9948996061721221,
+        "roc_auc": 0.9999690506833364,
+        "pr_auc": 0.999938393471079,
+        "paired_rank_vs_confounder": {
+          "pairs": 7770,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 7770,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.9937384230366971,
+            "ci95_high": 0.9960197908732464,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9999561789094977,
+            "ci95_high": 0.9999801244043053,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999128153443801,
+            "ci95_high": 0.999960310773119,
+            "samples": 1000
+          }
+        },
+        "bootstrap_by_payload": {
+          "f1": {
+            "ci95_low": 0.9935839531271075,
+            "ci95_high": 0.9960566397398497,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.999956271786112,
+            "ci95_high": 0.9999795265649893,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999091109689414,
+            "ci95_high": 0.9999603985197706,
+            "samples": 1000
+          }
+        }
+      },
+      "C2p": {
+        "rows": 23310,
+        "f1": 0.8344063482557269,
+        "roc_auc": 0.9983840597354111,
+        "pr_auc": 0.9965459898814067,
+        "paired_rank_vs_confounder": {
+          "pairs": 7770,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 7770,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.8257844280644613,
+            "ci95_high": 0.8426640327164565,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9980452209245465,
+            "ci95_high": 0.9986928715792408,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9958216257615521,
+            "ci95_high": 0.9972197194896603,
+            "samples": 1000
+          }
+        },
+        "bootstrap_by_payload": {
+          "f1": {
+            "ci95_low": 0.7967935128474922,
+            "ci95_high": 0.8655014106257991,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9977088497199164,
+            "ci95_high": 0.9988985070347536,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9948348131908565,
+            "ci95_high": 0.9976874086034849,
+            "samples": 1000
+          }
+        }
+      },
+      "C3": {
+        "rows": 6012,
+        "f1": 0.8438308886971527,
+        "roc_auc": 0.99790376831168,
+        "pr_auc": 0.9956044588738918,
+        "paired_rank_vs_confounder": {
+          "pairs": 2004,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 2004,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.828720607012377,
+            "ci95_high": 0.8569004386286431,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9971439742507309,
+            "ci95_high": 0.9985728340294784,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9939559057913255,
+            "ci95_high": 0.9970325412718591,
+            "samples": 1000
+          }
+        },
+        "bootstrap_by_payload": {
+          "f1": {
+            "ci95_low": 0.8053611759827262,
+            "ci95_high": 0.8749588963637076,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.996821635068683,
+            "ci95_high": 0.9987598851739876,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9929143962963229,
+            "ci95_high": 0.9973899405891906,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "command_template": "/Users/karthik/crackedpdfs-work/baselines/hidden-text-detector/.venv/bin/python /Users/karthik/crackedpdfs-work/baselines/hidden-text-detector/scripts/scan.py --json <pdf>",
+  "commit": "ce9e505dc1c128701e921e8d7e1a133c7ff28db8",
+  "detector": "hidden_text_detector",
+  "errors": 0,
+  "files": 2919,
+  "flag_rule": "any finding with severity CRITICAL",
+  "license": "MIT",
+  "python": "Python 3.13.3",
+  "repository": "https://github.com/wppoland/hidden-text-detector",
+  "score_rule": "critical_count + 0.1 * warning_count",
+  "timeout_seconds": 120.0,
+  "timeouts": 0,
+  "version": "unversioned (no release tags); commit SHA identifies the build",
+  "wall_clock_seconds": 1116.8,
+  "workers": 6
+}
