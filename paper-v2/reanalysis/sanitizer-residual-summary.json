@@ -1,0 +1,351 @@
+{
+  "sanitizer_config": {
+    "strip_known_benchmark_wrappers": true,
+    "known_benchmark_wrappers": [
+      "SYSTEM_POLICY_DO_NOT_REMOVE",
+      "BEGIN_SYSTEM_POLICY",
+      "END_SYSTEM_POLICY",
+      "BEGIN_SYSTEM_PROMPT",
+      "END_SYSTEM_PROMPT",
+      "BEGIN_PROMPT_INJECTION",
+      "END_PROMPT_INJECTION",
+      "DO_NOT_REMOVE",
+      "dataset_sample_id",
+      "message_type",
+      "sample_id",
+      "sample"
+    ],
+    "strip_synthetic_phrase_markers": true,
+    "synthetic_phrase_markers": [
+      "benign",
+      "confounder",
+      "document_layout_note",
+      "document layout note",
+      "layout note",
+      "layout calibration",
+      "layout calibration text",
+      "calibration text only",
+      "text only",
+      "only text only",
+      "contains no",
+      "matched benign",
+      "safe placeholder",
+      "neutral placeholder",
+      "training sample",
+      "synthetic",
+      "sentence records",
+      "pagination and retention",
+      "retention notice generated",
+      "generated footer text",
+      "footer text for layout",
+      "control testing text",
+      "screen reader parity",
+      "hidden extraction layer",
+      "archival sentence",
+      "balanced sentence",
+      "careful sentence",
+      "detailed sentence",
+      "editorial sentence",
+      "formal sentence",
+      "general sentence",
+      "internal sentence",
+      "local sentence",
+      "neutral sentence",
+      "ordinary sentence",
+      "practical sentence",
+      "routine sentence",
+      "standard sentence",
+      "technical sentence",
+      "useful sentence",
+      "verified sentence",
+      "yearly sentence"
+    ]
+  },
+  "mean_added_by_role": {
+    "added_raw": {
+      "benign_confounder": 1054.5,
+      "injected_attack": 926.2
+    },
+    "added_clean": {
+      "benign_confounder": 593.2,
+      "injected_attack": 570.1
+    }
+  },
+  "mean_added_by_family": [
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_acrostic_editorial_note",
+      "added_raw": 10743.3,
+      "added_clean": 7277.2
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_existing_stream_note",
+      "added_raw": 187.0,
+      "added_clean": 2.7
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_in_page_invisible_note",
+      "added_raw": 188.1,
+      "added_clean": 2.6
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_in_page_split_layout",
+      "added_raw": 180.0,
+      "added_clean": 4.4
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_in_page_tiny_footer",
+      "added_raw": 189.1,
+      "added_clean": 3.5
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_in_page_white_watermark",
+      "added_raw": 188.9,
+      "added_clean": 3.0
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_layout_mimicry_note",
+      "added_raw": 189.8,
+      "added_clean": 2.0
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_low_contrast_watermark",
+      "added_raw": 188.0,
+      "added_clean": 2.5
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_margin_microtext",
+      "added_raw": 192.1,
+      "added_clean": 4.2
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_microglyph_registration_mark",
+      "added_raw": 343.4,
+      "added_clean": 11.3
+    },
+    {
+      "pdf_role": "benign_confounder",
+      "family": "benign_semantic_fragmentation_note",
+      "added_raw": 191.5,
+      "added_clean": 2.8
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "existing_stream_patch",
+      "added_raw": 207.0,
+      "added_clean": 85.1
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "header_footer_like",
+      "added_raw": 207.3,
+      "added_clean": 84.7
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "in_page_invisible_text",
+      "added_raw": 207.8,
+      "added_clean": 85.2
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "in_page_low_contrast_text",
+      "added_raw": 208.8,
+      "added_clean": 86.3
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "in_page_split_text_objects",
+      "added_raw": 208.7,
+      "added_clean": 86.1
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "in_page_tiny_text",
+      "added_raw": 207.5,
+      "added_clean": 84.7
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "in_page_white_text",
+      "added_raw": 207.5,
+      "added_clean": 84.9
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "layout_mimicry",
+      "added_raw": 206.8,
+      "added_clean": 84.3
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "margin_microtext",
+      "added_raw": 207.3,
+      "added_clean": 84.7
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "microglyph_steganography",
+      "added_raw": 385.5,
+      "added_clean": 144.4
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "near_margin_normal_font",
+      "added_raw": 207.7,
+      "added_clean": 85.3
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "plain_single_block",
+      "added_raw": 207.9,
+      "added_clean": 85.2
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "semantic_fragmentation",
+      "added_raw": 207.0,
+      "added_clean": 84.5
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "split_text_objects",
+      "added_raw": 197.1,
+      "added_clean": 75.2
+    },
+    {
+      "pdf_role": "injected_attack",
+      "family": "steganographic_acrostic",
+      "added_raw": 8928.8,
+      "added_clean": 6027.6
+    }
+  ],
+  "residual_length_roc_auc_injected_vs_confounder": 0.9211416136462234,
+  "residual_length_rule_accuracy": {
+    "added_clean_gt_10": 0.9461325966850829,
+    "added_clean_gt_20": 0.9594843462246777,
+    "added_clean_gt_40": 0.9594843462246777
+  },
+  "paired_residual_length": {
+    "pairs": 9774,
+    "injected_longer": 9170,
+    "ties": 90,
+    "confounder_longer": 514
+  },
+  "paired_residual_length_by_family": [
+    {
+      "family": "existing_stream_patch",
+      "pairs": 635,
+      "injected_longer": 635,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "header_footer_like",
+      "pairs": 651,
+      "injected_longer": 651,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "in_page_invisible_text",
+      "pairs": 637,
+      "injected_longer": 637,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "in_page_low_contrast_text",
+      "pairs": 682,
+      "injected_longer": 682,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "in_page_split_text_objects",
+      "pairs": 462,
+      "injected_longer": 462,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "in_page_tiny_text",
+      "pairs": 660,
+      "injected_longer": 660,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "in_page_white_text",
+      "pairs": 660,
+      "injected_longer": 660,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "layout_mimicry",
+      "pairs": 669,
+      "injected_longer": 669,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "margin_microtext",
+      "pairs": 618,
+      "injected_longer": 618,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "microglyph_steganography",
+      "pairs": 696,
+      "injected_longer": 696,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "near_margin_normal_font",
+      "pairs": 654,
+      "injected_longer": 654,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "plain_single_block",
+      "pairs": 647,
+      "injected_longer": 647,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "semantic_fragmentation",
+      "pairs": 639,
+      "injected_longer": 639,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "split_text_objects",
+      "pairs": 672,
+      "injected_longer": 672,
+      "ties": 0,
+      "confounder_longer": 0
+    },
+    {
+      "family": "steganographic_acrostic",
+      "pairs": 792,
+      "injected_longer": 188,
+      "ties": 90,
+      "confounder_longer": 514
+    }
+  ]
+}
