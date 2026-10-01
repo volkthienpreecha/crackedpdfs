@@ -29,7 +29,14 @@ ARTIFACT_DIR = (
     / "external_baselines"
 )
 SPLIT_PATH = WORK_ROOT / "v1" / "test_split.csv"
-DETECTOR_ORDER = ["phantomlint", "phantomlint_passthrough", "hidden_text_detector", "pdf_injection_scanner"]
+DETECTOR_ORDER = [
+    "phantomlint",
+    "phantomlint_passthrough",
+    "hidden_text_detector",
+    "pdf_injection_scanner",
+    "hiddencontent_structural",
+    "hiddencontent_vision",
+]
 
 
 def load_rows(path: Path) -> list[dict]:

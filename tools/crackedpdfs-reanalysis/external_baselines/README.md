@@ -66,6 +66,7 @@ python3 run_hidden_text_detector.py --workers 6
 python3 run_pdf_injection_scanner.py --workers 6
 python3 run_phantomlint.py --workers 3                      # default nlp analyzer
 python3 run_phantomlint.py --workers 3 --analyze passthrough
+python3 import_hiddencontent.py        # vendor-supplied results, see below
 python3 summarize.py
 ```
 
@@ -89,6 +90,28 @@ loaded torch model, so keep the worker count modest on machines with 8 GB of mem
 | `phantomlint` and `phantomlint_passthrough` | at least one hidden suspicious phrase is reported (console script exit status 1) | number of characters highlighted as hidden in `hidden_suspicious_phrases.txt` | `hidden_suspicious_text`, `suspicious_visible_only`, or empty |
 | `hidden_text_detector` | any finding with severity `CRITICAL` (the tool's own exit-code rule) | `critical_count + 0.1 * warning_count` | distinct CRITICAL and WARNING finding types joined with `\|` |
 | `pdf_injection_scanner` | any finding (the tool has no severity-based verdict) | `high_count + 0.1 * medium_count` | distinct finding types joined with `\|` |
+| `hiddencontent_structural`, `hiddencontent_vision` | vendor verdict `suspicious` (at least one finding) | hidden characters reported across the file's findings | vendor technique ids joined with `\|` |
+
+## Vendor-supplied results (`import_hiddencontent.py`)
+
+HiddenContent.ai ran their production engine over the complete v1 corpus and shared the per-file
+output: a structural pass over all 29,322 files and a rendered pass (300 DPI) over the 2,811 files
+whose release metadata column `dataset_split` reads `test`. The archive is the vendor's and is not
+redistributed. `import_hiddencontent.py` reads the unpacked folder (`--results-dir`, default
+`$CRACKEDPDFS_WORK/hiddencontent`), restricts both passes to the frozen test split, and writes
+`hiddencontent_structural_per_file.csv` and `hiddencontent_vision_per_file.csv` in the shared
+layout so `summarize.py` reports them next to the open-source detectors. `flagged` is the vendor
+verdict `suspicious`; `score` is the number of hidden characters the engine reported.
+
+The script also compares the vendor's line geometry with a `crackedpdfs-audit corpus` run over the
+same files (`--audit`, default `$CRACKEDPDFS_WORK/audit-v1/placement-audit.jsonl`) and writes
+`hiddencontent/comparison.{json,md}`: split coverage, per-family agreement on text below the page,
+the files whose only finding is off-page text, pair outcomes by hidden-character count, and the
+technique mix. The reduction and comparison logic lives in
+`crackedpdfs_reanalysis.vendor_results` and is covered by `tests/test_vendor_results.py`.
+
+Only 165 of the 2,919 frozen test files carry `dataset_split = test` in the release metadata, so
+the rendered pass is a 55-triad subsample on the frozen split; its run metadata records this.
 
 ## Metrics
 
