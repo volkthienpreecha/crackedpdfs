@@ -1,0 +1,173 @@
+{
+  "package": "crackedpdfs-payloads",
+  "version": "0.1.0",
+  "processing": {
+    "min_chars": 20,
+    "max_chars": 1200,
+    "dedupe": "exact, case-insensitive, after whitespace and quote normalisation",
+    "id": "pl- plus first 12 hex of sha256(normalised text)",
+    "clustering": "MinHash (128 permutations) over character 5-gram shingles, LSH threshold 0.7, union-find components"
+  },
+  "sources": [
+    {
+      "name": "crackedpdfs-v1",
+      "url": "https://github.com/volkthienpreecha/crackedpdfs/blob/main/src/lib/prompt-injection-message-library.ts",
+      "license": "MIT",
+      "license_evidence": "repository LICENSE file (MIT)",
+      "retrieved_at": "2026-10-01",
+      "revision": null,
+      "raw_count": 104,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [],
+      "kept_count": 104,
+      "dropped_length": 0,
+      "dropped_duplicate": 0
+    },
+    {
+      "name": "deepset-prompt-injections",
+      "url": "https://huggingface.co/datasets/deepset/prompt-injections",
+      "license": "apache-2.0",
+      "license_evidence": "dataset card metadata at revision 4f61ecb038e9c3fb77e21034b22511b523772cdd",
+      "retrieved_at": "2026-10-01",
+      "revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+      "raw_count": 662,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [
+        "dataset_info block also lists license 'cc-by-4.0'; card header is 'apache-2.0'"
+      ],
+      "kept_count": 257,
+      "dropped_length": 6,
+      "dropped_duplicate": 0
+    },
+    {
+      "name": "spml-chatbot-prompt-injection",
+      "url": "https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection",
+      "license": "mit",
+      "license_evidence": "dataset card metadata at revision 02ce8084e979bc7d4c24ee35d22ecb7f2db96ff5",
+      "retrieved_at": "2026-10-01",
+      "revision": "02ce8084e979bc7d4c24ee35d22ecb7f2db96ff5",
+      "raw_count": 16012,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [],
+      "kept_count": 8846,
+      "dropped_length": 3695,
+      "dropped_duplicate": 0
+    },
+    {
+      "name": "lakera-gandalf-ignore-instructions",
+      "url": "https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions",
+      "license": "mit",
+      "license_evidence": "dataset card metadata at revision 04737b65e90a6794ec227012e4a255a7def6344b",
+      "retrieved_at": "2026-10-01",
+      "revision": "04737b65e90a6794ec227012e4a255a7def6344b",
+      "raw_count": 1000,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [],
+      "kept_count": 983,
+      "dropped_length": 16,
+      "dropped_duplicate": 1
+    },
+    {
+      "name": "jackhhao-jailbreak-classification",
+      "url": "https://huggingface.co/datasets/jackhhao/jailbreak-classification",
+      "license": "apache-2.0",
+      "license_evidence": "dataset card metadata at revision 2f2ceeb39658696fd3f462403562b6eea5306287",
+      "retrieved_at": "2026-10-01",
+      "revision": "2f2ceeb39658696fd3f462403562b6eea5306287",
+      "raw_count": 1306,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [],
+      "kept_count": 259,
+      "dropped_length": 401,
+      "dropped_duplicate": 6
+    },
+    {
+      "name": "agentdojo-injection-tasks",
+      "url": "https://github.com/ethz-spylab/agentdojo",
+      "license": "MIT",
+      "license_evidence": "LICENSE file at commit 089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+      "retrieved_at": "2026-10-01",
+      "revision": "089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+      "raw_count": 54,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [
+        "GOAL f-strings resolved against class constants (attacker addresses, IBANs, links)"
+      ],
+      "kept_count": 46,
+      "dropped_length": 0,
+      "dropped_duplicate": 8
+    },
+    {
+      "name": "open-prompt-injection",
+      "url": "https://github.com/liu00222/Open-Prompt-Injection",
+      "license": "MIT",
+      "license_evidence": "LICENSE file at commit fbed5cca347488f88363790ae3ae97c56116da6a",
+      "retrieved_at": "2026-10-01",
+      "revision": "fbed5cca347488f88363790ae3ae97c56116da6a",
+      "raw_count": 540,
+      "skipped": false,
+      "skip_reason": null,
+      "notes": [
+        "excluded data/system_prompts/hate_detection_inject_med_long.txt: demonstration example contains a racial slur",
+        "payloads are the attacker templates (naive, ignore, fake completion, combined) applied to each injected instruction with the dataset-specific injected sample omitted"
+      ],
+      "kept_count": 540,
+      "dropped_length": 0,
+      "dropped_duplicate": 0
+    }
+  ],
+  "summary": {
+    "total_messages": 11035,
+    "by_source": {
+      "agentdojo-injection-tasks": 46,
+      "crackedpdfs-v1": 104,
+      "deepset-prompt-injections": 257,
+      "jackhhao-jailbreak-classification": 259,
+      "lakera-gandalf-ignore-instructions": 983,
+      "open-prompt-injection": 540,
+      "spml-chatbot-prompt-injection": 8846
+    },
+    "by_message_type": {
+      "instruction_override": 2254,
+      "policy_framing": 581,
+      "task_hijack": 1070,
+      "system_extraction": 584,
+      "refusal_suppression": 347,
+      "data_exfiltration": 1592,
+      "agent_tool_manipulation": 140,
+      "summarization_steering": 220,
+      "unclassified": 4247
+    },
+    "by_language": {
+      "en": 10882,
+      "de": 92,
+      "fr": 28,
+      "es": 7,
+      "it": 7,
+      "da": 3,
+      "id": 2,
+      "hr": 2,
+      "af": 2,
+      "tl": 2,
+      "ru": 2,
+      "sl": 1,
+      "cy": 1,
+      "nl": 1,
+      "no": 1,
+      "ro": 1,
+      "und": 1
+    },
+    "cluster_count": 10444,
+    "singleton_clusters": 10331,
+    "largest_cluster": 52,
+    "v1_cluster_count": 104,
+    "external_in_v1_cluster": 0,
+    "external_nearest_v1_jaccard_ge_0_7": 0
+  }
+}
