@@ -1,0 +1,302 @@
+{
+  "steganographic_acrostic": {
+    "test_rows": 15687,
+    "family_injected": 792,
+    "models": {
+      "hybrid": {
+        "threshold": 0.4433992481025696,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.6644295302013423,
+          "positives": 792,
+          "negatives": 10458,
+          "roc_auc": 0.960284862393296,
+          "pr_auc": 0.47077895696362004
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 792,
+          "accuracy": 0.4318181818181818,
+          "ties": 0,
+          "reversed": 450,
+          "bootstrap_by_document": {
+            "ci95_low": 0.39406638517475956,
+            "ci95_high": 0.4714947230992494,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 792,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.6616465331674578,
+            "ci95_high": 0.6664012738853503,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9556923662146841,
+            "ci95_high": 0.9637772626892755,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.46629025890138903,
+            "ci95_high": 0.4756214649680966,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "microglyph_steganography": {
+    "test_rows": 15543,
+    "family_injected": 696,
+    "models": {
+      "hybrid": {
+        "threshold": 0.33729716989771463,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.5552453131232549,
+          "positives": 696,
+          "negatives": 10362,
+          "roc_auc": 0.9822618065123007,
+          "pr_auc": 0.7098856034492078
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 696,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 696,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.5426330269129112,
+            "ci95_high": 0.5686531139282038,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9797835665850397,
+            "ci95_high": 0.9844367853553765,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.6939439694191041,
+            "ci95_high": 0.7384857944149752,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "semantic_fragmentation": {
+    "test_rows": 15612,
+    "family_injected": 639,
+    "models": {
+      "hybrid": {
+        "threshold": 0.4593133283864848,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.7638971906754334,
+          "positives": 639,
+          "negatives": 10408,
+          "roc_auc": 0.999569670134566,
+          "pr_auc": 0.9935780335911651
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 639,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 639,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.7398318086457635,
+            "ci95_high": 0.7876534565709797,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9992963322399268,
+            "ci95_high": 0.9997687237052485,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.989778188591685,
+            "ci95_high": 0.9964954854658129,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "layout_mimicry": {
+    "test_rows": 15252,
+    "family_injected": 669,
+    "models": {
+      "hybrid": {
+        "threshold": 0.4692336578762124,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.7756521739130435,
+          "positives": 669,
+          "negatives": 10168,
+          "roc_auc": 0.9997046627127633,
+          "pr_auc": 0.995690885553637
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 669,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 669,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.747410582789817,
+            "ci95_high": 0.8044380290143003,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9995071984780228,
+            "ci95_high": 0.9998533787550733,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9928277599173633,
+            "ci95_high": 0.9978735195312196,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "margin_microtext": {
+    "test_rows": 15063,
+    "family_injected": 618,
+    "models": {
+      "hybrid": {
+        "threshold": 0.43084528672278577,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.7615526802218114,
+          "positives": 618,
+          "negatives": 10042,
+          "roc_auc": 0.9999468252755901,
+          "pr_auc": 0.9991761030859596
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 618,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 618,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.7351987725679737,
+            "ci95_high": 0.7914156902742422,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9998869181113871,
+            "ci95_high": 0.9999849732684137,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9982416233282334,
+            "ci95_high": 0.999776850226549,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "in_page_low_contrast_text": {
+    "test_rows": 15225,
+    "family_injected": 682,
+    "models": {
+      "hybrid": {
+        "threshold": 0.36218318380676456,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.775,
+          "positives": 682,
+          "negatives": 10150,
+          "roc_auc": 0.9996368259104633,
+          "pr_auc": 0.9948626209598823
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 682,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 682,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.7511133174908038,
+            "ci95_high": 0.8007417713426297,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9994018722215144,
+            "ci95_high": 0.9998276960383331,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9916146301009773,
+            "ci95_high": 0.9975681005890502,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  }
+}

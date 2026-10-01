@@ -6,9 +6,11 @@ ARTIFACT_DIR ?= .cache/crackedpdfs-paper-v1
 RESULTS_DIR ?= reproduced-results
 DOWNLOAD_MANIFEST ?= paper-v1/reproducibility/download-manifest.json
 INJECTOR_DIR := src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1
-RUFF_LINT_PATHS := tools/crackedpdfs-audit scripts/reproduce_results.py scripts/verify_source_snapshot.py \
+MAINTAINED_TOOLS := tools/crackedpdfs-audit tools/crackedpdfs-reanalysis tools/crackedpdfs-payloads \
+	tools/crackedpdfs-altinjector
+RUFF_LINT_PATHS := $(MAINTAINED_TOOLS) scripts/reproduce_results.py scripts/verify_source_snapshot.py \
 	scripts/smoke_benchmark.py tests $(INJECTOR_DIR)/test_placement_contract.py
-RUFF_FORMAT_PATHS := tools/crackedpdfs-audit $(INJECTOR_DIR)/test_placement_contract.py
+RUFF_FORMAT_PATHS := $(MAINTAINED_TOOLS) $(INJECTOR_DIR)/test_placement_contract.py
 TS_TESTS := src/lib/prompt-injection-message-library.test.ts \
 	src/backend/services/dataset-mode/index.test.ts \
 	src/backend/services/processing/layers/02-watermarking/injection-config.contract.test.ts
@@ -19,7 +21,7 @@ TS_TESTS := src/lib/prompt-injection-message-library.test.ts \
 help:
 	@echo "make smoke              verify the frozen source, then run every Python and TypeScript test"
 	@echo "make verify-source      check the byte-exact May 25 detector snapshot"
-	@echo "make test-python        generator, injector placement, audit tool, and release tests"
+	@echo "make test-python        generator, injector placement, audit, reanalysis, payload, and release tests"
 	@echo "make test-ts            TypeScript resolver, dataset-mode, and contract tests"
 	@echo "make typecheck          tsc --noEmit over the TypeScript project"
 	@echo "make lint               ruff over the maintained Python tooling"
@@ -28,10 +30,13 @@ help:
 check-python:
 	@$(PYTHON) -c "import sys; assert sys.version_info[:2] == (3, 13), 'CrackedPDFs requires Python 3.13, got ' + sys.version.split()[0]"
 
-$(VENV)/.smoke-deps: tools/PDFautogenerator/pyproject.toml tools/crackedpdfs-audit/pyproject.toml Makefile
+$(VENV)/.smoke-deps: tools/PDFautogenerator/pyproject.toml tools/crackedpdfs-audit/pyproject.toml \
+	tools/crackedpdfs-reanalysis/pyproject.toml tools/crackedpdfs-payloads/pyproject.toml \
+	tools/crackedpdfs-altinjector/pyproject.toml Makefile
 	$(PYTHON) -m venv $(VENV)
 	$(VENV_PIP) install --upgrade pip
-	$(VENV_PIP) install -e tools/PDFautogenerator -e tools/crackedpdfs-audit pytest pikepdf pdfminer.six ruff
+	$(VENV_PIP) install -e tools/PDFautogenerator -e tools/crackedpdfs-audit -e tools/crackedpdfs-reanalysis \
+		-e tools/crackedpdfs-payloads -e tools/crackedpdfs-altinjector pytest pikepdf pdfminer.six ruff
 	@touch $@
 
 node_modules/.paper-smoke-deps: package-lock.json
@@ -46,6 +51,8 @@ verify-source: deps
 test-python: deps
 	$(VENV_PYTHON) -m pytest -q tests/test_release_workflow.py tools/PDFautogenerator/tests
 	$(VENV_PYTHON) -m pytest -q tools/crackedpdfs-audit/tests
+	$(VENV_PYTHON) -m pytest -q tools/crackedpdfs-reanalysis/tests tools/crackedpdfs-payloads/tests \
+		tools/crackedpdfs-altinjector/tests
 	$(VENV_PYTHON) -m pytest -q $(INJECTOR_DIR)/test_placement_contract.py \
 		$(INJECTOR_DIR)/test_structural_placement.py $(INJECTOR_DIR)/test_validation_harness.py
 

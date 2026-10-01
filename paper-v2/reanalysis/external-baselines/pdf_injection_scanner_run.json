@@ -1,0 +1,17 @@
+{
+  "command_template": "/Users/karthik/crackedpdfs-work/baselines/pdf-injection-scanner/.venv/bin/pdf-scan --json <pdf>",
+  "commit": "88555839b5af2e9221d3abc04ff622d6a59537b3",
+  "detector": "pdf_injection_scanner",
+  "errors": 0,
+  "files": 2919,
+  "flag_rule": "any finding (the tool has no severity-based verdict)",
+  "license": "MIT",
+  "python": "Python 3.13.3",
+  "repository": "https://github.com/Andy8647/pdf-injection-scanner",
+  "score_rule": "high_count + 0.1 * medium_count",
+  "timeout_seconds": 120.0,
+  "timeouts": 0,
+  "version": "0.2.1 (pyproject.toml)",
+  "wall_clock_seconds": 1627.5,
+  "workers": 6
+}
