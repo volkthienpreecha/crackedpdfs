@@ -654,6 +654,319 @@
       "timeouts": 0,
       "seconds_per_file_mean": 3.304241178485783,
       "seconds_per_file_max": 16.594
+    },
+    {
+      "detector": "hiddencontent_structural",
+      "run": {
+        "command_template": "vendor engine, pass `structural, all files`",
+        "commit": "vendor",
+        "corpus_freeze_version": "usenix-physical-10k-20260525-1",
+        "detector": "hiddencontent_structural",
+        "errors": 0,
+        "files": 2919,
+        "flag_rule": "vendor verdict `suspicious` (at least one finding)",
+        "python": "n/a",
+        "renderer": null,
+        "score_rule": "hidden characters reported across the file's findings",
+        "source": "Results supplied by HiddenContent.ai (Van Chappell) on 2026-09-16; not run by the authors. The engine is proprietary; its rules are described in the vendor README that accompanies the results.",
+        "timeouts": 0,
+        "vendor_run_date": "2026-09-16",
+        "version": "engine 0.265.0, rule pack 2026.09.10-20",
+        "wall_clock_seconds": "n/a",
+        "workers": "n/a"
+      },
+      "full_split": {
+        "n": 2919,
+        "positives": 973,
+        "negatives": 1946,
+        "tp": 973,
+        "fp": 973,
+        "tn": 973,
+        "fn": 0,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "roc_auc": 0.8456416778191014
+      },
+      "paired_subset": {
+        "n": 1946,
+        "positives": 973,
+        "negatives": 973,
+        "tp": 973,
+        "fp": 973,
+        "tn": 0,
+        "fn": 0,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "roc_auc": 0.6912833556382026
+      },
+      "paired_ranking": {
+        "pairs": 973,
+        "wins": 811,
+        "ties": 17,
+        "accuracy": 0.84224049331963
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 973,
+          "flagged": 973,
+          "rate": 1.0
+        },
+        "benign_original": {
+          "n": 973,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "injected_attack": {
+          "n": 973,
+          "flagged": 973,
+          "rate": 1.0
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 73,
+          "flagged": 73,
+          "rate": 1.0
+        },
+        "header_footer_like": {
+          "n": 68,
+          "flagged": 68,
+          "rate": 1.0
+        },
+        "in_page_invisible_text": {
+          "n": 74,
+          "flagged": 74,
+          "rate": 1.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 62,
+          "flagged": 62,
+          "rate": 1.0
+        },
+        "in_page_split_text_objects": {
+          "n": 46,
+          "flagged": 46,
+          "rate": 1.0
+        },
+        "in_page_tiny_text": {
+          "n": 68,
+          "flagged": 68,
+          "rate": 1.0
+        },
+        "in_page_white_text": {
+          "n": 51,
+          "flagged": 51,
+          "rate": 1.0
+        },
+        "layout_mimicry": {
+          "n": 79,
+          "flagged": 79,
+          "rate": 1.0
+        },
+        "margin_microtext": {
+          "n": 61,
+          "flagged": 61,
+          "rate": 1.0
+        },
+        "microglyph_steganography": {
+          "n": 66,
+          "flagged": 66,
+          "rate": 1.0
+        },
+        "near_margin_normal_font": {
+          "n": 70,
+          "flagged": 70,
+          "rate": 1.0
+        },
+        "plain_single_block": {
+          "n": 52,
+          "flagged": 52,
+          "rate": 1.0
+        },
+        "semantic_fragmentation": {
+          "n": 57,
+          "flagged": 57,
+          "rate": 1.0
+        },
+        "split_text_objects": {
+          "n": 66,
+          "flagged": 66,
+          "rate": 1.0
+        },
+        "steganographic_acrostic": {
+          "n": 80,
+          "flagged": 80,
+          "rate": 1.0
+        }
+      },
+      "techniques_among_flagged": {
+        "pdf.offpage-text": 1336,
+        "pdf.render-mode-3": 610,
+        "pdf.tiny-font": 470,
+        "pdf.white-text": 468
+      },
+      "errors": 0,
+      "timeouts": 0,
+      "seconds_per_file_mean": 0.0,
+      "seconds_per_file_max": 0.0
+    },
+    {
+      "detector": "hiddencontent_vision",
+      "run": {
+        "command_template": "vendor engine, pass `vision, paper's test split`",
+        "commit": "vendor",
+        "corpus_freeze_version": "usenix-physical-10k-20260525-1",
+        "detector": "hiddencontent_vision",
+        "errors": 0,
+        "files": 165,
+        "flag_rule": "vendor verdict `suspicious` (at least one finding)",
+        "python": "n/a",
+        "renderer": {
+          "dpi": 300,
+          "filesRendered": 2811
+        },
+        "score_rule": "hidden characters reported across the file's findings",
+        "source": "Results supplied by HiddenContent.ai (Van Chappell) on 2026-09-16; not run by the authors. The engine is proprietary; its rules are described in the vendor README that accompanies the results.",
+        "subsample": "165 frozen test files (55 triads) that also carry dataset_split=test in the release metadata",
+        "timeouts": 0,
+        "vendor_run_date": "2026-09-16",
+        "version": "engine 0.265.0, rule pack 2026.09.10-20",
+        "wall_clock_seconds": "n/a",
+        "workers": "n/a"
+      },
+      "full_split": {
+        "n": 165,
+        "positives": 55,
+        "negatives": 110,
+        "tp": 55,
+        "fp": 55,
+        "tn": 55,
+        "fn": 0,
+        "accuracy": 0.6666666666666666,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "roc_auc": 0.7774380165289256
+      },
+      "paired_subset": {
+        "n": 110,
+        "positives": 55,
+        "negatives": 55,
+        "tp": 55,
+        "fp": 55,
+        "tn": 0,
+        "fn": 0,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "roc_auc": 0.5548760330578513
+      },
+      "paired_ranking": {
+        "pairs": 55,
+        "wins": 41,
+        "ties": 1,
+        "accuracy": 0.7545454545454545
+      },
+      "flag_rate_by_pdf_role": {
+        "benign_confounder": {
+          "n": 55,
+          "flagged": 55,
+          "rate": 1.0
+        },
+        "benign_original": {
+          "n": 55,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "injected_attack": {
+          "n": 55,
+          "flagged": 55,
+          "rate": 1.0
+        }
+      },
+      "flag_rate_by_attack_family": {
+        "existing_stream_patch": {
+          "n": 7,
+          "flagged": 7,
+          "rate": 1.0
+        },
+        "header_footer_like": {
+          "n": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "in_page_invisible_text": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "in_page_low_contrast_text": {
+          "n": 3,
+          "flagged": 3,
+          "rate": 1.0
+        },
+        "in_page_tiny_text": {
+          "n": 1,
+          "flagged": 1,
+          "rate": 1.0
+        },
+        "in_page_white_text": {
+          "n": 2,
+          "flagged": 2,
+          "rate": 1.0
+        },
+        "layout_mimicry": {
+          "n": 5,
+          "flagged": 5,
+          "rate": 1.0
+        },
+        "margin_microtext": {
+          "n": 5,
+          "flagged": 5,
+          "rate": 1.0
+        },
+        "microglyph_steganography": {
+          "n": 4,
+          "flagged": 4,
+          "rate": 1.0
+        },
+        "near_margin_normal_font": {
+          "n": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "semantic_fragmentation": {
+          "n": 8,
+          "flagged": 8,
+          "rate": 1.0
+        },
+        "split_text_objects": {
+          "n": 3,
+          "flagged": 3,
+          "rate": 1.0
+        },
+        "steganographic_acrostic": {
+          "n": 1,
+          "flagged": 1,
+          "rate": 1.0
+        }
+      },
+      "techniques_among_flagged": {
+        "pdf.vision-divergence": 110,
+        "pdf.offpage-text": 62,
+        "pdf.tiny-font": 24,
+        "pdf.white-text": 14,
+        "generic.invisible-text": 6
+      },
+      "errors": 0,
+      "timeouts": 0,
+      "seconds_per_file_mean": 0.0,
+      "seconds_per_file_max": 0.0
     }
   ]
 }

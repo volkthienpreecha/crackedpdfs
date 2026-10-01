@@ -8,7 +8,7 @@
 | Raw results | [`reanalysis/`](reanalysis/) (JSON per experiment, intervals from 1,000 cluster bootstrap resamples) |
 | Changes to v1 artifacts | None. Every number below is computed from the frozen tables and PDFs. |
 
-This document answers the three evaluation questions raised in the FLMSec reviews: whether payload strings leak across splits, whether the near-perfect text scores come from memorised payloads, and what the detectors use when they separate an injected PDF from its matched confounder. It also adds the comparisons that were missing: every detector under the same leave-one-family-out protocol, and three independently written hidden-text detectors on the same test split.
+This document answers the three evaluation questions raised in the FLMSec reviews: whether payload strings leak across splits, whether the near-perfect text scores come from memorised payloads, and what the detectors use when they separate an injected PDF from its matched confounder. It also adds the comparisons that were missing: every detector under the same leave-one-family-out protocol, three independently written hidden-text detectors on the same test split, and a file-by-file comparison of HiddenContent.ai's engine output with the placement audit.
 
 ## 1. Reproduction check
 
@@ -121,8 +121,10 @@ Three open-source hidden-text detectors were run unmodified over the frozen test
 | pdf-injection-scanner (Andy8647, MIT) | 2,919 | 98.5% | 98.5% | 0.0% | 0.436 |
 | PhantomLint, default `nlp` analyzer | 180 | 1.7% | 0.0% | 0.0% | 0.508 |
 | PhantomLint, `passthrough` analyzer | 180 | 90.0% | 90.0% | 0.0% | 0.950 |
+| HiddenContent.ai engine 0.265.0, structural pass (vendor-supplied) | 2,919 | 100.0% | 100.0% | 0.0% | 0.842 |
+| HiddenContent.ai, rendered pass (vendor-supplied, release test column) | 165 | 100.0% | 100.0% | 0.0% | 0.755 |
 
-All four confirm what HiddenContent.ai reported from their engine: the confounders carry hidden text by construction, so a hidden-text detector flags both members of a pair. Separating the pair requires reading what the hidden text says. PhantomLint's default analyzer first filters blocks by similarity to ten built-in injection phrases and misses nearly every v1 payload; its passthrough mode finds the hidden text and, because it reports highlighted characters, ranks 95% of pairs correctly on length alone.
+All of them agree with what HiddenContent.ai first reported from their engine: the confounders carry hidden text by construction, so a hidden-text detector flags both members of a pair. Separating the pair requires reading what the hidden text says. PhantomLint's default analyzer first filters blocks by similarity to ten built-in injection phrases and misses nearly every v1 payload; its passthrough mode finds the hidden text and, because it reports highlighted characters, ranks 95% of pairs correctly on length alone. The HiddenContent.ai rows are scored from the vendor's per-file output with their verdict as the flag and their hidden-character count as the score (section 10); the pair rank is again the length signal.
 
 ## 9. Off-the-shelf prompt-injection text classifiers
 
@@ -140,7 +142,19 @@ Four public classifiers were scored zero-shot on the test split under two text c
 
 Three observations. First, a current guard model with no training on this corpus ranks the raw text almost as well as the paper's trained hybrid (ROC-AUC 0.991 against 0.998), so the v1 task is not hard for text classifiers once the instruction is extractable. Second, sanitization costs these models far more than it costs the paper's models (Horizon-Labs 0.991 to 0.950, Prompt Guard 2 0.991 to 0.894): the role-specific wrapper tags are themselves injection-like tokens for a guard model, and removing them exposes how much of the raw-text score they carried. Third, every model misses microglyph steganography (recall 0.000 to 0.015 except Horizon-Labs raw), which agrees with section 7: that family's extracted text is not instruction-like, and only structure finds it. The paper's PromptGuard-86M row (F1 0.390 on raw text truncated to 512 tokens) was therefore a weak baseline for reasons of generation and truncation, not of the model family.
 
-## 10. What this means for the paper's claims
+## 10. HiddenContent.ai per-file results against the placement audit
+
+HiddenContent.ai shared the per-file output of their production engine (version 0.265.0, rule pack 2026.09.10-20, run 2026-09-16) over all 29,322 v1 PDFs: a structural pass from file contents alone and a second pass with pages rendered at 300 DPI. The archive is theirs and is not redistributed; `tools/crackedpdfs-reanalysis/external_baselines/import_hiddencontent.py` reduces it to the per-file layout of section 8 and compares its geometry with a fresh `crackedpdfs-audit corpus` run over the same files (19,548 injected and confounder PDFs audited, 0 errors). Tables: [`reanalysis/external-baselines/hiddencontent/comparison.md`](reanalysis/external-baselines/hiddencontent/comparison.md).
+
+**Which test split.** The rendered pass used the `dataset_split` column of the release metadata. That column agrees with the frozen split for 65.8% of rows (section 2), and only 165 of the 2,919 frozen test files carry `test` in it (55 complete triads). The vendor's "paper's test split" is therefore a different set of files from the one the paper's models were scored on. The structural pass covers every file and is scored on the frozen split in section 8.
+
+**Geometry.** The vendor records every hidden line with its box; the audit records every added glyph. On whether any hidden text lies below the page bottom, the two agree on 98.5% of the 19,548 files and on 100% of files in 14 of the 15 families. The exception is `split_text_objects`: in 144 pairs the engine reports the payload as one line anchored at the first run, whose box straddles the bottom edge, while the audit finds 95% or more of the glyphs below the page.
+
+**The 1,446 files.** The vendor noted that 1,446 injected files labelled `normal_visible` have off-page text as the engine's only finding and would not be flagged on a corrected corpus. Confirmed: all 792 `steganographic_acrostic` and all 654 `near_margin_normal_font` injected files have their payload below the page, and off-page text is the engine's only finding for exactly the 2,001 injected files the audit classes as straddling or outside the page edge (1,651 of them labelled `normal_visible`). This is Finding 1 of the September erratum seen from a second, independent implementation.
+
+**Pairs.** Both members are flagged in all 9,774 pairs. Ranking by the engine's hidden-character count puts the injected file above its confounder in 8,152 pairs, below in 1,454 and ties 168 (0.842 on the frozen test split). The per-family pattern is the length relation of section 4: 0.98 to 1.00 for the padded families, 0.351 for acrostics (the erratum's length-only ranker gives 0.351 on the same family) and 0.000 for `near_margin_normal_font`, where the confounder is always longer. The engine's extracted hidden text also carries a role token (`DATASET_SAMPLE_ID`, `SYSTEM_POLICY_DO_NOT_REMOVE` or `DOCUMENT_LAYOUT_NOTE`) in 8,286 confounders and in every injected file outside the acrostic and microglyph families, so any downstream classifier reading its output inherits the marker oracle.
+
+## 11. What this means for the paper's claims
 
 1. The leakage concern is correct as a fact about the corpus (104 payloads in every split) but is not the explanation of the scores. Text-only reaches ROC-AUC 1.000 on documents and payloads it has never seen.
 2. The explanation is the generator: role-specific wrappers, a confounder body that is a repeated calibration phrase, and a sanitizer that keeps one role's content and deletes the other's. Residual length alone reproduces the paper's paired-set accuracy.
@@ -150,7 +164,7 @@ Three observations. First, a current guard model with no training on this corpus
 
 Corpus v2 must change the generator, not the evaluation alone: a shared scaffold with prose confounder bodies (PR #15), a payload pool large enough to hold out (`tools/crackedpdfs-payloads`, 11,035 messages), truthful placement (September erratum fixes), visibility-matched quartets, and a second injector (`tools/crackedpdfs-altinjector`). The both-out protocol in this document is the evaluation v2 will report by default.
 
-## 11. Reproduce
+## 12. Reproduce
 
 ```bash
 cd tools/crackedpdfs-reanalysis
@@ -163,6 +177,9 @@ uv venv --python 3.13 .venv && uv pip install --python .venv/bin/python -e ".[de
 .venv/bin/crackedpdfs-reanalysis run --experiments frozen,both_out,family --folds 5 --bootstrap 1000
 .venv/bin/crackedpdfs-reanalysis run --experiments frozen,both_out \
   --models hybrid_symmetric_sanitizer,text_tfidf_symmetric_sanitizer --out .cache/crackedpdfs-reanalysis/artifacts/symmetric
+# Section 10: audit the PDFs, then import the vendor archive (unpacked under $CRACKEDPDFS_WORK/hiddencontent)
+crackedpdfs-audit corpus --root /path/to/pdfs --metadata /path/to/labels.parquet --out $CRACKEDPDFS_WORK/audit-v1 --workers 8
+python external_baselines/import_hiddencontent.py && python external_baselines/summarize.py
 ```
 
 The full run takes about two hours per text model on eight cores; `--models` splits it into parallel processes. The JSON files in [`reanalysis/`](reanalysis/) are the outputs of exactly these commands.

@@ -1,0 +1,18 @@
+{
+  "command_template": "vendor engine, pass `structural, all files`",
+  "commit": "vendor",
+  "corpus_freeze_version": "usenix-physical-10k-20260525-1",
+  "detector": "hiddencontent_structural",
+  "errors": 0,
+  "files": 2919,
+  "flag_rule": "vendor verdict `suspicious` (at least one finding)",
+  "python": "n/a",
+  "renderer": null,
+  "score_rule": "hidden characters reported across the file's findings",
+  "source": "Results supplied by HiddenContent.ai (Van Chappell) on 2026-09-16; not run by the authors. The engine is proprietary; its rules are described in the vendor README that accompanies the results.",
+  "timeouts": 0,
+  "vendor_run_date": "2026-09-16",
+  "version": "engine 0.265.0, rule pack 2026.09.10-20",
+  "wall_clock_seconds": "n/a",
+  "workers": "n/a"
+}
