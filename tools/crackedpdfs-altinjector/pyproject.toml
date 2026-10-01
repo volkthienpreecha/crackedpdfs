@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crackedpdfs-altinjector"
+version = "0.1.0"
+description = "A second, independent hidden-text injector for PDFs, used for cross-generator detector evaluation in CrackedPDFs."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [
+  { name = "Karthik Subramanian", email = "winnerkarthik07@gmail.com" },
+  { name = "Pukaphol Thienpreecha" },
+]
+keywords = ["pdf", "prompt-injection", "hidden-text", "benchmark", "cross-generator"]
+dependencies = [
+  "pypdf>=4.2",
+  "reportlab>=4.1",
+  "pdfminer.six>=20240706",
+  "pypdfium2>=4.30",
+  "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+chromium = ["playwright>=1.44"]
+test = ["pytest>=8"]
+
+[project.scripts]
+crackedpdfs-altinjector = "crackedpdfs_altinjector.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B018"]
