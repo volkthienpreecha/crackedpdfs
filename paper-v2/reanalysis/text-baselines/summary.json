@@ -1,0 +1,1422 @@
+{
+  "generated_at_utc": "2026-10-01T09:36:57Z",
+  "test_split": "/Users/karthik/crackedpdfs-work/v1/test_split.csv",
+  "text_cache": "/Users/karthik/Desktop/crackedpdfs/lightweight-detector/data/processed/hard_provenance/text_cache.parquet",
+  "n_documents": 2919,
+  "conditions": [
+    "raw",
+    "sanitized"
+  ],
+  "scorings": [
+    "max_chunk",
+    "first_512"
+  ],
+  "chunking": {
+    "chunk_tokens": 400,
+    "chunk_overlap": 50,
+    "truncation_tokens": 512,
+    "note": "Chunk windows are measured in body tokens of each model's tokenizer; special tokens are added per window. The document score is the maximum over windows. Windows are clipped to the model's maximum sequence length."
+  },
+  "sanitizer": {
+    "module": "src/models/text_preprocessing.py",
+    "function": "apply_text_preprocessing",
+    "config_source": "/Users/karthik/Desktop/crackedpdfs/lightweight-detector/configs/model_hybrid_hard_provenance.yaml",
+    "config": {
+      "strip_scaffold_block_contents": true,
+      "strip_known_benchmark_wrappers": true,
+      "known_benchmark_wrappers": [
+        "SYSTEM_POLICY_DO_NOT_REMOVE",
+        "BEGIN_SYSTEM_POLICY",
+        "END_SYSTEM_POLICY",
+        "BEGIN_SYSTEM_PROMPT",
+        "END_SYSTEM_PROMPT",
+        "BEGIN_PROMPT_INJECTION",
+        "END_PROMPT_INJECTION",
+        "DO_NOT_REMOVE",
+        "dataset_sample_id",
+        "message_type",
+        "sample_id",
+        "sample"
+      ],
+      "strip_synthetic_phrase_markers": true,
+      "synthetic_phrase_markers": [
+        "benign",
+        "confounder",
+        "document_layout_note",
+        "document layout note",
+        "layout note",
+        "layout calibration",
+        "layout calibration text",
+        "calibration text only",
+        "text only",
+        "only text only",
+        "contains no",
+        "matched benign",
+        "safe placeholder",
+        "neutral placeholder",
+        "training sample",
+        "synthetic",
+        "sentence records",
+        "pagination and retention",
+        "retention notice generated",
+        "generated footer text",
+        "footer text for layout",
+        "control testing text",
+        "screen reader parity",
+        "hidden extraction layer",
+        "archival sentence",
+        "balanced sentence",
+        "careful sentence",
+        "detailed sentence",
+        "editorial sentence",
+        "formal sentence",
+        "general sentence",
+        "internal sentence",
+        "local sentence",
+        "neutral sentence",
+        "ordinary sentence",
+        "practical sentence",
+        "routine sentence",
+        "standard sentence",
+        "technical sentence",
+        "useful sentence",
+        "verified sentence",
+        "yearly sentence"
+      ]
+    }
+  },
+  "runtime": {
+    "device": "cpu",
+    "batch_size": 16,
+    "torch_threads": 4,
+    "torch_version": "2.14.1",
+    "transformers_version": "5.18.0",
+    "python_version": "3.13.3",
+    "time_limit_minutes_per_model": 60.0,
+    "total_wall_clock_seconds": 17653.69101541699
+  },
+  "models": [
+    {
+      "key": "protectai_deberta_v3_base_pi_v2",
+      "repo_id": "protectai/deberta-v3-base-prompt-injection-v2",
+      "license": "Apache-2.0",
+      "status": "timed_out_partial",
+      "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+      "label_mapping": {
+        "0": "SAFE",
+        "1": "INJECTION"
+      },
+      "positive_label": "INJECTION",
+      "positive_index": 1,
+      "max_model_tokens": 512,
+      "error": null,
+      "wall_clock_seconds": 11399.895615000045,
+      "load_seconds": 26.229849166003987,
+      "documents_scored": 1019,
+      "documents_total": 2919,
+      "chunks_scored": 576,
+      "tokens_scored": 144083,
+      "chunks_per_second": 0.05066463342637765,
+      "tokens_per_second": 12.67345898953606,
+      "timed_out": true
+    },
+    {
+      "key": "horizon_labs_pi_guard_base",
+      "repo_id": "Horizon-Labs/prompt-injection-guard-base",
+      "license": "Apache-2.0",
+      "status": "completed",
+      "revision": "af3c52e6a9d8bccc8e8c3ed4ba9d7fa084a47e33",
+      "label_mapping": {
+        "0": "SAFE",
+        "1": "INJECTION"
+      },
+      "positive_label": "INJECTION",
+      "positive_index": 1,
+      "max_model_tokens": 8192,
+      "error": null,
+      "wall_clock_seconds": 2105.7611116250046,
+      "load_seconds": 7.526686833007261,
+      "documents_scored": 2919,
+      "documents_total": 2919,
+      "chunks_scored": 4829,
+      "tokens_scored": 1257607,
+      "chunks_per_second": 2.3152351795687056,
+      "tokens_per_second": 602.952157480195,
+      "timed_out": false
+    },
+    {
+      "key": "prompt_guard_2_86m",
+      "repo_id": "gravitee-io/Llama-Prompt-Guard-2-86M-onnx",
+      "license": "Llama 4 Community License (ungated mirror of meta-llama/Llama-Prompt-Guard-2-86M)",
+      "status": "completed",
+      "revision": "45a05fbd5337a864edc608f994911f009c37ca57",
+      "label_mapping": {
+        "0": "BENIGN",
+        "1": "MALICIOUS"
+      },
+      "positive_label": "MALICIOUS",
+      "positive_index": 1,
+      "max_model_tokens": 512,
+      "error": null,
+      "wall_clock_seconds": 2053.4726644579787,
+      "load_seconds": 4.714026374975219,
+      "documents_scored": 2919,
+      "documents_total": 2919,
+      "chunks_scored": 4710,
+      "tokens_scored": 1225553,
+      "chunks_per_second": 2.301520456672208,
+      "tokens_per_second": 598.8609979269628,
+      "timed_out": false
+    },
+    {
+      "key": "deepset_deberta_v3_base_injection",
+      "repo_id": "deepset/deberta-v3-base-injection",
+      "license": "MIT",
+      "status": "completed",
+      "revision": "80dda00d0b0d9a03917a7685e2ddbcd28e04dbb1",
+      "label_mapping": {
+        "0": "LEGIT",
+        "1": "INJECTION"
+      },
+      "positive_label": "INJECTION",
+      "positive_index": 1,
+      "max_model_tokens": 512,
+      "error": null,
+      "wall_clock_seconds": 2060.355613541091,
+      "load_seconds": 3.017477500019595,
+      "documents_scored": 2919,
+      "documents_total": 2919,
+      "chunks_scored": 4326,
+      "tokens_scored": 941189,
+      "chunks_per_second": 2.105255843517607,
+      "tokens_per_second": 458.03135508656794,
+      "timed_out": false
+    }
+  ],
+  "results": {
+    "protectai_deberta_v3_base_pi_v2": {
+      "raw": {
+        "max_chunk": {
+          "n_scored": 1001,
+          "n_positive": 170,
+          "roc_auc": 0.8441070290932258,
+          "pr_auc": 0.595857720624274,
+          "f1_at_0_5": 0.38095238095238093,
+          "precision_at_0_5": 0.7213114754098361,
+          "recall_at_0_5": 0.25882352941176473,
+          "fpr_at_0_5": 0.02045728038507822,
+          "f1_best_threshold_optimistic": 0.6024691358024692,
+          "best_threshold_optimistic": 0.0005691981059499085,
+          "recall_at_1pct_fpr": 0.12352941176470589,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.8363636363636363,
+            "n_pairs": 165,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 1.0,
+            "n_pairs": 166,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 14,
+              "recall_at_0_5": 0.21428571428571427
+            },
+            "header_footer_like": {
+              "n": 10,
+              "recall_at_0_5": 0.2
+            },
+            "in_page_invisible_text": {
+              "n": 11,
+              "recall_at_0_5": 0.2727272727272727
+            },
+            "in_page_low_contrast_text": {
+              "n": 14,
+              "recall_at_0_5": 0.07142857142857142
+            },
+            "in_page_split_text_objects": {
+              "n": 6,
+              "recall_at_0_5": 0.3333333333333333
+            },
+            "in_page_tiny_text": {
+              "n": 10,
+              "recall_at_0_5": 0.1
+            },
+            "in_page_white_text": {
+              "n": 6,
+              "recall_at_0_5": 0.16666666666666666
+            },
+            "layout_mimicry": {
+              "n": 18,
+              "recall_at_0_5": 0.2222222222222222
+            },
+            "margin_microtext": {
+              "n": 9,
+              "recall_at_0_5": 0.3333333333333333
+            },
+            "microglyph_steganography": {
+              "n": 13,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 10,
+              "recall_at_0_5": 0.2
+            },
+            "plain_single_block": {
+              "n": 12,
+              "recall_at_0_5": 0.16666666666666666
+            },
+            "semantic_fragmentation": {
+              "n": 13,
+              "recall_at_0_5": 0.23076923076923078
+            },
+            "split_text_objects": {
+              "n": 12,
+              "recall_at_0_5": 0.4166666666666667
+            },
+            "steganographic_acrostic": {
+              "n": 12,
+              "recall_at_0_5": 1.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 1037,
+          "n_positive": 177,
+          "roc_auc": 0.8138220995926948,
+          "pr_auc": 0.5881892171619926,
+          "f1_at_0_5": 0.3062200956937799,
+          "precision_at_0_5": 1.0,
+          "recall_at_0_5": 0.1807909604519774,
+          "fpr_at_0_5": 0.0,
+          "f1_best_threshold_optimistic": 0.5625,
+          "best_threshold_optimistic": 0.0005691981059499085,
+          "recall_at_1pct_fpr": 0.2598870056497175,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.815028901734104,
+            "n_pairs": 173,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.9822485207100592,
+            "n_pairs": 169,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 14,
+              "recall_at_0_5": 0.21428571428571427
+            },
+            "header_footer_like": {
+              "n": 10,
+              "recall_at_0_5": 0.2
+            },
+            "in_page_invisible_text": {
+              "n": 11,
+              "recall_at_0_5": 0.2727272727272727
+            },
+            "in_page_low_contrast_text": {
+              "n": 14,
+              "recall_at_0_5": 0.07142857142857142
+            },
+            "in_page_split_text_objects": {
+              "n": 6,
+              "recall_at_0_5": 0.3333333333333333
+            },
+            "in_page_tiny_text": {
+              "n": 10,
+              "recall_at_0_5": 0.1
+            },
+            "in_page_white_text": {
+              "n": 6,
+              "recall_at_0_5": 0.16666666666666666
+            },
+            "layout_mimicry": {
+              "n": 18,
+              "recall_at_0_5": 0.2222222222222222
+            },
+            "margin_microtext": {
+              "n": 9,
+              "recall_at_0_5": 0.3333333333333333
+            },
+            "microglyph_steganography": {
+              "n": 13,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 10,
+              "recall_at_0_5": 0.2
+            },
+            "plain_single_block": {
+              "n": 12,
+              "recall_at_0_5": 0.16666666666666666
+            },
+            "semantic_fragmentation": {
+              "n": 13,
+              "recall_at_0_5": 0.23076923076923078
+            },
+            "split_text_objects": {
+              "n": 12,
+              "recall_at_0_5": 0.4166666666666667
+            },
+            "steganographic_acrostic": {
+              "n": 19,
+              "recall_at_0_5": 0.0
+            }
+          }
+        }
+      },
+      "sanitized": {
+        "max_chunk": {
+          "n_scored": 607,
+          "n_positive": 0,
+          "note": "metrics undefined: a single class is present"
+        },
+        "first_512": {
+          "n_scored": 607,
+          "n_positive": 0,
+          "note": "metrics undefined: a single class is present"
+        }
+      }
+    },
+    "horizon_labs_pi_guard_base": {
+      "raw": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9912894819953757,
+          "pr_auc": 0.9825762593772961,
+          "f1_at_0_5": 0.9187790998448008,
+          "precision_at_0_5": 0.925,
+          "recall_at_0_5": 0.9126413155190134,
+          "fpr_at_0_5": 0.03699897225077081,
+          "f1_best_threshold_optimistic": 0.9280322093608455,
+          "best_threshold_optimistic": 0.2434069961309433,
+          "recall_at_1pct_fpr": 0.7810894141829393,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9301130524152107,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 1.0,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.9705882352941176
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.9594594594594594
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.967741935483871
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.9782608695652174
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.9411764705882353
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.9803921568627451
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.9620253164556962
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.9508196721311475
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.8939393939393939
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.9428571428571428
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.9807692307692307
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.9824561403508771
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.9848484848484849
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.35
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9932821324793051,
+          "pr_auc": 0.9873064469093279,
+          "f1_at_0_5": 0.910803324099723,
+          "precision_at_0_5": 0.9879807692307693,
+          "recall_at_0_5": 0.8448098663926003,
+          "fpr_at_0_5": 0.0051387461459403904,
+          "f1_best_threshold_optimistic": 0.9261880687563195,
+          "best_threshold_optimistic": 0.03308463096618652,
+          "recall_at_1pct_fpr": 0.8787255909558068,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9650565262076053,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 1.0,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.9705882352941176
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.9594594594594594
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.967741935483871
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.9782608695652174
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.9411764705882353
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.9803921568627451
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.9620253164556962
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.9508196721311475
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.9428571428571428
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.9807692307692307
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.9824561403508771
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.9848484848484849
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.2625
+            }
+          }
+        }
+      },
+      "sanitized": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9500194881534209,
+          "pr_auc": 0.8912512758618486,
+          "f1_at_0_5": 0.6662444585180494,
+          "precision_at_0_5": 0.8679867986798679,
+          "recall_at_0_5": 0.5405960945529291,
+          "fpr_at_0_5": 0.041109969167523124,
+          "f1_best_threshold_optimistic": 0.8746854554604931,
+          "best_threshold_optimistic": 6.969216337893158e-05,
+          "recall_at_1pct_fpr": 0.2949640287769784,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.959917780061665,
+            "n_pairs": 973,
+            "n_ties": 6
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.9948612538540597,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.6027397260273972
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.5882352941176471
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.527027027027027
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.41304347826086957
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.5882352941176471
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.5294117647058824
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.5189873417721519
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.639344262295082
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.015151515151515152
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.42857142857142855
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.5384615384615384
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.43859649122807015
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.6363636363636364
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 1.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9566370101686966,
+          "pr_auc": 0.920879541459414,
+          "f1_at_0_5": 0.644,
+          "precision_at_0_5": 0.9165085388994307,
+          "recall_at_0_5": 0.49640287769784175,
+          "fpr_at_0_5": 0.022610483042137718,
+          "f1_best_threshold_optimistic": 0.8746854554604931,
+          "best_threshold_optimistic": 6.969216337893158e-05,
+          "recall_at_1pct_fpr": 0.4450154162384378,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.934224049331963,
+            "n_pairs": 973,
+            "n_ties": 26
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.9948612538540597,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.6027397260273972
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.5882352941176471
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.527027027027027
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.41304347826086957
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.5882352941176471
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.5294117647058824
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.5189873417721519
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.639344262295082
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.42857142857142855
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.5384615384615384
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.43859649122807015
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.6363636363636364
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.475
+            }
+          }
+        }
+      }
+    },
+    "prompt_guard_2_86m": {
+      "raw": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9905849509204852,
+          "pr_auc": 0.981767198667251,
+          "f1_at_0_5": 0.6295774647887324,
+          "precision_at_0_5": 1.0,
+          "recall_at_0_5": 0.45940390544707094,
+          "fpr_at_0_5": 0.0,
+          "f1_best_threshold_optimistic": 0.9281234925229137,
+          "best_threshold_optimistic": 0.005197726655751467,
+          "recall_at_1pct_fpr": 0.8180883864337102,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9753340184994861,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 1.0,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.4657534246575342
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.5588235294117647
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.532258064516129
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.5434782608695652
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.5098039215686274
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.5316455696202531
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.6065573770491803
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.4714285714285714
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.5
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.5614035087719298
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.7575757575757576
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.9902696547797732,
+          "pr_auc": 0.9808308012028281,
+          "f1_at_0_5": 0.6276445698166432,
+          "precision_at_0_5": 1.0,
+          "recall_at_0_5": 0.4573484069886948,
+          "fpr_at_0_5": 0.0,
+          "f1_best_threshold_optimistic": 0.930460333006856,
+          "best_threshold_optimistic": 0.006502547767013311,
+          "recall_at_1pct_fpr": 0.7543679342240494,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9958890030832477,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 1.0,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.4657534246575342
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.5588235294117647
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.532258064516129
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.5434782608695652
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.5
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.5098039215686274
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.5316455696202531
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.6065573770491803
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.4714285714285714
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.5
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.5263157894736842
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.7575757575757576
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.0
+            }
+          }
+        }
+      },
+      "sanitized": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.8937795293056408,
+          "pr_auc": 0.8342507629757264,
+          "f1_at_0_5": 0.25314183123877915,
+          "precision_at_0_5": 1.0,
+          "recall_at_0_5": 0.144912641315519,
+          "fpr_at_0_5": 0.0,
+          "f1_best_threshold_optimistic": 0.7596330275229358,
+          "best_threshold_optimistic": 0.001352576189674437,
+          "recall_at_1pct_fpr": 0.3011305241521069,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9522096608427544,
+            "n_pairs": 973,
+            "n_ties": 75
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.9938335046248715,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.2054794520547945
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.16176470588235295
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.17567567567567569
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.22580645161290322
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.1956521739130435
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.08823529411764706
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.17647058823529413
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.11392405063291139
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.19672131147540983
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.12857142857142856
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.19230769230769232
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.14035087719298245
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.24242424242424243
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.8885436064597155,
+          "pr_auc": 0.8095602050519276,
+          "f1_at_0_5": 0.25314183123877915,
+          "precision_at_0_5": 1.0,
+          "recall_at_0_5": 0.144912641315519,
+          "fpr_at_0_5": 0.0,
+          "f1_best_threshold_optimistic": 0.7596330275229358,
+          "best_threshold_optimistic": 0.001352576189674437,
+          "recall_at_1pct_fpr": 0.23843782117163412,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.9496402877697842,
+            "n_pairs": 973,
+            "n_ties": 80
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.9938335046248715,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 0.2054794520547945
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 0.16176470588235295
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 0.17567567567567569
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 0.22580645161290322
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 0.1956521739130435
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 0.08823529411764706
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 0.17647058823529413
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 0.11392405063291139
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 0.19672131147540983
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 0.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 0.12857142857142856
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 0.19230769230769232
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 0.14035087719298245
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 0.24242424242424243
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 0.0
+            }
+          }
+        }
+      }
+    },
+    "deepset_deberta_v3_base_injection": {
+      "raw": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.7134969457996956,
+          "pr_auc": 0.45202201671002873,
+          "f1_at_0_5": 0.5,
+          "precision_at_0_5": 0.3333333333333333,
+          "recall_at_0_5": 1.0,
+          "fpr_at_0_5": 1.0,
+          "f1_best_threshold_optimistic": 0.6283916633896972,
+          "best_threshold_optimistic": 0.9988055229187012,
+          "recall_at_1pct_fpr": 0.0020554984583761563,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.829393627954779,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.8735868448098664,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 1.0
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 1.0
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 1.0
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 1.0
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 1.0
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 1.0
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 1.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.7024114081220708,
+          "pr_auc": 0.4505199330541135,
+          "f1_at_0_5": 0.5,
+          "precision_at_0_5": 0.3333333333333333,
+          "recall_at_0_5": 1.0,
+          "fpr_at_0_5": 1.0,
+          "f1_best_threshold_optimistic": 0.6255961844197138,
+          "best_threshold_optimistic": 0.9988055229187012,
+          "recall_at_1pct_fpr": 0.0010277492291880781,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.8550873586844809,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.8520041109969168,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 1.0
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 1.0
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 1.0
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 1.0
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 1.0
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 1.0
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 1.0
+            }
+          }
+        }
+      },
+      "sanitized": {
+        "max_chunk": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.7324635666595193,
+          "pr_auc": 0.5425194160558027,
+          "f1_at_0_5": 0.5,
+          "precision_at_0_5": 0.3333333333333333,
+          "recall_at_0_5": 1.0,
+          "fpr_at_0_5": 1.0,
+          "f1_best_threshold_optimistic": 0.6173139158576052,
+          "best_threshold_optimistic": 0.9987099170684814,
+          "recall_at_1pct_fpr": 0.041109969167523124,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.8992805755395683,
+            "n_pairs": 973,
+            "n_ties": 54
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.8961973278520041,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 1.0
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 1.0
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 1.0
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 1.0
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 1.0
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 1.0
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 1.0
+            }
+          }
+        },
+        "first_512": {
+          "n_scored": 2919,
+          "n_positive": 973,
+          "roc_auc": 0.7214976513870389,
+          "pr_auc": 0.5382073394671854,
+          "f1_at_0_5": 0.5,
+          "precision_at_0_5": 0.3333333333333333,
+          "recall_at_0_5": 1.0,
+          "fpr_at_0_5": 1.0,
+          "f1_best_threshold_optimistic": 0.6143843965867534,
+          "best_threshold_optimistic": 0.9987099170684814,
+          "recall_at_1pct_fpr": 0.041109969167523124,
+          "paired_rank_vs_confounder": {
+            "accuracy": 0.8992805755395683,
+            "n_pairs": 973,
+            "n_ties": 80
+          },
+          "paired_rank_vs_benign_original": {
+            "accuracy": 0.8828365878725591,
+            "n_pairs": 973,
+            "n_ties": 0
+          },
+          "per_attack_family_recall_at_0_5": {
+            "existing_stream_patch": {
+              "n": 73,
+              "recall_at_0_5": 1.0
+            },
+            "header_footer_like": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_invisible_text": {
+              "n": 74,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_low_contrast_text": {
+              "n": 62,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_split_text_objects": {
+              "n": 46,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_tiny_text": {
+              "n": 68,
+              "recall_at_0_5": 1.0
+            },
+            "in_page_white_text": {
+              "n": 51,
+              "recall_at_0_5": 1.0
+            },
+            "layout_mimicry": {
+              "n": 79,
+              "recall_at_0_5": 1.0
+            },
+            "margin_microtext": {
+              "n": 61,
+              "recall_at_0_5": 1.0
+            },
+            "microglyph_steganography": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "near_margin_normal_font": {
+              "n": 70,
+              "recall_at_0_5": 1.0
+            },
+            "plain_single_block": {
+              "n": 52,
+              "recall_at_0_5": 1.0
+            },
+            "semantic_fragmentation": {
+              "n": 57,
+              "recall_at_0_5": 1.0
+            },
+            "split_text_objects": {
+              "n": 66,
+              "recall_at_0_5": 1.0
+            },
+            "steganographic_acrostic": {
+              "n": 80,
+              "recall_at_0_5": 1.0
+            }
+          }
+        }
+      }
+    }
+  }
+}
