@@ -124,7 +124,7 @@ Three open-source hidden-text detectors were run unmodified over the frozen test
 
 All four confirm what HiddenContent.ai reported from their engine: the confounders carry hidden text by construction, so a hidden-text detector flags both members of a pair. Separating the pair requires reading what the hidden text says. PhantomLint's default analyzer first filters blocks by similarity to ten built-in injection phrases and misses nearly every v1 payload; its passthrough mode finds the hidden text and, because it reports highlighted characters, ranks 95% of pairs correctly on length alone.
 
-## 8b. Off-the-shelf prompt-injection text classifiers
+## 9. Off-the-shelf prompt-injection text classifiers
 
 Four public classifiers were scored zero-shot on the test split under two text conditions: the raw pypdf text (what a naive deployment sees) and the paper's sanitized text. Documents were chunked into 400-token windows with 50 tokens of overlap and scored by the maximum over windows; a first-512-tokens score records what truncation alone would see ([`reanalysis/text-baselines/summary.md`](reanalysis/text-baselines/summary.md)).
 
@@ -140,7 +140,7 @@ Four public classifiers were scored zero-shot on the test split under two text c
 
 Three observations. First, a current guard model with no training on this corpus ranks the raw text almost as well as the paper's trained hybrid (ROC-AUC 0.991 against 0.998), so the v1 task is not hard for text classifiers once the instruction is extractable. Second, sanitization costs these models far more than it costs the paper's models (Horizon-Labs 0.991 to 0.950, Prompt Guard 2 0.991 to 0.894): the role-specific wrapper tags are themselves injection-like tokens for a guard model, and removing them exposes how much of the raw-text score they carried. Third, every model misses microglyph steganography (recall 0.000 to 0.015 except Horizon-Labs raw), which agrees with section 7: that family's extracted text is not instruction-like, and only structure finds it. The paper's PromptGuard-86M row (F1 0.390 on raw text truncated to 512 tokens) was therefore a weak baseline for reasons of generation and truncation, not of the model family.
 
-## 9. What this means for the paper's claims
+## 10. What this means for the paper's claims
 
 1. The leakage concern is correct as a fact about the corpus (104 payloads in every split) but is not the explanation of the scores. Text-only reaches ROC-AUC 1.000 on documents and payloads it has never seen.
 2. The explanation is the generator: role-specific wrappers, a confounder body that is a repeated calibration phrase, and a sanitizer that keeps one role's content and deletes the other's. Residual length alone reproduces the paper's paired-set accuracy.
@@ -150,7 +150,7 @@ Three observations. First, a current guard model with no training on this corpus
 
 Corpus v2 must change the generator, not the evaluation alone: a shared scaffold with prose confounder bodies (PR #15), a payload pool large enough to hold out (`tools/crackedpdfs-payloads`, 11,035 messages), truthful placement (September erratum fixes), visibility-matched quartets, and a second injector (`tools/crackedpdfs-altinjector`). The both-out protocol in this document is the evaluation v2 will report by default.
 
-## 10. Reproduce
+## 11. Reproduce
 
 ```bash
 cd tools/crackedpdfs-reanalysis
