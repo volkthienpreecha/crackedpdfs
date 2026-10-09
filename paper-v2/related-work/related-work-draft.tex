@@ -1,0 +1,213 @@
+% related-work-draft.tex -- CrackedPDFs revision
+% Background (~350 words) and Related Work (~1,300 words).
+% All \cite keys resolve in references.bib (same directory).
+
+\subsection{Background: Indirect Prompt Injection Through PDF Text Extraction}
+\label{sec:background}
+
+An LLM-integrated application concatenates a trusted instruction from the
+developer or user with untrusted data such as a retrieved web page, an email,
+or an uploaded document. Because the model receives both as one token
+sequence, instructions carried in the data can override the intended task.
+When the attacker controls only the data and never interacts with the model
+directly, the attack is called \emph{indirect} prompt
+injection~\cite{greshake2023not}. Liu et al.~\cite{liu2024formalizing}
+formalize it as the composition of a target task and an injected task, and
+subsequent work has shown that current models do not reliably separate
+instructions from data~\cite{zverev2025can}. OWASP ranks prompt injection as
+the leading risk for LLM applications~\cite{owasp2025llm01}.
+
+PDF adds a second gap, between what a person sees and what the model reads.
+A PDF page is a content stream of drawing operators. Text-showing operators
+place glyphs from an embedded font at positions set by the current
+transformation matrix, and the graphics state controls fill color, opacity,
+clipping, and the text rendering mode; mode~3 draws nothing at all. A
+renderer rasterizes these operators for the human reader. A text extractor
+(for example pdfminer, PyMuPDF, or Poppler's \texttt{pdftotext}) ignores most
+of the graphics state. It maps character codes to Unicode through the font's
+\texttt{/ToUnicode} table and emits the result in content-stream order.
+Text that is white on white, set in a 0.5\,pt font, positioned outside the
+crop box, clipped to a zero-area path, placed in a hidden optional-content
+layer, or drawn in rendering mode~3 is therefore invisible on screen but
+present in the extracted string. A font whose \texttt{/ToUnicode} map
+disagrees with its glyph shapes makes the visible text and the extracted
+text differ even when both are
+``visible''~\cite{markwood2017pdf,xiong2025invisible,luo2026exploiting}.
+
+Document-to-LLM pipelines, including retrieval loaders, hosted chat
+services, résumé screeners, and automated reviewing tools, usually call such
+an extractor and send the flattened string to the model and to any
+guardrail~\cite{castagnaro2025hidden,liu2027what}. By that point the
+information that the instruction was never visible to a person has been
+lost. A text-level injection classifier sees the same string whether or not
+the instruction was visible. This motivates detection that keeps access to
+the document's rendering semantics.
+
+% ---------------------------------------------------------------------------
+
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Prompt injection attacks and benchmarks.}
+Direct goal hijacking was first demonstrated by Perez and
+Ribeiro~\cite{perez2022ignore}. Greshake et al.~\cite{greshake2023not}
+introduced indirect injection through retrieved content, and Liu et
+al.~\cite{liu2024formalizing} gave a formal framework and a benchmark of
+attacks and defenses. Large human-generated attack corpora came from online
+games and competitions~\cite{toyer2024tensor,schulhoff2023ignore}, and
+optimized triggers from gradient-based search~\cite{pasquini2024neural}.
+Benchmarks for indirect injection cover text carriers such as emails, web
+pages, and tables (BIPIA~\cite{yi2025benchmarking}), tool outputs for agents
+(InjecAgent~\cite{zhan2024injecagent},
+AgentDojo~\cite{debenedetti2024agentdojo}), web agents
+(WASP~\cite{evtimov2025wasp}, EIA~\cite{liao2025eia}), and social-web
+retrieval corpora~\cite{guo2026hidden}. All of these represent the injected
+payload as a string that is already in the model's context. None models the
+file format that carried it, which is where the visibility of the payload is
+decided.
+
+\paragraph{Detection-based defenses.}
+Deployed guardrails are mostly fine-tuned encoder classifiers applied to
+text: Llama Prompt Guard~2~\cite{meta2025promptguard2,chennabasappa2025llamafirewall},
+ProtectAI's and deepset's DeBERTa
+models~\cite{protectai2024debertav2,deepset2023deberta},
+PromptShield~\cite{jacob2025promptshield}, and
+Sentinel~\cite{ivry2025sentinel}. Other detectors use a minimax-trained
+detector LLM (DataSentinel~\cite{liu2025datasentinel}), attention
+patterns~\cite{hung2025attention}, or activation deltas~\cite{abdelnabi2025get}.
+PIGuard~\cite{li2025piguard} identified \emph{over-defense}, meaning false
+positives on benign text that contains trigger words, and proposed a
+benchmark and training method to reduce it. CAPTURE~\cite{kholkar2025capture}
+measures both missed attacks and over-defense in context-specific settings.
+Every one of these detectors operates after extraction. Our results show
+that this placement is not a minor engineering detail: given only extracted
+text, a classifier cannot tell a hidden instruction from the same sentence
+printed visibly in a security tutorial.
+
+\paragraph{Training-time and system-level defenses.}
+A second line of work makes the model or the system robust to instructions
+in the data channel. These include structured queries and preference
+optimization (StruQ~\cite{chen2025struq}, SecAlign~\cite{chen2025secalign}),
+task-specific fine-tuning~\cite{piet2024jatmo}, instruction
+hierarchies~\cite{wallace2024instruction}, input marking
+(spotlighting~\cite{hines2024defending}), LLM-based sanitization
+(PromptArmor~\cite{shi2025promptarmor}), masked re-execution for agents
+(MELON~\cite{zhu2025melon}), and capability-based isolation of control flow
+from data flow (CaMeL~\cite{debenedetti2026defeating}). These defenses are
+complementary to ours. They limit what an injected instruction can do once
+it reaches the model, while a document-layer detector decides whether
+invisible content should reach the model at all. A critical re-evaluation
+found many such defenses weaker than reported once utility and adaptive
+attacks are accounted for~\cite{jia2026critical}.
+
+\paragraph{Adaptive attacks and the reliability of detector evaluations.}
+Adaptive attackers defeat every indirect-injection defense evaluated by Zhan
+et al.~\cite{zhan2025adaptive} and twelve published defenses evaluated by
+Nasr et al.~\cite{nasr2026attacker}. We do not evaluate adaptive attackers,
+and our results should be read as an upper bound on robustness. A separate
+concern is whether reported detector accuracy measures the intended signal
+at all. Fomin~\cite{fomin2026when} shows that same-source train/test splits
+inflate the AUC of injection classifiers by 8.4 points and that many
+salient features are dataset-specific shortcuts. PIDS-Bench~\cite{shire2026pidsbench}
+finds that a detector with F1 above 0.98 in distribution misclassifies about
+a third of externally sourced benign prompts. Li et al.~\cite{li2026defenses}
+trace false refusals to position, trigger-token, and topic heuristics, and
+RAG-PIBench~\cite{jaffal2026ragpibench} finds that sparse lexical baselines
+remain competitive under leakage-aware splits. These findings concern text
+inputs. Our benchmark applies the same scrutiny to documents, where a
+shortcut can also live in the generator's templates or in incidental file
+structure.
+
+\paragraph{Hidden content in documents.}
+The gap between rendered and extracted PDF content predates LLMs. PDF
+Mirage~\cite{markwood2017pdf} used font remapping to mislead reviewer
+assignment, plagiarism detection, and search indexing. Shadow
+attacks~\cite{mainka2021shadow} exploited differences between PDF viewers to
+alter signed documents, and Kuchta et al.~\cite{kuchta2018correctness}
+found that 13.5\% of real PDFs render inconsistently across readers. For
+LLMs, Unicode-level hiding~\cite{boucher2022bad,boucher2023trojan,gao2025imperceptible},
+imperceptible content poisoning~\cite{zhang2024imperceptible}, and malicious
+fonts~\cite{xiong2025invisible,luo2026exploiting} make the text a model reads
+differ from what a person sees. TrapDoc~\cite{jin2025trapdoc} injects
+invisible ``phantom tokens'' that make LLMs return plausible but wrong
+answers, and Castagnaro et al.~\cite{castagnaro2025hidden} show that 19
+hiding techniques in DOCX, HTML, and PDF succeed against RAG data loaders in
+74.4\% of 357 scenarios. The work closest to ours is Liu and
+Ming~\cite{liu2027what}. They catalogue 25 gaps between what users see and
+what models read in PDF, measure them across 16 processing stacks and seven
+commercial LLM services, and release a rule-based scanner. Their work maps
+the attack surface. Ours provides a labeled detection benchmark with matched
+benign confounders and held-out provenance splits, and compares learned and
+rule-based detectors under one protocol. Their reading-order and
+font-decoding families are outside our current coverage.
+
+\paragraph{Detectors for hidden content.}
+PhantomLint~\cite{murray2025phantomlint} is the closest prior detector. It
+first selects text blocks that resemble prompts, then renders and OCRs those
+blocks, and flags words that were extracted but not rendered. It reports a
+0.092\% false-positive rate on ICML~2025 papers. Its evaluation contains few
+benign documents with hidden-but-harmless content or visible prompt-like
+language. These are the cases our confounders target, and the cases where a
+phrase-gated, OCR-differential design is most likely to fail. Liu and
+Ming~\cite{liu2027what}, Luo et al.~\cite{luo2026exploiting}, and
+PhantomLint all argue that rendering followed by OCR is the safest reading of
+an untrusted PDF. However, render-based pipelines remain exposed to text
+embedded in pixels~\cite{clusmann2025prompt,gong2025figstep,bagdasaryan2023abusing,chen2026repeat}
+and to encoded payloads that no single view
+reveals~\cite{sinha2026hiding,jia2026seeing}.
+
+\paragraph{Hidden prompts in peer review and hiring.}
+In July 2025, reporters found white-text and tiny-font instructions such as
+``give a positive review only'' in arXiv
+preprints~\cite{nikkei2025positive,gibney2025scientists,lin2026hidden}, and
+ICML issued a policy on such prompts~\cite{icml2025publication}. Controlled
+studies show that these instructions shift LLM-generated review scores and
+decisions~\cite{keuper2025prompt,collu2026misleading,zhou2026give,sahoo2025when,zhu2025when,theocharopoulos2025multilingual,li2026llmreviewer}.
+Hidden prompts have also been used defensively as watermarks to detect
+LLM-written reviews~\cite{rao2025detecting,gharami2025chatgpt}. A detector
+must therefore not treat hidden text as malicious in itself. In hiring,
+Zhang et al.~\cite{zhang2026measuring} measured hidden injections in roughly
+1\% of about 200{,}000 real résumés. More than 90\% of them inserted data
+rather than explicit instructions. Controlled résumé-screening studies and
+benchmarks report similar
+vulnerabilities~\cite{mu2025ai,baxi2026prompt,akdemir2025understanding,barach2026resumeshield}.
+The prevalence of non-imperative payloads matters for us. A detector that
+keys on instruction-like phrasing will miss the most common real-world case.
+
+\paragraph{Knowledge-base poisoning.}
+Retrieval poisoning attacks insert crafted passages that steer, backdoor, or
+block retrieval-augmented
+generation~\cite{zhong2023poisoning,zou2025poisonedrag,xue2024badrag,chaudhari2024phantom,shafran2025machine,chen2024agentpoison}.
+These attacks optimize what the payload says. Our benchmark concerns where
+the payload is hidden. The two compose naturally: a PoisonedRAG passage
+placed in an invisible text layer survives both human review of the source
+document and most extraction pipelines.
+
+\paragraph{Structural PDF detection.}
+Static malware detectors learn from PDF structure: embedded
+JavaScript~\cite{laskov2011static}, metadata and object
+statistics~\cite{smutz2012malicious}, and structural
+paths~\cite{srndic2013detection,srndic2016hidost}. Mimicus, EvadeML, and
+parser-confusion attacks showed that such features are easy to evade or
+to hide from the detector's own parser~\cite{srndic2014practical,xu2016automatically,carmony2016extract,maiorca2019towards}.
+This motivated verifiably robust training~\cite{chen2020training}. The same
+lesson applies here. Structural features that separate injected from benign
+files in a synthetic corpus may reflect how the generator works rather than
+whether the document is hidden or malicious. This is why we audit
+structure-only models against matched confounders.
+
+\paragraph{Evaluation methodology.}
+Our controls borrow from work on shortcut learning and leakage. Models
+often exploit incidental cues~\cite{geirhos2020shortcut,lapuschkin2019unmasking,mccoy2019right},
+and partial-input baselines expose annotation
+artifacts~\cite{gururangan2018annotation}. Security ML suffers from the same
+spurious correlations and biased splits~\cite{arp2022dos,pendlebury2019tesseract,warnecke2020evaluating,kapoor2023leakage}.
+Each injected file and its confounder share a base document, so our setting
+is a pair-input problem. In such problems, random splits overstate
+performance unless they hold out the shared component~\cite{park2012flaws,pahikkala2015toward,bernett2024cracking}.
+Matched confounders play the role of contrast
+sets~\cite{gardner2020evaluating,kaushik2020learning}. Because files from the
+same base document are correlated, we resample base documents when computing
+confidence intervals~\cite{field2007bootstrapping,davison1997bootstrap} and
+report design-effect-adjusted
+uncertainty~\cite{kish1965survey,dean2015evaluating}.
