@@ -1,0 +1,1304 @@
+% references.bib -- CrackedPDFs revision literature review
+% Compiled 2026-10-08. Every entry below was checked against a primary or
+% near-primary record (publisher page, ACL Anthology, USENIX, Crossref, PMLR,
+% OpenReview, arXiv abstract page, Hugging Face / GitHub for artifacts).
+% Published versions are preferred over arXiv; the arXiv id is kept in eprint.
+% Fields that could not be confirmed are flagged in a note field.
+
+% =====================================================================
+% 1. Closest work: hidden content in PDFs / documents fed to LLMs
+% =====================================================================
+
+@inproceedings{liu2027what,
+  author    = {Side Liu and Jiang Ming},
+  title     = {What Users See Is Not What Models Read: Split-View {PDFs} in Document-to-{LLM} Supply Chains},
+  booktitle = {Proceedings of the IEEE Symposium on Security and Privacy (S\&P)},
+  year      = {2027},
+  eprint    = {2606.15020},
+  archivePrefix = {arXiv},
+  note      = {To appear. Accepted to IEEE S\&P 2027 per arXiv comment (v2, 5 Oct 2026). v1 was titled ``Semantic Integrity Failures in Document-to-LLM Supply Chains''}
+}
+
+@misc{murray2025phantomlint,
+  author    = {Toby Murray},
+  title     = {{PhantomLint}: Principled Detection of Hidden {LLM} Prompts in Structured Documents},
+  year      = {2025},
+  eprint    = {2508.17884},
+  archivePrefix = {arXiv},
+  note      = {v2, 23 Oct 2025. Code: https://github.com/tobycmurray/phantom-lint (BSD-3-Clause). No peer-reviewed venue found as of Oct 2026}
+}
+
+@inproceedings{jin2025trapdoc,
+  author    = {Hyundong Jin and Sicheol Sung and Shinwoo Park and SeungYeop Baik and Yo-Sub Han},
+  title     = {{TrapDoc}: Deceiving {LLM} Users by Injecting Imperceptible Phantom Tokens into Documents},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+  year      = {2025},
+  pages     = {18881--18897},
+  address   = {Suzhou, China},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2025.findings-emnlp.1027},
+  eprint    = {2506.00089},
+  archivePrefix = {arXiv}
+}
+
+@misc{luo2026exploiting,
+  author       = {Zhongtang Luo and Jianting Zhang and Zheng Zhong},
+  title        = {Exploiting {PDF} Obfuscation in {LLMs}, {arXiv}, and More},
+  year         = {2026},
+  howpublished = {Cryptology ePrint Archive, Paper 2026/278},
+  url          = {https://eprint.iacr.org/2026/278}
+}
+
+@inproceedings{castagnaro2025hidden,
+  author    = {Alberto Castagnaro and Umberto Salviati and Mauro Conti and Luca Pajola and Simeone Pizzi},
+  title     = {The Hidden Threat in Plain Text: Attacking {RAG} Data Loaders},
+  booktitle = {Proceedings of the 18th ACM Workshop on Artificial Intelligence and Security (AISec '25)},
+  year      = {2025},
+  pages     = {170--181},
+  publisher = {ACM},
+  doi       = {10.1145/3733799.3762976},
+  eprint    = {2507.05093},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{markwood2017pdf,
+  author    = {Ian Markwood and Dakun Shen and Yao Liu and Zhuo Lu},
+  title     = {{PDF} Mirage: Content Masking Attack Against Information-Based Online Services},
+  booktitle = {26th USENIX Security Symposium (USENIX Security 17)},
+  year      = {2017},
+  pages     = {833--847},
+  address   = {Vancouver, BC},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/markwood}
+}
+
+@article{kuchta2018correctness,
+  author  = {Tomasz Kuchta and Thibaud Lutellier and Edmund Wong and Lin Tan and Cristian Cadar},
+  title   = {On the Correctness of Electronic Documents: Studying, Finding, and Localizing Inconsistency Bugs in {PDF} Readers and Files},
+  journal = {Empirical Software Engineering},
+  volume  = {23},
+  number  = {6},
+  pages   = {3187--3220},
+  year    = {2018},
+  doi     = {10.1007/s10664-018-9600-2}
+}
+
+@misc{sinha2026hiding,
+  author    = {Mudit Sinha and Sanika Chavan},
+  title     = {Hiding in Plain Floats: Steganographic Carriers for Indirect Prompt and Content Injection},
+  year      = {2026},
+  eprint    = {2606.08403},
+  archivePrefix = {arXiv},
+  note      = {Poster, FAGEN Workshop at ICML 2026 (per arXiv comment)}
+}
+
+@misc{jia2026seeing,
+  author    = {Xiaojun Jia and Jie Liao and Simeng Qin and Ke Ma and Wenbo Guo and Yebo Feng and Aishan Liu and Yang Liu},
+  title     = {Seeing Is Not Screening: Multimodal Hidden Instruction Attacks on Agent Skill Scanners},
+  year      = {2026},
+  eprint    = {2606.18198},
+  archivePrefix = {arXiv}
+}
+
+@misc{guo2025too,
+  author    = {Xuyang Guo and Zekai Huang and Zhao Song and Jiahao Zhang},
+  title     = {Too Easily Fooled? Prompt Injection Breaks {LLMs} on Frustratingly Simple Multiple-Choice Questions},
+  year      = {2025},
+  eprint    = {2508.13214},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{guo2026hidden,
+  author    = {Haoze Guo and Ziqi Wei},
+  title     = {Hidden-in-Plain-Text: A Benchmark for Social-Web Indirect Prompt Injection in {RAG}},
+  booktitle = {Proceedings of the ACM Web Conference 2026 (WWW '26)},
+  year      = {2026},
+  doi       = {10.1145/3774904.3792853},
+  eprint    = {2601.10923},
+  archivePrefix = {arXiv},
+  note      = {Venue and DOI from arXiv metadata; DOI not resolvable via Crossref at time of check}
+}
+
+% =====================================================================
+% 2. Hidden prompts in hiring (resume screening)
+% =====================================================================
+
+@inproceedings{zhang2026measuring,
+  author    = {Mohan Zhang and Yuqi Jia and Zhen Tan and Steven Jiang and Neil Zhenqiang Gong and Tianlong Chen and Dawn Song},
+  title     = {Measuring Real-World Prompt Injection Attacks in {LLM}-based Resume Screening},
+  booktitle = {35th USENIX Security Symposium (USENIX Security 26)},
+  year      = {2026},
+  publisher = {USENIX Association},
+  eprint    = {2605.28999},
+  archivePrefix = {arXiv}
+}
+
+@misc{mu2025ai,
+  author    = {Honglin Mu and Jinghao Liu and Kaiyang Wan and Rui Xing and Xiuying Chen and Timothy Baldwin and Wanxiang Che},
+  title     = {{AI} Security Beyond Core Domains: Resume Screening as a Case Study of Adversarial Vulnerabilities in Specialized {LLM} Applications},
+  year      = {2025},
+  eprint    = {2512.20164},
+  archivePrefix = {arXiv}
+}
+
+@misc{barach2026resumeshield,
+  author    = {Jay Barach},
+  title     = {{ResumeShield}: Channel Separation and an Open Benchmark for Indirect Prompt Injection in {AI} Resume Screening},
+  year      = {2026},
+  eprint    = {2609.20188},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 3. Hidden prompts in peer review (verified directly; see also section 9)
+% =====================================================================
+
+@misc{theocharopoulos2025multilingual,
+  author    = {Panagiotis Theocharopoulos and Ajinkya Kulkarni and Mathew Magimai.-Doss},
+  title     = {Multilingual Hidden Prompt Injection Attacks on {LLM}-Based Academic Reviewing},
+  year      = {2025},
+  eprint    = {2512.23684},
+  archivePrefix = {arXiv}
+}
+
+@misc{li2026llmreviewer,
+  author    = {Lingyao Li and Junjie Xiong and Changjia Zhu and Runlong Yu and Chen Chen and Junyu Wang and Renkai Ma and Zhicong Lu},
+  title     = {{LLM}-as-a-Reviewer: Benchmarking Their Ability, Divergence, and Prompt Injection Resistance as Paper Reviewers},
+  year      = {2026},
+  eprint    = {2605.25415},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 4. Prompt-injection detector evaluation: shortcuts, shift, over-defense
+% =====================================================================
+
+@inproceedings{fomin2026when,
+  author    = {Max Fomin},
+  title     = {When Benchmarks Lie: Evaluating Malicious Prompt Classifiers Under True Distribution Shift},
+  booktitle = {ICLR 2026 Workshop on Agents in the Wild: Safety, Security, and Beyond},
+  year      = {2026},
+  eprint    = {2602.14161},
+  archivePrefix = {arXiv},
+  note      = {Workshop poster; arXiv v2 (Jul 2026) is an extended version}
+}
+
+@article{shire2026pidsbench,
+  author  = {Yusuf Khalid Shire and Sang-Chul Kim},
+  title   = {{PIDS-Bench}: Evaluating Prompt-Injection Detectors Under Over-Defense, Obfuscation, and Distribution Shift},
+  journal = {IEEE Access},
+  volume  = {14},
+  pages   = {134184--134205},
+  year    = {2026},
+  doi     = {10.1109/ACCESS.2026.3728186},
+  eprint  = {2609.15017},
+  archivePrefix = {arXiv}
+}
+
+@misc{jaffal2026ragpibench,
+  author    = {Niveen O. Jaffal and Ahmet Yuksel and David Mohaisen},
+  title     = {{RAG-PIBench}: A Leakage-Aware Benchmark for Prompt-Injection Detection in Trustworthy {RAG} Systems},
+  year      = {2026},
+  eprint    = {2610.08571},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{kholkar2025capture,
+  author    = {Gauri Kholkar and Ratinder Ahuja},
+  title     = {{CAPTURE}: Context-Aware Prompt Injection Testing and Robustness Enhancement},
+  booktitle = {Proceedings of the First Workshop on LLM Security (LLMSEC)},
+  year      = {2025},
+  pages     = {176--188},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.llmsec-1.13},
+  eprint    = {2505.12368},
+  archivePrefix = {arXiv}
+}
+
+@misc{ivry2025sentinel,
+  author    = {Dror Ivry and Oran Nahum},
+  title     = {Sentinel: {SOTA} Model to Protect Against Prompt Injections},
+  year      = {2025},
+  eprint    = {2506.05446},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{li2026defenses,
+  author    = {Li Li and Chenxiao Yu and Zhiyu Ni and Hao Li and Charith Peris and Chaowei Xiao and Yue Zhao},
+  title     = {Defenses Against Prompt Attacks Learn Surface Heuristics},
+  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  year      = {2026},
+  pages     = {10970--10987},
+  address   = {San Diego, California, USA},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2026.acl-long.502},
+  eprint    = {2601.07185},
+  archivePrefix = {arXiv},
+  note      = {ACL Anthology lists first author as ``Li Li''; arXiv lists ``Shawn Li''}
+}
+
+@misc{biswas2026confidently,
+  author    = {Md Anas Biswas},
+  title     = {Confidently Wrong: Severity-Aware Calibration of Prompt-Injection Detectors under Attack Shift},
+  year      = {2026},
+  eprint    = {2606.22659},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{li2025piguard,
+  author    = {Hao Li and Xiaogeng Liu and Ning Zhang and Chaowei Xiao},
+  title     = {{PIGuard}: Prompt Injection Guardrail via Mitigating Overdefense for Free},
+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  year      = {2025},
+  pages     = {30420--30437},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2025.acl-long.1468},
+  note      = {Preprint titled ``InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models'', arXiv:2410.22770}
+}
+
+@inproceedings{jacob2025promptshield,
+  author    = {Dennis Jacob and Hend Alzahrani and Zhanhao Hu and Basel Alomair and David Wagner},
+  title     = {{PromptShield}: Deployable Detection for Prompt Injection Attacks},
+  booktitle = {Proceedings of the Fifteenth ACM Conference on Data and Application Security and Privacy (CODASPY '25)},
+  year      = {2025},
+  pages     = {341--352},
+  publisher = {ACM},
+  doi       = {10.1145/3714393.3726501},
+  eprint    = {2501.15145},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{hung2025attention,
+  author    = {Kuo-Han Hung and Ching-Yun Ko and Ambrish Rawat and I-Hsin Chung and Winston H. Hsu and Pin-Yu Chen},
+  title     = {Attention Tracker: Detecting Prompt Injection Attacks in {LLMs}},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+  year      = {2025},
+  pages     = {2309--2322},
+  address   = {Albuquerque, New Mexico},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2025.findings-naacl.123},
+  eprint    = {2411.00348},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{liu2025datasentinel,
+  author    = {Yupei Liu and Yuqi Jia and Jinyuan Jia and Dawn Song and Neil Zhenqiang Gong},
+  title     = {{DataSentinel}: A Game-Theoretic Detection of Prompt Injection Attacks},
+  booktitle = {2025 IEEE Symposium on Security and Privacy (SP)},
+  year      = {2025},
+  pages     = {2190--2208},
+  publisher = {IEEE},
+  doi       = {10.1109/SP61157.2025.00250},
+  eprint    = {2504.11358},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{abdelnabi2025get,
+  author    = {Sahar Abdelnabi and Aideen Fay and Giovanni Cherubin and Ahmed Salem and Mario Fritz and Andrew Paverd},
+  title     = {Get My Drift? Catching {LLM} Task Drift with Activation Deltas},
+  booktitle = {2025 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML)},
+  year      = {2025},
+  pages     = {43--67},
+  publisher = {IEEE},
+  doi       = {10.1109/SaTML64287.2025.00011},
+  eprint    = {2406.00799},
+  archivePrefix = {arXiv}
+}
+
+@misc{chennabasappa2025llamafirewall,
+  author    = {Sahana Chennabasappa and Cyrus Nikolaidis and Daniel Song and David Molnar and Stephanie Ding and Shengye Wan and Spencer Whitman and Lauren Deason and Nicholas Doucette and Abraham Montilla and Alekhya Gampa and Beto de Paola and Dominik Gabi and James Crnkovich and Jean-Christophe Testud and Kat He and Rashnil Chaturvedi and Wu Zhou and Joshua Saxe},
+  title     = {{LlamaFirewall}: An Open Source Guardrail System for Building Secure {AI} Agents},
+  year      = {2025},
+  eprint    = {2505.03574},
+  archivePrefix = {arXiv}
+}
+
+@misc{meta2025promptguard2,
+  author       = {{Meta}},
+  title        = {Llama Prompt Guard 2 86M (meta-llama/Llama-Prompt-Guard-2-86M)},
+  year         = {2025},
+  howpublished = {Hugging Face model card},
+  url          = {https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M}
+}
+
+@misc{protectai2024debertav2,
+  author       = {{ProtectAI.com}},
+  title        = {Fine-Tuned {DeBERTa}-v3-base for Prompt Injection Detection (v2)},
+  year         = {2024},
+  howpublished = {Hugging Face model card},
+  url          = {https://huggingface.co/ProtectAI/deberta-v3-base-prompt-injection-v2}
+}
+
+@misc{deepset2023deberta,
+  author       = {{deepset}},
+  title        = {deberta-v3-base-injection},
+  year         = {2023},
+  howpublished = {Hugging Face model card},
+  url          = {https://huggingface.co/deepset/deberta-v3-base-injection},
+  note         = {Year inferred; not stated on the model card}
+}
+
+% =====================================================================
+% 5. Prompt injection: attacks, formalization, benchmarks
+% =====================================================================
+
+@inproceedings{liu2024formalizing,
+  author    = {Yupei Liu and Yuqi Jia and Runpeng Geng and Jinyuan Jia and Neil Zhenqiang Gong},
+  title     = {Formalizing and Benchmarking Prompt Injection Attacks and Defenses},
+  booktitle = {33rd USENIX Security Symposium (USENIX Security 24)},
+  year      = {2024},
+  pages     = {1831--1847},
+  address   = {Philadelphia, PA},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity24/presentation/liu-yupei},
+  eprint    = {2310.12815},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{greshake2023not,
+  author    = {Kai Greshake and Sahar Abdelnabi and Shailesh Mishra and Christoph Endres and Thorsten Holz and Mario Fritz},
+  title     = {Not What You've Signed Up For: Compromising Real-World {LLM}-Integrated Applications with Indirect Prompt Injection},
+  booktitle = {Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISec '23)},
+  year      = {2023},
+  pages     = {79--90},
+  publisher = {ACM},
+  doi       = {10.1145/3605764.3623985},
+  eprint    = {2302.12173},
+  archivePrefix = {arXiv}
+}
+
+@misc{perez2022ignore,
+  author    = {F{\'a}bio Perez and Ian Ribeiro},
+  title     = {Ignore Previous Prompt: Attack Techniques For Language Models},
+  year      = {2022},
+  eprint    = {2211.09527},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2211.09527},
+  note      = {Commonly cited as NeurIPS 2022 ML Safety Workshop; workshop venue not independently confirmed}
+}
+
+@misc{liu2023prompt,
+  author    = {Yi Liu and Gelei Deng and Yuekang Li and Kailong Wang and Zihao Wang and Xiaofeng Wang and Tianwei Zhang and Yepang Liu and Haoyu Wang and Yan Zheng and Leo Yu Zhang and Yang Liu},
+  title     = {Prompt Injection Attack against {LLM}-integrated Applications},
+  year      = {2023},
+  eprint    = {2306.05499},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{yi2025benchmarking,
+  author    = {Jingwei Yi and Yueqi Xie and Bin Zhu and Emre Kiciman and Guangzhong Sun and Xing Xie and Fangzhao Wu},
+  title     = {Benchmarking and Defending against Indirect Prompt Injection Attacks on Large Language Models},
+  booktitle = {Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD '25)},
+  year      = {2025},
+  pages     = {1809--1820},
+  publisher = {ACM},
+  doi       = {10.1145/3690624.3709179},
+  eprint    = {2312.14197},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{debenedetti2024agentdojo,
+  author    = {Edoardo Debenedetti and Jie Zhang and Mislav Balunovi{\'c} and Luca Beurer-Kellner and Marc Fischer and Florian Tram{\`e}r},
+  title     = {{AgentDojo}: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for {LLM} Agents},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024), Datasets and Benchmarks Track},
+  year      = {2024},
+  doi       = {10.52202/079017-2636},
+  eprint    = {2406.13352},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhan2024injecagent,
+  author    = {Qiusi Zhan and Zhixiang Liang and Zifan Ying and Daniel Kang},
+  title     = {{InjecAgent}: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  year      = {2024},
+  pages     = {10471--10506},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.findings-acl.624},
+  eprint    = {2403.02691},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{toyer2024tensor,
+  author    = {Sam Toyer and Olivia Watkins and Ethan Mendes and Justin Svegliato and Luke Bailey and Tiffany Wang and Isaac Ong and Karim Elmaaroufi and Pieter Abbeel and Trevor Darrell and Alan Ritter and Stuart Russell},
+  title     = {Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game},
+  booktitle = {The Twelfth International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  eprint    = {2311.01011},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{schulhoff2023ignore,
+  author    = {Sander Schulhoff and Jeremy Pinto and Anaum Khan and Louis-Fran{\c{c}}ois Bouchard and Chenglei Si and Svetlina Anati and Valen Tagliabue and Anson Kost and Christopher Carnahan and Jordan Boyd-Graber},
+  title     = {Ignore This Title and {HackAPrompt}: Exposing Systemic Vulnerabilities of {LLMs} Through a Global Prompt Hacking Competition},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2023},
+  pages     = {4945--4977},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2023.emnlp-main.302},
+  eprint    = {2311.16119},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{evtimov2025wasp,
+  author    = {Ivan Evtimov and Arman Zharmagambetov and Aaron Grattafiori and Chuan Guo and Kamalika Chaudhuri},
+  title     = {{WASP}: Benchmarking Web Agent Security Against Prompt Injection Attacks},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS 2025), Datasets and Benchmarks Track},
+  year      = {2025},
+  doi       = {10.52202/085713-0666},
+  eprint    = {2504.18575},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{liao2025eia,
+  author    = {Zeyi Liao and Lingbo Mo and Chejian Xu and Mintong Kang and Jiawei Zhang and Chaowei Xiao and Yuan Tian and Bo Li and Huan Sun},
+  title     = {{EIA}: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage},
+  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  eprint    = {2409.11295},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{pasquini2024neural,
+  author    = {Dario Pasquini and Martin Strohmeier and Carmela Troncoso},
+  title     = {Neural Exec: Learning (and Learning from) Execution Triggers for Prompt Injection Attacks},
+  booktitle = {Proceedings of the 2024 Workshop on Artificial Intelligence and Security (AISec '24)},
+  year      = {2024},
+  pages     = {89--100},
+  publisher = {ACM},
+  doi       = {10.1145/3689932.3694764},
+  eprint    = {2403.03792},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zverev2025can,
+  author    = {Egor Zverev and Sahar Abdelnabi and Soroush Tabesh and Mario Fritz and Christoph H. Lampert},
+  title     = {Can {LLMs} Separate Instructions From Data? And What Do We Even Mean By That?},
+  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  eprint    = {2403.06833},
+  archivePrefix = {arXiv}
+}
+
+@misc{owasp2025llm01,
+  author       = {{OWASP Foundation}},
+  title        = {{LLM01:2025} Prompt Injection, {OWASP} Top 10 for Large Language Model Applications 2025},
+  year         = {2025},
+  howpublished = {OWASP Gen AI Security Project},
+  url          = {https://genai.owasp.org/llmrisk/llm01-prompt-injection/}
+}
+
+@inproceedings{jia2026critical,
+  author    = {Yuqi Jia and Zedian Shao and Yupei Liu and Jinyuan Jia and Dawn Song and Neil Zhenqiang Gong},
+  title     = {A Critical Evaluation of Defenses against Prompt Injection Attacks},
+  booktitle = {Proceedings of the 31st ACM Symposium on Access Control Models and Technologies (SACMAT '26)},
+  year      = {2026},
+  pages     = {265--270},
+  publisher = {ACM},
+  doi       = {10.1145/3750555.3811884},
+  eprint    = {2505.18333},
+  archivePrefix = {arXiv}
+}
+
+@misc{wang2026landscape,
+  author    = {Peiran Wang and Xinfeng Li and Chong Xiang and Jinghuai Zhang and Ying Li and Lixia Zhang and Xiaofeng Wang and Yuan Tian},
+  title     = {The Landscape of Prompt Injection Threats in {LLM} Agents: From Taxonomy to Analysis},
+  year      = {2026},
+  eprint    = {2602.10453},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 6. Defenses: training-time and system-level
+% =====================================================================
+
+@inproceedings{chen2025struq,
+  author    = {Sizhe Chen and Julien Piet and Chawin Sitawarin and David Wagner},
+  title     = {{StruQ}: Defending Against Prompt Injection with Structured Queries},
+  booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+  year      = {2025},
+  pages     = {2383--2400},
+  address   = {Seattle, WA},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity25/presentation/chen-sizhe},
+  eprint    = {2402.06363},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{chen2025secalign,
+  author    = {Sizhe Chen and Arman Zharmagambetov and Saeed Mahloujifar and Kamalika Chaudhuri and David Wagner and Chuan Guo},
+  title     = {{SecAlign}: Defending Against Prompt Injection with Preference Optimization},
+  booktitle = {Proceedings of the 2025 ACM SIGSAC Conference on Computer and Communications Security (CCS '25)},
+  year      = {2025},
+  pages     = {2833--2847},
+  address   = {Taipei, Taiwan},
+  publisher = {ACM},
+  doi       = {10.1145/3719027.3744836},
+  eprint    = {2410.05451},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{hines2024defending,
+  author    = {Keegan Hines and Gary Lopez and Matthew Hall and Federico Zarfati and Yonatan Zunger and Emre K{\i}c{\i}man},
+  title     = {Defending Against Indirect Prompt Injection Attacks With Spotlighting},
+  booktitle = {Proceedings of the Conference on Applied Machine Learning in Information Security (CAMLIS 2024)},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {3920},
+  pages     = {48--62},
+  year      = {2024},
+  url       = {https://ceur-ws.org/Vol-3920/paper03.pdf},
+  eprint    = {2403.14720},
+  archivePrefix = {arXiv}
+}
+
+@misc{wallace2024instruction,
+  author    = {Eric Wallace and Kai Xiao and Reimar Leike and Lilian Weng and Johannes Heidecke and Alex Beutel},
+  title     = {The Instruction Hierarchy: Training {LLMs} to Prioritize Privileged Instructions},
+  year      = {2024},
+  eprint    = {2404.13208},
+  archivePrefix = {arXiv}
+}
+
+@misc{shi2025promptarmor,
+  author    = {Tianneng Shi and Kaijie Zhu and Zhun Wang and Yuqi Jia and Will Cai and Weida Liang and Haonan Wang and Hend Alzahrani and Joshua Lu and Kenji Kawaguchi and Basel Alomair and Xuandong Zhao and William Yang Wang and Neil Gong and Wenbo Guo and Dawn Song},
+  title     = {{PromptArmor}: Simple yet Effective Prompt Injection Defenses},
+  year      = {2025},
+  eprint    = {2507.15219},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhu2025melon,
+  author    = {Kaijie Zhu and Xianjun Yang and Jindong Wang and Wenbo Guo and William Yang Wang},
+  title     = {{MELON}: Provable Defense Against Indirect Prompt Injection Attacks in {AI} Agents},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {267},
+  pages     = {80310--80329},
+  year      = {2025},
+  url       = {https://proceedings.mlr.press/v267/zhu25z.html},
+  eprint    = {2502.05174},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{debenedetti2026defeating,
+  author    = {Edoardo Debenedetti and Ilia Shumailov and Tianqi Fan and Jamie Hayes and Nicholas Carlini and Daniel Fabian and Christoph Kern and Chongyang Shi and Andreas Terzis and Florian Tram{\`e}r},
+  title     = {Defeating Prompt Injections by Design},
+  booktitle = {2026 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML)},
+  year      = {2026},
+  pages     = {587--618},
+  publisher = {IEEE},
+  doi       = {10.1109/SaTML68715.2026.00040},
+  eprint    = {2503.18813},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{piet2024jatmo,
+  author    = {Julien Piet and Maha Alrashed and Chawin Sitawarin and Sizhe Chen and Zeming Wei and Elizabeth Sun and Basel Alomair and David Wagner},
+  title     = {Jatmo: Prompt Injection Defense by Task-Specific Finetuning},
+  booktitle = {Computer Security -- ESORICS 2024},
+  series    = {Lecture Notes in Computer Science},
+  year      = {2024},
+  pages     = {105--124},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-031-70879-4_6},
+  eprint    = {2312.17673},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 7. Adaptive attacks against defenses
+% =====================================================================
+
+@inproceedings{zhan2025adaptive,
+  author    = {Qiusi Zhan and Richard Fang and Henil Shalin Panchal and Daniel Kang},
+  title     = {Adaptive Attacks Break Defenses Against Indirect Prompt Injection Attacks on {LLM} Agents},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+  year      = {2025},
+  pages     = {7101--7117},
+  address   = {Albuquerque, New Mexico},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2025.findings-naacl.395},
+  eprint    = {2503.00061},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{nasr2026attacker,
+  author    = {Milad Nasr and Nicholas Carlini and Chawin Sitawarin and Sander V. Schulhoff and Jamie Hayes and Michael Ilie and Juliette Pluto and Shuang Song and Harsh Chaudhari and Ilia Shumailov and Abhradeep Guha Thakurta and Kai Yuanqing Xiao and Andreas Terzis and Florian Tram{\`e}r},
+  title     = {The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against {LLM} Jailbreaks and Prompt Injections},
+  booktitle = {35th USENIX Security Symposium (USENIX Security 26)},
+  year      = {2026},
+  pages     = {1467--1486},
+  address   = {Baltimore, MD},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity26/presentation/nasr},
+  eprint    = {2510.09023},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 8. PDF structure, malware detection, parser differentials, Unicode
+% =====================================================================
+
+@inproceedings{laskov2011static,
+  author    = {Pavel Laskov and Nedim {\v{S}}rndi{\'c}},
+  title     = {Static Detection of Malicious {JavaScript}-Bearing {PDF} Documents},
+  booktitle = {Proceedings of the 27th Annual Computer Security Applications Conference (ACSAC)},
+  pages     = {373--382},
+  year      = {2011},
+  publisher = {ACM},
+  doi       = {10.1145/2076732.2076785}
+}
+
+@inproceedings{smutz2012malicious,
+  author    = {Charles Smutz and Angelos Stavrou},
+  title     = {Malicious {PDF} Detection Using Metadata and Structural Features},
+  booktitle = {Proceedings of the 28th Annual Computer Security Applications Conference (ACSAC)},
+  pages     = {239--248},
+  year      = {2012},
+  publisher = {ACM},
+  doi       = {10.1145/2420950.2420987}
+}
+
+@inproceedings{srndic2013detection,
+  author    = {Nedim {\v{S}}rndi{\'c} and Pavel Laskov},
+  title     = {Detection of Malicious {PDF} Files Based on Hierarchical Document Structure},
+  booktitle = {Proceedings of the 20th Network and Distributed System Security Symposium (NDSS)},
+  year      = {2013},
+  address   = {San Diego, CA},
+  publisher = {Internet Society}
+}
+
+@inproceedings{srndic2014practical,
+  author    = {Nedim {\v{S}}rndi{\'c} and Pavel Laskov},
+  title     = {Practical Evasion of a Learning-Based Classifier: A Case Study},
+  booktitle = {2014 IEEE Symposium on Security and Privacy (SP)},
+  pages     = {197--211},
+  year      = {2014},
+  publisher = {IEEE},
+  doi       = {10.1109/SP.2014.20}
+}
+
+@article{srndic2016hidost,
+  author  = {Nedim {\v{S}}rndi{\'c} and Pavel Laskov},
+  title   = {Hidost: A Static Machine-Learning-Based Detector of Malicious Files},
+  journal = {EURASIP Journal on Information Security},
+  volume  = {2016},
+  number  = {1},
+  pages   = {22},
+  year    = {2016},
+  doi     = {10.1186/s13635-016-0045-0}
+}
+
+@inproceedings{xu2016automatically,
+  author    = {Weilin Xu and Yanjun Qi and David Evans},
+  title     = {Automatically Evading Classifiers: A Case Study on {PDF} Malware Classifiers},
+  booktitle = {Proceedings of the 2016 Network and Distributed System Security Symposium (NDSS)},
+  year      = {2016},
+  address   = {San Diego, CA},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2016.23115}
+}
+
+@inproceedings{carmony2016extract,
+  author    = {Curtis Carmony and Mu Zhang and Xunchao Hu and Abhishek Vasisht Bhaskar and Heng Yin},
+  title     = {Extract Me If You Can: Abusing {PDF} Parsers in Malware Detectors},
+  booktitle = {Proceedings of the 2016 Network and Distributed System Security Symposium (NDSS)},
+  year      = {2016},
+  address   = {San Diego, CA},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2016.23483}
+}
+
+@article{maiorca2019towards,
+  author  = {Davide Maiorca and Battista Biggio and Giorgio Giacinto},
+  title   = {Towards Adversarial Malware Detection: Lessons Learned from {PDF}-based Attacks},
+  journal = {ACM Computing Surveys},
+  volume  = {52},
+  number  = {4},
+  pages   = {1--36},
+  year    = {2019},
+  doi     = {10.1145/3332184}
+}
+
+@inproceedings{chen2020training,
+  author    = {Yizheng Chen and Shiqi Wang and Dongdong She and Suman Jana},
+  title     = {On Training Robust {PDF} Malware Classifiers},
+  booktitle = {29th USENIX Security Symposium (USENIX Security 20)},
+  pages     = {2343--2360},
+  year      = {2020},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity20/presentation/chen-yizheng}
+}
+
+@inproceedings{mainka2021shadow,
+  author    = {Christian Mainka and Vladislav Mladenov and Simon Rohlmann},
+  title     = {Shadow Attacks: Hiding and Replacing Content in Signed {PDFs}},
+  booktitle = {Proceedings of the 2021 Network and Distributed System Security Symposium (NDSS)},
+  year      = {2021},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2021.24117}
+}
+
+@inproceedings{boucher2022bad,
+  author    = {Nicholas Boucher and Ilia Shumailov and Ross Anderson and Nicolas Papernot},
+  title     = {Bad Characters: Imperceptible {NLP} Attacks},
+  booktitle = {2022 IEEE Symposium on Security and Privacy (SP)},
+  pages     = {1987--2004},
+  year      = {2022},
+  publisher = {IEEE},
+  doi       = {10.1109/SP46214.2022.9833641}
+}
+
+@inproceedings{boucher2023trojan,
+  author    = {Nicholas Boucher and Ross Anderson},
+  title     = {Trojan Source: Invisible Vulnerabilities},
+  booktitle = {32nd USENIX Security Symposium (USENIX Security 23)},
+  pages     = {6507--6524},
+  year      = {2023},
+  address   = {Anaheim, CA},
+  publisher = {USENIX Association}
+}
+
+% =====================================================================
+% 10. Evaluation methodology: shortcuts, leakage, pair-input splits, clustering
+% =====================================================================
+
+@article{park2012flaws,
+  author  = {Yungki Park and Edward M. Marcotte},
+  title   = {Flaws in Evaluation Schemes for Pair-Input Computational Predictions},
+  journal = {Nature Methods},
+  volume  = {9},
+  number  = {12},
+  pages   = {1134--1136},
+  year    = {2012},
+  doi     = {10.1038/nmeth.2259}
+}
+
+@article{pahikkala2015toward,
+  author  = {Tapio Pahikkala and Antti Airola and Sami Pietil{\"a} and Sushil Shakyawar and Agnieszka Szwajda and Jing Tang and Tero Aittokallio},
+  title   = {Toward More Realistic Drug--Target Interaction Predictions},
+  journal = {Briefings in Bioinformatics},
+  volume  = {16},
+  number  = {2},
+  pages   = {325--337},
+  year    = {2015},
+  doi     = {10.1093/bib/bbu010}
+}
+
+@article{bernett2024cracking,
+  author  = {Judith Bernett and David B. Blumenthal and Markus List},
+  title   = {Cracking the Black Box of Deep Sequence-Based Protein--Protein Interaction Prediction},
+  journal = {Briefings in Bioinformatics},
+  volume  = {25},
+  number  = {2},
+  pages   = {bbae076},
+  year    = {2024},
+  doi     = {10.1093/bib/bbae076}
+}
+
+@article{geirhos2020shortcut,
+  author  = {Robert Geirhos and J{\"o}rn-Henrik Jacobsen and Claudio Michaelis and Richard Zemel and Wieland Brendel and Matthias Bethge and Felix A. Wichmann},
+  title   = {Shortcut Learning in Deep Neural Networks},
+  journal = {Nature Machine Intelligence},
+  volume  = {2},
+  number  = {11},
+  pages   = {665--673},
+  year    = {2020},
+  doi     = {10.1038/s42256-020-00257-z}
+}
+
+@inproceedings{gururangan2018annotation,
+  author    = {Suchin Gururangan and Swabha Swayamdipta and Omer Levy and Roy Schwartz and Samuel R. Bowman and Noah A. Smith},
+  title     = {Annotation Artifacts in Natural Language Inference Data},
+  booktitle = {Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers)},
+  pages     = {107--112},
+  year      = {2018},
+  address   = {New Orleans, Louisiana},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/N18-2017}
+}
+
+@article{lapuschkin2019unmasking,
+  author  = {Sebastian Lapuschkin and Stephan W{\"a}ldchen and Alexander Binder and Gr{\'e}goire Montavon and Wojciech Samek and Klaus-Robert M{\"u}ller},
+  title   = {Unmasking {Clever Hans} Predictors and Assessing What Machines Really Learn},
+  journal = {Nature Communications},
+  volume  = {10},
+  number  = {1},
+  pages   = {1096},
+  year    = {2019},
+  doi     = {10.1038/s41467-019-08987-4}
+}
+
+@inproceedings{mccoy2019right,
+  author    = {R. Thomas McCoy and Ellie Pavlick and Tal Linzen},
+  title     = {Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference},
+  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},
+  pages     = {3428--3448},
+  year      = {2019},
+  address   = {Florence, Italy},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/P19-1334}
+}
+
+@inproceedings{gardner2020evaluating,
+  author    = {Matt Gardner and Yoav Artzi and Victoria Basmov and Jonathan Berant and Ben Bogin and Sihao Chen and Pradeep Dasigi and Dheeru Dua and Yanai Elazar and Ananth Gottumukkala and Nitish Gupta and Hannaneh Hajishirzi and Gabriel Ilharco and Daniel Khashabi and Kevin Lin and Jiangming Liu and Nelson F. Liu and Phoebe Mulcaire and Qiang Ning and Sameer Singh and Noah A. Smith and Sanjay Subramanian and Reut Tsarfaty and Eric Wallace and Ally Zhang and Ben Zhou},
+  title     = {Evaluating Models' Local Decision Boundaries via Contrast Sets},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages     = {1307--1323},
+  year      = {2020},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2020.findings-emnlp.117}
+}
+
+@inproceedings{kaushik2020learning,
+  author    = {Divyansh Kaushik and Eduard Hovy and Zachary C. Lipton},
+  title     = {Learning the Difference that Makes a Difference with Counterfactually-Augmented Data},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2020},
+  url       = {https://openreview.net/forum?id=Sklgs0NFvr}
+}
+
+@article{kapoor2023leakage,
+  author  = {Sayash Kapoor and Arvind Narayanan},
+  title   = {Leakage and the Reproducibility Crisis in Machine-Learning-Based Science},
+  journal = {Patterns},
+  volume  = {4},
+  number  = {9},
+  pages   = {100804},
+  year    = {2023},
+  doi     = {10.1016/j.patter.2023.100804}
+}
+
+@article{kaufman2012leakage,
+  author  = {Shachar Kaufman and Saharon Rosset and Claudia Perlich and Ori Stitelman},
+  title   = {Leakage in Data Mining: Formulation, Detection, and Avoidance},
+  journal = {ACM Transactions on Knowledge Discovery from Data},
+  volume  = {6},
+  number  = {4},
+  pages   = {1--21},
+  year    = {2012},
+  doi     = {10.1145/2382577.2382579}
+}
+
+@inproceedings{arp2022dos,
+  author    = {Daniel Arp and Erwin Quiring and Feargus Pendlebury and Alexander Warnecke and Fabio Pierazzi and Christian Wressnegger and Lorenzo Cavallaro and Konrad Rieck},
+  title     = {Dos and Don'ts of Machine Learning in Computer Security},
+  booktitle = {31st USENIX Security Symposium (USENIX Security 22)},
+  pages     = {3971--3988},
+  year      = {2022},
+  address   = {Boston, MA},
+  publisher = {USENIX Association}
+}
+
+@inproceedings{pendlebury2019tesseract,
+  author    = {Feargus Pendlebury and Fabio Pierazzi and Roberto Jordaney and Johannes Kinder and Lorenzo Cavallaro},
+  title     = {{TESSERACT}: Eliminating Experimental Bias in Malware Classification across Space and Time},
+  booktitle = {28th USENIX Security Symposium (USENIX Security 19)},
+  pages     = {729--746},
+  year      = {2019},
+  address   = {Santa Clara, CA},
+  publisher = {USENIX Association}
+}
+
+@inproceedings{warnecke2020evaluating,
+  author    = {Alexander Warnecke and Daniel Arp and Christian Wressnegger and Konrad Rieck},
+  title     = {Evaluating Explanation Methods for Deep Learning in Security},
+  booktitle = {2020 IEEE European Symposium on Security and Privacy (EuroS\&P)},
+  pages     = {158--174},
+  year      = {2020},
+  publisher = {IEEE},
+  doi       = {10.1109/EuroSP48549.2020.00018}
+}
+
+@article{field2007bootstrapping,
+  author  = {C. A. Field and A. H. Welsh},
+  title   = {Bootstrapping Clustered Data},
+  journal = {Journal of the Royal Statistical Society: Series B (Statistical Methodology)},
+  volume  = {69},
+  number  = {3},
+  pages   = {369--390},
+  year    = {2007},
+  doi     = {10.1111/j.1467-9868.2007.00593.x}
+}
+
+@article{dean2015evaluating,
+  author  = {Natalie Dean and Marcello Pagano},
+  title   = {Evaluating Confidence Interval Methods for Binomial Proportions in Clustered Surveys},
+  journal = {Journal of Survey Statistics and Methodology},
+  volume  = {3},
+  number  = {4},
+  pages   = {484--503},
+  year    = {2015},
+  doi     = {10.1093/jssam/smv024}
+}
+
+@book{kish1965survey,
+  author    = {Leslie Kish},
+  title     = {Survey Sampling},
+  publisher = {Wiley},
+  address   = {New York},
+  year      = {1965}
+}
+
+@book{davison1997bootstrap,
+  author    = {A. C. Davison and D. V. Hinkley},
+  title     = {Bootstrap Methods and their Application},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {1997},
+  doi       = {10.1017/CBO9780511802843}
+}
+
+% =====================================================================
+% 9. Hidden prompts in peer review and hiring (additional)
+% =====================================================================
+
+@article{lin2026hidden,
+  author  = {Zhicheng Lin},
+  title   = {Hidden Prompts in Manuscripts Exploit {AI}-Assisted Peer Review},
+  journal = {Communications of the ACM},
+  volume  = {69},
+  number  = {7},
+  pages   = {53--56},
+  year    = {2026},
+  doi     = {10.1145/3779116},
+  eprint  = {2507.06185},
+  archivePrefix = {arXiv}
+}
+
+@misc{keuper2025prompt,
+  author    = {Janis Keuper},
+  title     = {Prompt Injection Attacks on {LLM} Generated Reviews of Scientific Publications},
+  year      = {2025},
+  eprint    = {2509.10248},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2509.10248}
+}
+
+@article{collu2026misleading,
+  author  = {Matteo Gioele Collu and Umberto Salviati and Roberto Confalonieri and Mauro Conti and Giovanni Apruzzese},
+  title   = {Misleading Large Language Models used (or misused) in Scientific Peer-Reviewing via Hidden Prompt-Injection Attacks},
+  journal = {ACM Transactions on Artificial Intelligence Security and Privacy},
+  year    = {2026},
+  doi     = {10.1145/3803804},
+  eprint  = {2508.20863},
+  archivePrefix = {arXiv},
+  note    = {Accepted; volume/issue not yet assigned and DOI not yet resolving (Oct 2026). Preprint title: ``Publish to Perish: Prompt Injection Attacks on LLM-Assisted Peer Review''}
+}
+
+@inproceedings{zhou2026give,
+  author    = {Qin Zhou and Zhexin Zhang and Zhi Li and Limin Sun},
+  title     = {``Give a Positive Review Only'': An Early Investigation Into In-Paper Prompt Injection Attacks and Defenses for {AI} Reviewers},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year      = {2026},
+  eprint    = {2511.01287},
+  archivePrefix = {arXiv},
+  note      = {To appear (per arXiv comment)}
+}
+
+@article{rao2025detecting,
+  author  = {Vishisht Srihari Rao and Aounon Kumar and Himabindu Lakkaraju and Nihar B. Shah},
+  title   = {Detecting {LLM}-Generated Peer Reviews},
+  journal = {PLOS ONE},
+  volume  = {20},
+  number  = {9},
+  pages   = {e0331871},
+  year    = {2025},
+  doi     = {10.1371/journal.pone.0331871},
+  eprint  = {2503.15772},
+  archivePrefix = {arXiv}
+}
+
+@misc{sahoo2025when,
+  author    = {Devanshu Sahoo and Manish Prasad and Vasudev Majhi and Jahnvi Singh and Vinay Chamola and Yash Sinha and Murari Mandal and Dhruv Kumar},
+  title     = {When Reject Turns into Accept: Quantifying the Vulnerability of {LLM}-Based Scientific Reviewers to Indirect Prompt Injection},
+  year      = {2025},
+  eprint    = {2512.10449},
+  archivePrefix = {arXiv}
+}
+
+@misc{zhu2025when,
+  author    = {Changjia Zhu and Junjie Xiong and Renkai Ma and Zhicong Lu and Yao Liu and Lingyao Li},
+  title     = {When Your Reviewer is an {LLM}: Biases, Divergence, and Prompt Injection Risks in Peer Review},
+  year      = {2025},
+  eprint    = {2509.09912},
+  archivePrefix = {arXiv}
+}
+
+@misc{gharami2025chatgpt,
+  author    = {Kanchon Gharami and Sanjiv Kumar Sarkar and Safayat Bin Hakim and Yongxin Liu and Nahid Farhady Ghalaty and Shafika Showkat Moni},
+  title     = {{ChatGPT}: Excellent Paper! Accept It. Editor: Imposter Found! Review Rejected},
+  year      = {2025},
+  eprint    = {2512.20405},
+  archivePrefix = {arXiv}
+}
+
+@misc{nikkei2025positive,
+  author       = {{Nikkei Asia}},
+  title        = {`Positive Review Only': Researchers Hide {AI} Prompts in Papers},
+  year         = {2025},
+  month        = jul,
+  howpublished = {\url{https://asia.nikkei.com/Business/Technology/Artificial-intelligence/Positive-review-only-Researchers-hide-AI-prompts-in-papers}},
+  note         = {News article, 1 July 2025}
+}
+
+@article{gibney2025scientists,
+  author  = {Elizabeth Gibney},
+  title   = {Scientists Hide Messages in Papers to Game {AI} Peer Review},
+  journal = {Nature},
+  volume  = {643},
+  number  = {8073},
+  pages   = {887--888},
+  year    = {2025},
+  doi     = {10.1038/d41586-025-02172-y}
+}
+
+@misc{icml2025publication,
+  author       = {{International Conference on Machine Learning}},
+  title        = {{ICML} 2025 Publication Ethics},
+  year         = {2025},
+  howpublished = {\url{https://icml.cc/Conferences/2025/PublicationEthics}},
+  note         = {Includes statement on hidden prompts aimed at LLM reviewers}
+}
+
+@inproceedings{baxi2026prompt,
+  author    = {Preet Baxi and Jiannan Xu and Jane Yi Jiang and Stefanus Jasin},
+  title     = {Prompt Injection in Automated R{\'e}sum{\'e} Screening with Large Language Models: Single and Multi-Injection Settings},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2026},
+  pages     = {2942--2953},
+  year      = {2026},
+  address   = {San Diego, California, USA},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2026.findings-acl.142}
+}
+
+@inproceedings{akdemir2025understanding,
+  author    = {Arda Akdemir and Joshua H. Levy},
+  title     = {Understanding and Defending Against Resume-Based Prompt Injections in {HR} {AI}},
+  booktitle = {Proceedings of the 5th Workshop on Recommender Systems for Human Resources (RecSys in HR '25)},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {4046},
+  year      = {2025},
+  url       = {https://ceur-ws.org/Vol-4046/RecSysHR2025-paper_9.pdf}
+}
+
+@misc{khodayari2026indirect,
+  author    = {Soheil Khodayari and Xuenan Zhang and Bhupendra Acharya and Giancarlo Pellegrino},
+  title     = {Indirect Prompt Injection in the Wild: An Empirical Study of Prevalence, Techniques, and Objectives},
+  year      = {2026},
+  eprint    = {2604.27202},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 11. RAG and knowledge-base poisoning
+% =====================================================================
+
+@inproceedings{zou2025poisonedrag,
+  author    = {Wei Zou and Runpeng Geng and Binghui Wang and Jinyuan Jia},
+  title     = {{PoisonedRAG}: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models},
+  booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+  pages     = {3827--3844},
+  year      = {2025},
+  publisher = {USENIX Association},
+  eprint    = {2402.07867},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhong2023poisoning,
+  author    = {Zexuan Zhong and Ziqing Huang and Alexander Wettig and Danqi Chen},
+  title     = {Poisoning Retrieval Corpora by Injecting Adversarial Passages},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages     = {13764--13775},
+  year      = {2023},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2023.emnlp-main.849},
+  eprint    = {2310.19156},
+  archivePrefix = {arXiv}
+}
+
+@misc{xue2024badrag,
+  author    = {Jiaqi Xue and Mengxin Zheng and Yebowen Hu and Fei Liu and Xun Chen and Qian Lou},
+  title     = {{BadRAG}: Identifying Vulnerabilities in Retrieval Augmented Generation of Large Language Models},
+  year      = {2024},
+  eprint    = {2406.00083},
+  archivePrefix = {arXiv}
+}
+
+@misc{chaudhari2024phantom,
+  author    = {Harsh Chaudhari and Giorgio Severi and John Abascal and Anshuman Suri and Matthew Jagielski and Christopher A. Choquette-Choo and Milad Nasr and Cristina Nita-Rotaru and Alina Oprea},
+  title     = {Phantom: General Backdoor Attacks on Retrieval Augmented Language Generation},
+  year      = {2024},
+  eprint    = {2405.20485},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{shafran2025machine,
+  author    = {Avital Shafran and Roei Schuster and Vitaly Shmatikov},
+  title     = {Machine Against the {RAG}: Jamming Retrieval-Augmented Generation with Blocker Documents},
+  booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+  pages     = {3787--3806},
+  year      = {2025},
+  publisher = {USENIX Association},
+  eprint    = {2406.05870},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{chen2024agentpoison,
+  author    = {Zhaorun Chen and Zhen Xiang and Chaowei Xiao and Dawn Song and Bo Li},
+  title     = {{AgentPoison}: Red-teaming {LLM} Agents via Poisoning Memory or Knowledge Bases},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024)},
+  pages     = {130185--130213},
+  year      = {2024},
+  doi       = {10.52202/079017-4136},
+  eprint    = {2407.12784},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhang2024imperceptible,
+  author    = {Quan Zhang and Chijin Zhou and Gwihwan Go and Binqi Zeng and Heyuan Shi and Zichen Xu and Yu Jiang},
+  title     = {Imperceptible Content Poisoning in {LLM}-Powered Applications},
+  booktitle = {Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering (ASE '24)},
+  pages     = {242--254},
+  year      = {2024},
+  publisher = {ACM},
+  doi       = {10.1145/3691620.3695001}
+}
+
+% =====================================================================
+% 12. Font, Unicode, visual and multimodal injection
+% =====================================================================
+
+@inproceedings{xiong2025invisible,
+  author    = {Junjie Xiong and Changjia Zhu and Shuhang Lin and Chong Zhang and Yongfeng Zhang and Yao Liu and Lingyao Li},
+  title     = {Invisible Prompts, Visible Threats: Malicious Font Injection in External Resources for Large Language Models},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+  pages     = {7133--7147},
+  year      = {2025},
+  address   = {Suzhou, China},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2025.findings-emnlp.376},
+  eprint    = {2505.16957},
+  archivePrefix = {arXiv}
+}
+
+@misc{gao2025imperceptible,
+  author    = {Kuofeng Gao and Yiming Li and Chao Du and Xin Wang and Xingjun Ma and Shu-Tao Xia and Tianyu Pang},
+  title     = {Imperceptible Jailbreaking against Large Language Models},
+  year      = {2025},
+  eprint    = {2510.05025},
+  archivePrefix = {arXiv}
+}
+
+@misc{bagdasaryan2023abusing,
+  author    = {Eugene Bagdasaryan and Tsung-Yin Hsieh and Ben Nassi and Vitaly Shmatikov},
+  title     = {(Ab)using Images and Sounds for Indirect Instruction Injection in Multi-Modal {LLMs}},
+  year      = {2023},
+  eprint    = {2307.10490},
+  archivePrefix = {arXiv}
+}
+
+@article{clusmann2025prompt,
+  author  = {Jan Clusmann and Dyke Ferber and Isabella C. Wiest and Carolin V. Schneider and Titus J. Brinker and Sebastian Foersch and Daniel Truhn and Jakob Nikolas Kather},
+  title   = {Prompt Injection Attacks on Vision Language Models in Oncology},
+  journal = {Nature Communications},
+  volume  = {16},
+  pages   = {1239},
+  year    = {2025},
+  doi     = {10.1038/s41467-024-55631-x},
+  eprint  = {2407.18981},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{gong2025figstep,
+  author    = {Yichen Gong and Delong Ran and Jinyuan Liu and Conglei Wang and Tianshuo Cong and Anyu Wang and Sisi Duan and Xiaoyun Wang},
+  title     = {{FigStep}: Jailbreaking Large Vision-Language Models via Typographic Visual Prompts},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume    = {39},
+  number    = {22},
+  pages     = {23951--23959},
+  year      = {2025},
+  doi       = {10.1609/aaai.v39i22.34568},
+  eprint    = {2311.05608},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{qi2024visual,
+  author    = {Xiangyu Qi and Kaixuan Huang and Ashwinee Panda and Peter Henderson and Mengdi Wang and Prateek Mittal},
+  title     = {Visual Adversarial Examples Jailbreak Aligned Large Language Models},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume    = {38},
+  number    = {19},
+  pages     = {21527--21536},
+  year      = {2024},
+  doi       = {10.1609/aaai.v38i19.30150},
+  eprint    = {2306.13213},
+  archivePrefix = {arXiv}
+}
+
+@misc{wang2025manipulating,
+  author    = {Le Wang and Zonghao Ying and Tianyuan Zhang and Siyuan Liang and Shengshan Hu and Mingchuan Zhang and Aishan Liu and Xianglong Liu},
+  title     = {Manipulating Multimodal Agents via Cross-Modal Prompt Injection},
+  year      = {2025},
+  eprint    = {2504.14348},
+  archivePrefix = {arXiv}
+}
+
+@misc{chen2026repeat,
+  author    = {Sizhe Chen and Yu-Lin Tsai and Ivan Evtimov and Kamalika Chaudhuri and Raluca Ada Popa and David Wagner and Arman Zharmagambetov},
+  title     = {Repeat-After-Me: Black-Box Adaptive Visual Prompt Injection},
+  year      = {2026},
+  eprint    = {2609.04533},
+  archivePrefix = {arXiv}
+}
+
+% =====================================================================
+% 13. Open-source artifacts (for baseline descriptions)
+% =====================================================================
+
+@misc{wppoland2026hiddentext,
+  author       = {{wppoland}},
+  title        = {hidden-text-detector: Hidden Text and Indirect Prompt Injection Detection for {PDF} and {DOCX}},
+  howpublished = {\url{https://github.com/wppoland/hidden-text-detector}},
+  note         = {MIT license; accessed 2026-10-08}
+}
+
+@misc{andy8647pdfinjection,
+  author       = {{Andy8647}},
+  title        = {pdf-injection-scanner},
+  howpublished = {\url{https://github.com/Andy8647/pdf-injection-scanner}},
+  note         = {MIT license; accessed 2026-10-08}
+}
+
+@misc{zhihuiyuze2025pdfpit,
+  author       = {{zhihuiyuze}},
+  title        = {{PDF-Prompt-Injection-Toolkit}},
+  year         = {2025},
+  howpublished = {\url{https://github.com/zhihuiyuze/PDF-Prompt-Injection-Toolkit}},
+  note         = {MIT license; red-team injector and blue-team detector; accessed 2026-10-08}
+}
+
+@misc{opendataloader2026pdf,
+  author       = {{OpenDataLoader Project}},
+  title        = {{OpenDataLoader PDF}},
+  howpublished = {\url{https://github.com/opendataloader-project/opendataloader-pdf}},
+  note         = {Apache-2.0 (v2.0+); built-in hidden-text, off-page and hidden-layer filtering; accessed 2026-10-08}
+}
+
+@misc{protectai2024llmguard,
+  author       = {{Protect AI}},
+  title        = {{LLM Guard}: The Security Toolkit for {LLM} Interactions},
+  howpublished = {\url{https://github.com/protectai/llm-guard}},
+  note         = {MIT license; repository archived 9 July 2026; accessed 2026-10-08}
+}
+
+@misc{xxradar2026aasa,
+  author       = {{xxradar}},
+  title        = {{AASA}: {AI} Agent Attack Surface Analyzer},
+  howpublished = {\url{https://github.com/xxradar/aasa}},
+  note         = {MIT license; accessed 2026-10-08}
+}

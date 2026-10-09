@@ -7,7 +7,7 @@ RESULTS_DIR ?= reproduced-results
 DOWNLOAD_MANIFEST ?= paper-v1/reproducibility/download-manifest.json
 INJECTOR_DIR := src/backend/services/processing/layers/02-watermarking/volks-pdf-blocker-ada-layer-1
 MAINTAINED_TOOLS := tools/crackedpdfs-audit tools/crackedpdfs-reanalysis tools/crackedpdfs-payloads \
-	tools/crackedpdfs-altinjector
+	tools/crackedpdfs-altinjector tools/crackedpdfs-v2
 RUFF_LINT_PATHS := $(MAINTAINED_TOOLS) scripts/reproduce_results.py scripts/verify_source_snapshot.py \
 	scripts/smoke_benchmark.py tests $(INJECTOR_DIR)/test_placement_contract.py
 RUFF_FORMAT_PATHS := $(MAINTAINED_TOOLS) $(INJECTOR_DIR)/test_placement_contract.py
@@ -32,11 +32,11 @@ check-python:
 
 $(VENV)/.smoke-deps: tools/PDFautogenerator/pyproject.toml tools/crackedpdfs-audit/pyproject.toml \
 	tools/crackedpdfs-reanalysis/pyproject.toml tools/crackedpdfs-payloads/pyproject.toml \
-	tools/crackedpdfs-altinjector/pyproject.toml Makefile
+	tools/crackedpdfs-altinjector/pyproject.toml tools/crackedpdfs-v2/pyproject.toml Makefile
 	$(PYTHON) -m venv $(VENV)
 	$(VENV_PIP) install --upgrade pip
 	$(VENV_PIP) install -e tools/PDFautogenerator -e tools/crackedpdfs-audit -e tools/crackedpdfs-reanalysis \
-		-e tools/crackedpdfs-payloads -e tools/crackedpdfs-altinjector pytest pikepdf pdfminer.six ruff
+		-e tools/crackedpdfs-payloads -e tools/crackedpdfs-altinjector -e tools/crackedpdfs-v2 pytest pikepdf pdfminer.six ruff
 	@touch $@
 
 node_modules/.paper-smoke-deps: package-lock.json
@@ -52,7 +52,7 @@ test-python: deps
 	$(VENV_PYTHON) -m pytest -q tests/test_release_workflow.py tools/PDFautogenerator/tests
 	$(VENV_PYTHON) -m pytest -q tools/crackedpdfs-audit/tests
 	$(VENV_PYTHON) -m pytest -q tools/crackedpdfs-reanalysis/tests tools/crackedpdfs-payloads/tests \
-		tools/crackedpdfs-altinjector/tests
+		tools/crackedpdfs-altinjector/tests tools/crackedpdfs-v2/tests
 	$(VENV_PYTHON) -m pytest -q $(INJECTOR_DIR)/test_placement_contract.py \
 		$(INJECTOR_DIR)/test_structural_placement.py $(INJECTOR_DIR)/test_validation_harness.py
 
