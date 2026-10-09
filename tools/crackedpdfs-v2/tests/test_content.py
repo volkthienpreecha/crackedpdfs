@@ -1,6 +1,8 @@
 import json
 import random
 
+import pytest
+
 from crackedpdfs_v2.content import (
     LengthMatcher,
     benign_sentences_from_text,
@@ -65,3 +67,9 @@ def test_payload_clusters_never_span_folds(tmp_path):
         folds_by_cluster.setdefault(p.cluster_id, set()).add(p.content_fold)
     assert all(len(f) == 1 for f in folds_by_cluster.values())
     assert {p.content_fold for p in payloads} == set(range(5))
+
+
+def test_exhausted_fold_fails_instead_of_hanging():
+    sentences = benign_sentences_from_text("The committee met on Tuesday to review it.", "doc", 1, "t")
+    with pytest.raises(ValueError):
+        LengthMatcher(sentences).draw(420, 0, random.Random(0), attempts=3)

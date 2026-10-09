@@ -220,7 +220,7 @@ def validate_resolved_injection_config(raw_config):
         "render_mode": int(render_mode),
         "color": [float(color[0]), float(color[1]), float(color[2])],
         "compatibility_notes": list(compatibility_notes),
-        "visibility_control": visibility_control,
+        **({"visibility_control": True} if visibility_control else {}),
         **({"target_pages": sorted(set(target_pages))} if target_pages is not None else {}),
     }
 

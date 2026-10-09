@@ -19,7 +19,7 @@ import random
 import re
 import unicodedata
 from bisect import bisect_left
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -112,13 +112,15 @@ def load_payloads(path: str | Path, folds: int, seed: int) -> list[Payload]:
                 continue
             rows.append({**row, "text": text})
 
+    # A cluster can mix message types; it is dealt with the type that holds
+    # most of its rows (ties broken by name), so the stratum reflects its bulk.
+    type_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    for row in rows:
+        type_counts[row["cluster_id"]][row["message_type"]] += 1
     clusters_by_type: dict[str, list[str]] = defaultdict(list)
-    cluster_type: dict[str, str] = {}
-    for row in sorted(rows, key=lambda r: r["id"]):
-        cluster = row["cluster_id"]
-        if cluster not in cluster_type:
-            cluster_type[cluster] = row["message_type"]
-            clusters_by_type[row["message_type"]].append(cluster)
+    for cluster, counts in sorted(type_counts.items()):
+        majority = min(counts, key=lambda message_type: (-counts[message_type], message_type))
+        clusters_by_type[majority].append(cluster)
 
     rng = random.Random(seed)
     fold_of_cluster: dict[str, int] = {}
@@ -254,10 +256,12 @@ class LengthMatcher:
                 remaining = length - current - (1 if chosen else 0)
                 if remaining <= SENTENCE_MAX_CHARS:
                     break
-                pick = rng.choice(items)
-                if pick.sentence_id not in used:
-                    chosen.append(pick)
-                    used.add(pick.sentence_id)
+                unused = [s for s in items if s.sentence_id not in used]
+                if not unused:
+                    break
+                pick = rng.choice(unused)
+                chosen.append(pick)
+                used.add(pick.sentence_id)
             remaining = length - len(" ".join(s.text for s in chosen)) - (1 if chosen else 0)
             if remaining >= SENTENCE_MIN_CHARS:
                 last = self._closest(fold, remaining, rng, used)
