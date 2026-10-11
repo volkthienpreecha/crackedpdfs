@@ -226,13 +226,28 @@ Not runnable or not available: the Liu and Ming static scanner (no repository UR
 
 ## Unverified or caveated
 
-- `liu2027what`, `zhou2026give`, `zhang2026measuring`: acceptance is stated only in the arXiv comment; no proceedings page yet.
+- `zhang2026measuring`: confirmed. USENIX Security 26 proceedings, pp. 1427-1445 (checked 2026-10-11).
+- `zhou2026give`: confirmed. Listed as 158-FIND in the official EMNLP 2026 program.
+- `liu2027what`: acceptance stated only in the arXiv v2 comment; the S&P 2027 accepted-papers page was still empty on 2026-10-11. Check again before submission.
 - `collu2026misleading`: ACM TAISAP acceptance from arXiv comment; DOI 10.1145/3803804 did not resolve at time of check.
 - `guo2026hidden`: WWW 2026 venue and DOI from arXiv metadata; DOI not found in Crossref at time of check.
 - `perez2022ignore`: NeurIPS 2022 ML Safety Workshop venue commonly cited but not confirmed; second author's first name not confirmed.
 - `li2026defenses`: first author listed as "Li Li" (ACL Anthology) and "Shawn Li" (arXiv).
 - `deepset2023deberta`: year inferred.
 - `murray2025phantomlint`: no peer-reviewed venue found; check again before camera-ready.
-- Horizon-Labs prompt-injection-guard: I could not locate this model on Hugging Face by search. Make sure the paper gives the exact model ID and revision hash.
+- Horizon-Labs prompt-injection-guard: resolved. The id is `Horizon-Labs/prompt-injection-guard-base` (Apache-2.0, ModernBERT from mmBERT-base). Our runs used revision af3c52e6a9d8bccc8e8c3ed4ba9d7fa084a47e33; the head has since moved (e4fbfc6f, 2026-10-07), so cite the evaluated revision (`horizonlabs2026promptinjectionguard`).
 - "Zhou et al. 2026" in the revision plan was resolved to `zhou2026give` (Qin Zhou et al.). If a different Zhou paper was intended, it was not found.
 - A Research Square preprint ("Labelled-Metadata Channels and Declarative Payload Phrasing in Hidden Prompt Injection: A Cross-Format Measurement Study") appeared in search, but its authors and date could not be retrieved, so it is not in the .bib.
+
+
+## Added 2026-10-11
+
+Closest new work, now in references.bib:
+- `liu2026passing`: 15 detectors including Prompt Guard 2; rankings do not transfer across benchmarks and follow the form of each detector's training inputs. This is the strongest outside support for our shortcut audits.
+- `kongmanee2026latent`: for 77% of sampled support vectors, removing a single token flipped the classifier's decision. This is a sampled population, not a detector-wide rate.
+- `akinrele2026prompt`: detector rankings depend on deployment regime and threshold; structural signals help at low false-positive rates.
+- `liu2026robust`: segment-level, query-aware detection with adversarial training; relevant to benign instructions inside documents (our hidden-benign and imperative benign controls).
+- `chen2026beyond`: AEGIS, a training-free latent-space indirect-injection detector; a candidate extra baseline.
+- `ying2026pikit`: an injection toolkit with 16 carriers in text and file modes; the nearest comparison for our injector.
+- `torrielli2026exploiting`: hidden text in manuscripts, with both the attack and organiser integrity probes (peer-review cluster).
+- `chen2026how`: how layout parsers fail in document pipelines that feed LLMs (EMNLP 2026 Main); supports "the parser decides what the model sees".

@@ -13,10 +13,11 @@ authors = [
   { name = "Karthik Subramanian", email = "winnerkarthik07@gmail.com" },
   { name = "Pukaphol Thienpreecha" },
 ]
-dependencies = ["pypdf>=4"]
+dependencies = ["numpy>=1.26", "pypdf>=4"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.6"]
+stress = ["pypdfium2>=4", "scikit-learn>=1.4"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

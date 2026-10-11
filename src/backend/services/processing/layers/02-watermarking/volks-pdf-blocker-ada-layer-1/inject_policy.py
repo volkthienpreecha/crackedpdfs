@@ -186,6 +186,26 @@ def validate_resolved_injection_config(raw_config):
         ):
             raise ValueError("target_pages must be a non-empty array of page indices >= 0.")
 
+    # An anchor moves a flowed in-page payload to a chosen spot, as fractions
+    # of the visible page box, so a builder can put hidden text over blank
+    # page area instead of over existing content.
+    anchor = raw_config.get("anchor")
+    if anchor is not None:
+        if (
+            not isinstance(anchor, list)
+            or len(anchor) != 2
+            or not all(isinstance(value, (int, float)) and not isinstance(value, bool) for value in anchor)
+            or not all(0.0 <= value <= 1.0 for value in anchor)
+        ):
+            raise ValueError("anchor must be a numeric [x, y] array with fractions in [0, 1].")
+        if (
+            coordinates_mode != "regime"
+            or spatial_regime != "inside_page"
+            or attack_family not in IN_PAGE_ATTACK_FAMILIES
+            or attack_family in {"steganographic_acrostic", "microglyph_steganography"}
+        ):
+            raise ValueError("anchor applies only to regime-mode inside_page families with flowed text.")
+
     # A visibility control is the same payload drawn visibly on purpose (the
     # visible member of a benchmark v2 quintet), so the guard against an
     # unresolved on-page visible regime does not apply to it.
@@ -222,6 +242,7 @@ def validate_resolved_injection_config(raw_config):
         "compatibility_notes": list(compatibility_notes),
         **({"visibility_control": True} if visibility_control else {}),
         **({"target_pages": sorted(set(target_pages))} if target_pages is not None else {}),
+        **({"anchor": [float(anchor[0]), float(anchor[1])]} if anchor is not None else {}),
     }
 
 
@@ -352,6 +373,8 @@ def _resolve_page_coordinates(config, page_width, page_height):
         return page_width - inset, page_height * 0.5
 
     if attack_family in IN_PAGE_ATTACK_FAMILIES:
+        if config.get("anchor") is not None:
+            return page_width * config["anchor"][0], page_height * config["anchor"][1]
         if attack_family == "steganographic_acrostic":
             return page_width * 0.12, page_height * 0.78
         if attack_family == "microglyph_steganography":
@@ -997,7 +1020,9 @@ def _text_object(runs, render_mode, color, font_name, artifact_wrapper, position
 def inject_policy_artifact(input_path: str, output_path: str, policy_text: str, injection_config: dict) -> dict:
     """
     Injects a policy text block into every page of a PDF, or only into the
-    zero-based page indices listed in the optional ``target_pages`` key.
+    zero-based page indices listed in the optional ``target_pages`` key. An
+    optional ``anchor`` ([x, y] fractions of the visible page box) moves a
+    flowed in-page payload to that spot; the placement contract still holds.
 
     The text is:
     1. Optionally wrapped in /Artifact BMC ... EMC (for structural control).
