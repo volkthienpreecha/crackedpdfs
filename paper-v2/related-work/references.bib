@@ -16,7 +16,7 @@
   year      = {2027},
   eprint    = {2606.15020},
   archivePrefix = {arXiv},
-  note      = {To appear. Accepted to IEEE S\&P 2027 per arXiv comment (v2, 5 Oct 2026). v1 was titled ``Semantic Integrity Failures in Document-to-LLM Supply Chains''}
+  note      = {To appear. Acceptance stated only in the arXiv v2 comment (5 Oct 2026); the S\&P 2027 accepted-papers page listed no papers as of 11 Oct 2026. v1 was titled ``Semantic Integrity Failures in Document-to-LLM Supply Chains''}
 }
 
 @misc{murray2025phantomlint,
@@ -128,7 +128,11 @@
   title     = {Measuring Real-World Prompt Injection Attacks in {LLM}-based Resume Screening},
   booktitle = {35th USENIX Security Symposium (USENIX Security 26)},
   year      = {2026},
+  pages     = {1427--1445},
+  address   = {Baltimore, MD},
   publisher = {USENIX Association},
+  isbn      = {978-1-939133-58-8},
+  url       = {https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-mohan},
   eprint    = {2605.28999},
   archivePrefix = {arXiv}
 }
@@ -404,6 +408,7 @@
   title     = {{AgentDojo}: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for {LLM} Agents},
   booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024), Datasets and Benchmarks Track},
   year      = {2024},
+  pages     = {82895--82920},
   doi       = {10.52202/079017-2636},
   eprint    = {2406.13352},
   archivePrefix = {arXiv}
@@ -449,6 +454,7 @@
   title     = {{WASP}: Benchmarking Web Agent Security Against Prompt Injection Attacks},
   booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS 2025), Datasets and Benchmarks Track},
   year      = {2025},
+  pages     = {22436--22458},
   doi       = {10.52202/085713-0666},
   eprint    = {2504.18575},
   archivePrefix = {arXiv}
@@ -1207,6 +1213,7 @@
   title   = {Prompt Injection Attacks on Vision Language Models in Oncology},
   journal = {Nature Communications},
   volume  = {16},
+  number  = {1},
   pages   = {1239},
   year    = {2025},
   doi     = {10.1038/s41467-024-55631-x},
@@ -1301,4 +1308,67 @@
   title        = {{AASA}: {AI} Agent Attack Surface Analyzer},
   howpublished = {\url{https://github.com/xxradar/aasa}},
   note         = {MIT license; accessed 2026-10-08}
+}
+
+% ---------------------------------------------------------------------------
+% Added 2026-10-11: detector baselines and recent closely related work.
+
+@misc{horizonlabs2026promptinjectionguard,
+  author       = {{Horizon Labs}},
+  title        = {Prompt Injection Guard: Multilingual Detection of Direct and Indirect Prompt Injection ({Horizon-Labs/prompt-injection-guard-base})},
+  year         = {2026},
+  howpublished = {Hugging Face model card},
+  url          = {https://huggingface.co/Horizon-Labs/prompt-injection-guard-base},
+  note         = {Apache-2.0; revision af3c52e6a9d8bccc8e8c3ed4ba9d7fa084a47e33, the one evaluated}
+}
+
+@misc{liu2026passing,
+  author = {Zhuowen Liu},
+  title  = {Passing the Test You Trained On: Re-evaluating Prompt-Injection Detectors for {LLM} Agents},
+  year   = {2026}, eprint = {2610.03448}, archivePrefix = {arXiv}
+}
+
+@misc{liu2026robust,
+  author = {Buzhao Liu and Xinhang Ma and Yevgeniy Vorobeychik},
+  title  = {Robust Context-Aware Detection of Malicious Instructions in Text},
+  year   = {2026}, eprint = {2608.05430}, archivePrefix = {arXiv}
+}
+
+@misc{kongmanee2026latent,
+  author = {Jaturong Kongmanee and Smile Thanapattheerakul},
+  title  = {The Latent Diagnostic Taxonomy: A Framework for Constructing Classifiers and Diagnosing Their Decisions, Applied to Prompt Injection Detection},
+  year   = {2026}, eprint = {2608.26423}, archivePrefix = {arXiv}
+}
+
+@misc{chen2026beyond,
+  author = {Jiahao Chen and Rui Yin and Xinfeng Li and Qianli Ma and Tianyu Du and Zhihui Fu and Jun Wang and Zhaoxiang Wang and Shouling Ji},
+  title  = {Beyond Over-Refusal: Defending Indirect Prompt Injection via Latent Instruction Manifolds},
+  year   = {2026}, eprint = {2608.22248}, archivePrefix = {arXiv},
+  note   = {Extended version of an EMNLP 2026 Findings paper (728-FIND in the official program)}
+}
+
+@misc{ying2026pikit,
+  author = {Zonghao Ying and Xiangfan Wu and Bo Yang and Huiyu Wu and Xing Zheng and Huangsheng Cheng and Xiaorong Shi and Jing Guo},
+  title  = {pikit: A Composable Toolkit for Indirect Prompt Injection Research and Evaluation},
+  year   = {2026}, eprint = {2609.36817}, archivePrefix = {arXiv}
+}
+
+@article{torrielli2026exploiting,
+  author  = {Federico Torrielli and Stefano Locci and Amon Rapp and Luigi Di Caro},
+  title   = {Exploiting Large Language Models in Peer Review: Indirect Prompt Injection Attacks and Integrity Probes},
+  journal = {Scientometrics}, volume = {131}, number = {7}, pages = {4889--4951},
+  year    = {2026}, doi = {10.1007/s11192-026-05695-x}
+}
+
+@misc{chen2026how,
+  author = {Yue Chen and Yihao Wang and Ziyi Tang and Yongsen Zheng and Keze Wang},
+  title  = {How Do Document Parsers Break? Auditing Structural Vulnerability in Document Intelligence},
+  year   = {2026}, eprint = {2605.19309}, archivePrefix = {arXiv},
+  note   = {Accepted to EMNLP 2026 Main (5995-MAIN in the official program)}
+}
+
+@misc{akinrele2026prompt,
+  author = {Akindoyin Akinrele and Shreyank N Gowda},
+  title  = {Prompt Injection Detection is Regime-Dependent: A Deployment-Aware Evaluation with Interpretable Structural Signals},
+  year   = {2026}, eprint = {2605.26999}, archivePrefix = {arXiv}
 }

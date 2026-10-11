@@ -26,10 +26,13 @@ renderer rasterizes these operators for the human reader. A text extractor
 (for example pdfminer, PyMuPDF, or Poppler's \texttt{pdftotext}) ignores most
 of the graphics state. It maps character codes to Unicode through the font's
 \texttt{/ToUnicode} table and emits the result in content-stream order.
-Text that is white on white, set in a 0.5\,pt font, positioned outside the
-crop box, clipped to a zero-area path, placed in a hidden optional-content
-layer, or drawn in rendering mode~3 is therefore invisible on screen but
-present in the extracted string. A font whose \texttt{/ToUnicode} map
+Text that is white on white, set in a 0.5\,pt font, clipped to a zero-area
+path, or drawn in rendering mode~3 is therefore invisible on screen but
+present in the extracted string. Whether text outside the crop box or in a
+hidden optional-content layer survives depends on the extractor and its
+options: PyMuPDF's \texttt{get\_text()} clips to the page rectangle by
+default, while pypdf, which we use throughout, returns the full content
+stream. A font whose \texttt{/ToUnicode} map
 disagrees with its glyph shapes makes the visible text and the extracted
 text differ even when both are
 ``visible''~\cite{markwood2017pdf,xiong2025invisible,luo2026exploiting}.
@@ -79,10 +82,13 @@ PIGuard~\cite{li2025piguard} identified \emph{over-defense}, meaning false
 positives on benign text that contains trigger words, and proposed a
 benchmark and training method to reduce it. CAPTURE~\cite{kholkar2025capture}
 measures both missed attacks and over-defense in context-specific settings.
-Every one of these detectors operates after extraction. Our results show
-that this placement is not a minor engineering detail: given only extracted
-text, a classifier cannot tell a hidden instruction from the same sentence
-printed visibly in a security tutorial.
+Every one of these detectors operates after extraction. This placement is
+not a minor engineering detail: given only extracted text, a classifier
+cannot, by construction, tell a hidden instruction from the same sentence
+printed visibly in a security tutorial. Recent re-evaluations add that
+detector rankings do not transfer across benchmarks or deployment
+regimes~\cite{liu2026passing,akinrele2026prompt} and that confident
+decisions often hinge on single tokens~\cite{kongmanee2026latent}.
 
 \paragraph{Training-time and system-level defenses.}
 A second line of work makes the model or the system robust to instructions
