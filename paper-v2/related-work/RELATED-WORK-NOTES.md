@@ -244,7 +244,7 @@ Not runnable or not available: the Liu and Ming static scanner (no repository UR
 
 Closest new work, now in references.bib:
 - `liu2026passing`: 15 detectors including Prompt Guard 2; rankings do not transfer across benchmarks and follow the form of each detector's training inputs. This is the strongest outside support for our shortcut audits.
-- `kongmanee2026latent`: about 77% of a detector's confident decisions flip when a single token is removed.
+- `kongmanee2026latent`: for 77% of sampled support vectors, removing a single token flipped the classifier's decision. This is a sampled population, not a detector-wide rate.
 - `akinrele2026prompt`: detector rankings depend on deployment regime and threshold; structural signals help at low false-positive rates.
 - `liu2026robust`: segment-level, query-aware detection with adversarial training; relevant to benign instructions inside documents (our hidden-benign and imperative benign controls).
 - `chen2026beyond`: AEGIS, a training-free latent-space indirect-injection detector; a candidate extra baseline.

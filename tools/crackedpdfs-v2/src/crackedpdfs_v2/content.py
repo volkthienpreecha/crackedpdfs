@@ -375,8 +375,11 @@ class LengthMatcher:
                 raise
             text, ids = self._draw(length, fold, rng, attempts, None)
         if style is not None and len(text) != length:
-            plain = self._draw(length, fold, rng, attempts, None)
-            if abs(len(plain[0]) - length) < abs(len(text) - length):
+            try:
+                plain = self._draw(length, fold, rng, attempts, None)
+            except ValueError:
+                plain = None  # the styled draw is within tolerance, so keep it
+            if plain is not None and abs(len(plain[0]) - length) < abs(len(text) - length):
                 text, ids = plain
         self.usage.update(ids)
         return text, ids

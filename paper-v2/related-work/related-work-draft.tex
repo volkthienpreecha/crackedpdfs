@@ -87,8 +87,9 @@ not a minor engineering detail: given only extracted text, a classifier
 cannot, by construction, tell a hidden instruction from the same sentence
 printed visibly in a security tutorial. Recent re-evaluations add that
 detector rankings do not transfer across benchmarks or deployment
-regimes~\cite{liu2026passing,akinrele2026prompt} and that confident
-decisions often hinge on single tokens~\cite{kongmanee2026latent}.
+regimes~\cite{liu2026passing,akinrele2026prompt}, and that for most
+sampled support vectors of one detector a single-token deletion flips the
+decision~\cite{kongmanee2026latent}.
 
 \paragraph{Training-time and system-level defenses.}
 A second line of work makes the model or the system robust to instructions
