@@ -508,6 +508,25 @@ class PlacementContractTests(unittest.TestCase):
         self.assertTrue(stats["placement"]["contract_satisfied"])
         self.assert_parsed_inside(output, (0, 0, 612, 792))
 
+    def test_anchor_moves_a_flowed_payload_and_keeps_it_on_the_page(self):
+        lows = {}
+        for anchor in ([0.1, 0.9], [0.5, 0.25]):
+            config = resolved_config(attack_family="in_page_white_text", anchor=anchor)
+            self.assertEqual(config["anchor"], anchor)
+            output, stats = self.inject(config)
+            self.assertTrue(stats["placement"]["contract_satisfied"])
+            glyphs = self.assert_parsed_inside(output, (0, 0, 612, 792))
+            lows[tuple(anchor)] = min(box[1] for _, box, _ in glyphs)
+        self.assertGreater(lows[(0.1, 0.9)], lows[(0.5, 0.25)] + 200)
+
+    def test_malformed_or_misapplied_anchor_is_rejected(self):
+        for bad in ([0.5], [0.5, 1.5], ["0.5", 0.5], "top"):
+            with self.subTest(anchor=bad), self.assertRaises(ValueError):
+                resolved_config(attack_family="in_page_white_text", anchor=bad)
+        for family in ("plain_single_block", "steganographic_acrostic", "microglyph_steganography"):
+            with self.subTest(family=family), self.assertRaises(ValueError):
+                resolved_config(attack_family=family, anchor=[0.5, 0.5])
+
 
 if __name__ == "__main__":
     unittest.main()
