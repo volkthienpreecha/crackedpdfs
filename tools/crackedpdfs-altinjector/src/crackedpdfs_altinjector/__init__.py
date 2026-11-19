@@ -75,9 +75,9 @@ def _merge_overlay(source_path: str | Path, overlay_bytes: bytes, out_path: str 
     overlay_reader = PdfReader(BytesIO(overlay_bytes))
     writer = PdfWriter()
 
-    base_page = reader.pages[0]
+    # pypdf 7 only merges into pages that already belong to a writer.
+    base_page = writer.add_page(reader.pages[0])
     base_page.merge_page(overlay_reader.pages[0])
-    writer.add_page(base_page)
     for page in reader.pages[1:]:
         writer.add_page(page)
 
