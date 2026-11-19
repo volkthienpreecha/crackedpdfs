@@ -10,3 +10,18 @@ ignore = ["E501"]
 
 [lint.per-file-ignores]
 "tests/*" = ["B018"]
+
+[lint.isort]
+# The frozen paper detector is imported as ``src`` after a first-party module
+# has put it on sys.path, so it must sort after the first-party section.
+known-first-party = [
+  "crackedpdfs_audit",
+  "crackedpdfs_reanalysis",
+  "crackedpdfs_payloads",
+  "crackedpdfs_altinjector",
+  "pdf_autogenerator",
+]
+section-order = ["future", "standard-library", "third-party", "first-party", "frozen-detector", "local-folder"]
+
+[lint.isort.sections]
+frozen-detector = ["src"]

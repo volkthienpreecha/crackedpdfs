@@ -1,0 +1,302 @@
+{
+  "steganographic_acrostic": {
+    "test_rows": 15687,
+    "family_injected": 792,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.5,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.6666666666666666,
+          "positives": 792,
+          "negatives": 10458,
+          "roc_auc": 0.9673786536236335,
+          "pr_auc": 0.573553095507553
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 792,
+          "accuracy": 0.7209595959595959,
+          "ties": 0,
+          "reversed": 221,
+          "bootstrap_by_document": {
+            "ci95_low": 0.68845901126408,
+            "ci95_high": 0.7494190565906077,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 792,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.6666666666666666,
+            "ci95_high": 0.6666666666666666,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9634833967688926,
+            "ci95_high": 0.9703781293634871,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.5639315768268575,
+            "ci95_high": 0.5868140937907669,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "microglyph_steganography": {
+    "test_rows": 15543,
+    "family_injected": 696,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.5,
+        "target_family_vs_all_test_negatives": {
+          "f1": 0.0,
+          "positives": 696,
+          "negatives": 10362,
+          "roc_auc": 0.6863104468804009,
+          "pr_auc": 0.09580486128077846
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 696,
+          "accuracy": 0.23994252873563218,
+          "ties": 18,
+          "reversed": 520,
+          "bootstrap_by_document": {
+            "ci95_low": 0.2114175580508936,
+            "ci95_high": 0.272544975090719,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 696,
+          "accuracy": 0.15373563218390804,
+          "ties": 0,
+          "reversed": 589
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.6667117217889643,
+            "ci95_high": 0.7011274677219644,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.08681995039096814,
+            "ci95_high": 0.10662189805946759,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "semantic_fragmentation": {
+    "test_rows": 15612,
+    "family_injected": 639,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.5,
+        "target_family_vs_all_test_negatives": {
+          "f1": 1.0,
+          "positives": 639,
+          "negatives": 10408,
+          "roc_auc": 1.0,
+          "pr_auc": 1.0
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 639,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 639,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "layout_mimicry": {
+    "test_rows": 15252,
+    "family_injected": 669,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.5,
+        "target_family_vs_all_test_negatives": {
+          "f1": 1.0,
+          "positives": 669,
+          "negatives": 10168,
+          "roc_auc": 1.0,
+          "pr_auc": 1.0
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 669,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 669,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "margin_microtext": {
+    "test_rows": 15063,
+    "family_injected": 618,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.49843288066077335,
+        "target_family_vs_all_test_negatives": {
+          "f1": 1.0,
+          "positives": 618,
+          "negatives": 10042,
+          "roc_auc": 1.0,
+          "pr_auc": 1.0
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 618,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 618,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  },
+  "in_page_low_contrast_text": {
+    "test_rows": 15225,
+    "family_injected": 682,
+    "models": {
+      "text_tfidf": {
+        "threshold": 0.5,
+        "target_family_vs_all_test_negatives": {
+          "f1": 1.0,
+          "positives": 682,
+          "negatives": 10150,
+          "roc_auc": 1.0,
+          "pr_auc": 1.0
+        },
+        "paired_rank_vs_confounder": {
+          "pairs": 682,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0,
+          "bootstrap_by_document": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        },
+        "paired_rank_vs_original": {
+          "pairs": 682,
+          "accuracy": 1.0,
+          "ties": 0,
+          "reversed": 0
+        },
+        "target_family_bootstrap_by_document": {
+          "f1": {
+            "ci95_low": 1.0,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "roc_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          },
+          "pr_auc": {
+            "ci95_low": 0.9999999999999999,
+            "ci95_high": 1.0,
+            "samples": 1000
+          }
+        }
+      }
+    }
+  }
+}

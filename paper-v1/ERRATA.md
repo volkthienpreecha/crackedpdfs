@@ -5,7 +5,7 @@
 | Published | 2026-09-14 |
 | Applies to | Paper v1 corpus (Hugging Face revision `245bc98`, Zenodo DOI [`10.5281/zenodo.21735803`](https://doi.org/10.5281/zenodo.21735803)) and its descriptions in [arXiv:2607.19396v1](https://arxiv.org/abs/2607.19396) |
 | Does not change | Any PDF, binary label, split, frozen feature, or frozen metric. The paper table still reproduces byte-for-byte with `make reproduce-results`. |
-| How it was found | An external team ran an independent hidden-text detector over all 29,322 PDFs and asked why acrostic files labelled `inside_page` carried about 7,000 characters off the page. |
+| How it was found | HiddenContent.ai ran their hidden-text engine over all 29,322 PDFs and asked why acrostic files labelled `inside_page` carried about 7,000 characters off the page. Their per-file results were later compared with the audit below, file by file; see [`paper-v2/reanalysis/external-baselines/hiddencontent/comparison.md`](../paper-v2/reanalysis/external-baselines/hiddencontent/comparison.md). |
 | Evidence | A full audit of all 19,548 injected and confounder PDFs with [`crackedpdfs-audit`](../tools/crackedpdfs-audit/), which reads glyph geometry from the files and never from generator metadata. Tables are in [`errata/2026-09-placement/`](errata/2026-09-placement/). |
 
 ## Summary

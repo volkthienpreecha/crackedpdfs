@@ -1,0 +1,646 @@
+{
+  "vendor_run": {
+    "engine": "0.265.0",
+    "rulepack": "2026.09.10-20",
+    "corpusFreezeVersion": "usenix-physical-10k-20260525-1",
+    "pass": "structural, all files",
+    "renderer": null,
+    "date": "2026-09-16",
+    "totals": {
+      "label": "structural, all files",
+      "injected": {
+        "total": 9774,
+        "flagged": 9774,
+        "errored": 0
+      },
+      "benign": {
+        "total": 19548,
+        "flagged": 9774,
+        "errored": 0
+      },
+      "byFamily": {
+        "header_footer_like": {
+          "total": 651,
+          "flagged": 651
+        },
+        "near_margin_normal_font": {
+          "total": 654,
+          "flagged": 654
+        },
+        "in_page_low_contrast_text": {
+          "total": 682,
+          "flagged": 682
+        },
+        "microglyph_steganography": {
+          "total": 696,
+          "flagged": 696
+        },
+        "split_text_objects": {
+          "total": 672,
+          "flagged": 672
+        },
+        "semantic_fragmentation": {
+          "total": 639,
+          "flagged": 639
+        },
+        "steganographic_acrostic": {
+          "total": 792,
+          "flagged": 792
+        },
+        "in_page_split_text_objects": {
+          "total": 462,
+          "flagged": 462
+        },
+        "in_page_tiny_text": {
+          "total": 660,
+          "flagged": 660
+        },
+        "plain_single_block": {
+          "total": 647,
+          "flagged": 647
+        },
+        "in_page_white_text": {
+          "total": 660,
+          "flagged": 660
+        },
+        "layout_mimicry": {
+          "total": 669,
+          "flagged": 669
+        },
+        "margin_microtext": {
+          "total": 618,
+          "flagged": 618
+        },
+        "existing_stream_patch": {
+          "total": 635,
+          "flagged": 635
+        },
+        "in_page_invisible_text": {
+          "total": 637,
+          "flagged": 637
+        }
+      },
+      "byRendering": {
+        "invisible_render_mode": {
+          "total": 2920,
+          "flagged": 2920
+        },
+        "normal_visible": {
+          "total": 1651,
+          "flagged": 1651
+        },
+        "white_text": {
+          "total": 2661,
+          "flagged": 2661
+        },
+        "tiny_font": {
+          "total": 2542,
+          "flagged": 2542
+        }
+      },
+      "byRole": {
+        "benign_original": {
+          "total": 9774,
+          "flagged": 0
+        },
+        "benign_confounder": {
+          "total": 9774,
+          "flagged": 9774
+        },
+        "injected_attack": {
+          "total": 9774,
+          "flagged": 9774
+        }
+      },
+      "techniqueHits": {
+        "pdf.render-mode-3": 5840,
+        "pdf.offpage-text": 13708,
+        "pdf.white-text": 4892,
+        "pdf.tiny-font": 4814
+      },
+      "pairs": {
+        "total": 9774,
+        "injectedHigher": 0,
+        "bothFlagged": 9774,
+        "neitherFlagged": 0
+      },
+      "filesRendered": 0,
+      "missedInjected": 0
+    }
+  },
+  "structural_files": 29322,
+  "vision_files": 2811,
+  "split_coverage": {
+    "frozen_test_files": 2919,
+    "vendor_column_test_files": 2811,
+    "overlap_files": 165,
+    "frozen_test_files_by_vendor_column": {
+      "train": 2481,
+      "validation": 273,
+      "test": 165
+    },
+    "frozen_test_files_missing_from_vendor": 0,
+    "overlap_complete_triads": 55,
+    "overlap_partial_triads": 0
+  },
+  "geometry": {
+    "compared_files": 19548,
+    "below_page_agreement_rate": 0.9853,
+    "by_group": [
+      {
+        "group": "benign_confounder",
+        "files": 9774,
+        "vendor_any_below_page": 9081,
+        "audit_any_below_page": 9225,
+        "below_page_agreement_rate": 0.9853,
+        "vendor_offpage_only_finding": 2001,
+        "audit_label_contract_holds": 2238,
+        "vendor_hidden_text_carries_oracle_token": 8286,
+        "audit_oracle_token": 8982,
+        "audit_missing": 0
+      },
+      {
+        "group": "existing_stream_patch",
+        "files": 635,
+        "vendor_any_below_page": 635,
+        "audit_any_below_page": 635,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 635,
+        "audit_oracle_token": 635,
+        "audit_missing": 0
+      },
+      {
+        "group": "header_footer_like",
+        "files": 651,
+        "vendor_any_below_page": 481,
+        "audit_any_below_page": 481,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 125,
+        "audit_label_contract_holds": 315,
+        "vendor_hidden_text_carries_oracle_token": 651,
+        "audit_oracle_token": 651,
+        "audit_missing": 0
+      },
+      {
+        "group": "in_page_invisible_text",
+        "files": 637,
+        "vendor_any_below_page": 637,
+        "audit_any_below_page": 637,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 637,
+        "audit_oracle_token": 637,
+        "audit_missing": 0
+      },
+      {
+        "group": "in_page_low_contrast_text",
+        "files": 682,
+        "vendor_any_below_page": 682,
+        "audit_any_below_page": 682,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 682,
+        "audit_oracle_token": 682,
+        "audit_missing": 0
+      },
+      {
+        "group": "in_page_split_text_objects",
+        "files": 462,
+        "vendor_any_below_page": 462,
+        "audit_any_below_page": 462,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 462,
+        "audit_oracle_token": 462,
+        "audit_missing": 0
+      },
+      {
+        "group": "in_page_tiny_text",
+        "files": 660,
+        "vendor_any_below_page": 660,
+        "audit_any_below_page": 660,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 660,
+        "audit_oracle_token": 660,
+        "audit_missing": 0
+      },
+      {
+        "group": "in_page_white_text",
+        "files": 660,
+        "vendor_any_below_page": 660,
+        "audit_any_below_page": 660,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 660,
+        "audit_oracle_token": 660,
+        "audit_missing": 0
+      },
+      {
+        "group": "layout_mimicry",
+        "files": 669,
+        "vendor_any_below_page": 669,
+        "audit_any_below_page": 669,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 669,
+        "audit_oracle_token": 669,
+        "audit_missing": 0
+      },
+      {
+        "group": "margin_microtext",
+        "files": 618,
+        "vendor_any_below_page": 618,
+        "audit_any_below_page": 618,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 618,
+        "vendor_hidden_text_carries_oracle_token": 618,
+        "audit_oracle_token": 618,
+        "audit_missing": 0
+      },
+      {
+        "group": "microglyph_steganography",
+        "files": 696,
+        "vendor_any_below_page": 696,
+        "audit_any_below_page": 696,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 0,
+        "audit_oracle_token": 696,
+        "audit_missing": 0
+      },
+      {
+        "group": "near_margin_normal_font",
+        "files": 654,
+        "vendor_any_below_page": 654,
+        "audit_any_below_page": 654,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 654,
+        "audit_label_contract_holds": 654,
+        "vendor_hidden_text_carries_oracle_token": 654,
+        "audit_oracle_token": 654,
+        "audit_missing": 0
+      },
+      {
+        "group": "plain_single_block",
+        "files": 647,
+        "vendor_any_below_page": 464,
+        "audit_any_below_page": 464,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 182,
+        "audit_label_contract_holds": 329,
+        "vendor_hidden_text_carries_oracle_token": 647,
+        "audit_oracle_token": 647,
+        "audit_missing": 0
+      },
+      {
+        "group": "semantic_fragmentation",
+        "files": 639,
+        "vendor_any_below_page": 639,
+        "audit_any_below_page": 639,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 0,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 639,
+        "audit_oracle_token": 639,
+        "audit_missing": 0
+      },
+      {
+        "group": "split_text_objects",
+        "files": 672,
+        "vendor_any_below_page": 332,
+        "audit_any_below_page": 476,
+        "below_page_agreement_rate": 0.7857,
+        "vendor_offpage_only_finding": 248,
+        "audit_label_contract_holds": 322,
+        "vendor_hidden_text_carries_oracle_token": 672,
+        "audit_oracle_token": 672,
+        "audit_missing": 0
+      },
+      {
+        "group": "steganographic_acrostic",
+        "files": 792,
+        "vendor_any_below_page": 792,
+        "audit_any_below_page": 792,
+        "below_page_agreement_rate": 1.0,
+        "vendor_offpage_only_finding": 792,
+        "audit_label_contract_holds": 0,
+        "vendor_hidden_text_carries_oracle_token": 0,
+        "audit_oracle_token": 792,
+        "audit_missing": 0
+      }
+    ]
+  },
+  "label_claim": {
+    "injected_offpage_only_files": 2001,
+    "normal_visible_files": 1651,
+    "rows": [
+      {
+        "attack_family": "header_footer_like",
+        "rendering_regime": "tiny_font",
+        "spatial_regime": "extreme_off_page",
+        "files": 40,
+        "audit_realized_off_page": 40,
+        "audit_contract_holds": 40
+      },
+      {
+        "attack_family": "header_footer_like",
+        "rendering_regime": "white_text",
+        "spatial_regime": "extreme_off_page",
+        "files": 85,
+        "audit_realized_off_page": 85,
+        "audit_contract_holds": 85
+      },
+      {
+        "attack_family": "near_margin_normal_font",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "near_margin",
+        "files": 654,
+        "audit_realized_straddles_page_edge": 654,
+        "audit_contract_holds": 654
+      },
+      {
+        "attack_family": "plain_single_block",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "extreme_off_page",
+        "files": 44,
+        "audit_realized_off_page": 44,
+        "audit_contract_holds": 44
+      },
+      {
+        "attack_family": "plain_single_block",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "negative_off_page",
+        "files": 47,
+        "audit_realized_straddles_page_edge": 47,
+        "audit_contract_holds": 0
+      },
+      {
+        "attack_family": "plain_single_block",
+        "rendering_regime": "tiny_font",
+        "spatial_regime": "extreme_off_page",
+        "files": 49,
+        "audit_realized_off_page": 49,
+        "audit_contract_holds": 49
+      },
+      {
+        "attack_family": "plain_single_block",
+        "rendering_regime": "white_text",
+        "spatial_regime": "extreme_off_page",
+        "files": 42,
+        "audit_realized_off_page": 42,
+        "audit_contract_holds": 42
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "extreme_off_page",
+        "files": 60,
+        "audit_realized_off_page": 60,
+        "audit_contract_holds": 60
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "negative_off_page",
+        "files": 54,
+        "audit_realized_straddles_page_edge": 54,
+        "audit_contract_holds": 0
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "tiny_font",
+        "spatial_regime": "extreme_off_page",
+        "files": 46,
+        "audit_realized_off_page": 46,
+        "audit_contract_holds": 46
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "white_text",
+        "spatial_regime": "extreme_off_page",
+        "files": 48,
+        "audit_realized_off_page": 48,
+        "audit_contract_holds": 48
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "white_text",
+        "spatial_regime": "inside_page",
+        "files": 13,
+        "audit_realized_straddles_page_edge": 13,
+        "audit_contract_holds": 0
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "white_text",
+        "spatial_regime": "near_margin",
+        "files": 13,
+        "audit_realized_straddles_page_edge": 13,
+        "audit_contract_holds": 13
+      },
+      {
+        "attack_family": "split_text_objects",
+        "rendering_regime": "white_text",
+        "spatial_regime": "negative_off_page",
+        "files": 14,
+        "audit_realized_straddles_page_edge": 14,
+        "audit_contract_holds": 0
+      },
+      {
+        "attack_family": "steganographic_acrostic",
+        "rendering_regime": "normal_visible",
+        "spatial_regime": "inside_page",
+        "files": 792,
+        "audit_realized_straddles_page_edge": 792,
+        "audit_contract_holds": 0
+      }
+    ]
+  },
+  "pairs": {
+    "pairs": 9774,
+    "both_flagged": 9774,
+    "injected_more_hidden_chars": 8152,
+    "confounder_more_hidden_chars": 1454,
+    "equal_hidden_chars": 168,
+    "by_family": {
+      "existing_stream_patch": {
+        "pairs": 635,
+        "injected_longer": 624,
+        "confounder_longer": 0,
+        "equal": 11,
+        "rank_by_hidden_chars": 0.9913
+      },
+      "header_footer_like": {
+        "pairs": 651,
+        "injected_longer": 647,
+        "confounder_longer": 0,
+        "equal": 4,
+        "rank_by_hidden_chars": 0.9969
+      },
+      "in_page_invisible_text": {
+        "pairs": 637,
+        "injected_longer": 613,
+        "confounder_longer": 0,
+        "equal": 24,
+        "rank_by_hidden_chars": 0.9812
+      },
+      "in_page_low_contrast_text": {
+        "pairs": 682,
+        "injected_longer": 662,
+        "confounder_longer": 0,
+        "equal": 20,
+        "rank_by_hidden_chars": 0.9853
+      },
+      "in_page_split_text_objects": {
+        "pairs": 462,
+        "injected_longer": 462,
+        "confounder_longer": 0,
+        "equal": 0,
+        "rank_by_hidden_chars": 1.0
+      },
+      "in_page_tiny_text": {
+        "pairs": 660,
+        "injected_longer": 655,
+        "confounder_longer": 0,
+        "equal": 5,
+        "rank_by_hidden_chars": 0.9962
+      },
+      "in_page_white_text": {
+        "pairs": 660,
+        "injected_longer": 637,
+        "confounder_longer": 0,
+        "equal": 23,
+        "rank_by_hidden_chars": 0.9826
+      },
+      "layout_mimicry": {
+        "pairs": 669,
+        "injected_longer": 662,
+        "confounder_longer": 0,
+        "equal": 7,
+        "rank_by_hidden_chars": 0.9948
+      },
+      "margin_microtext": {
+        "pairs": 618,
+        "injected_longer": 610,
+        "confounder_longer": 0,
+        "equal": 8,
+        "rank_by_hidden_chars": 0.9935
+      },
+      "microglyph_steganography": {
+        "pairs": 696,
+        "injected_longer": 482,
+        "confounder_longer": 176,
+        "equal": 38,
+        "rank_by_hidden_chars": 0.7198
+      },
+      "near_margin_normal_font": {
+        "pairs": 654,
+        "injected_longer": 0,
+        "confounder_longer": 654,
+        "equal": 0,
+        "rank_by_hidden_chars": 0.0
+      },
+      "plain_single_block": {
+        "pairs": 647,
+        "injected_longer": 580,
+        "confounder_longer": 47,
+        "equal": 20,
+        "rank_by_hidden_chars": 0.9119
+      },
+      "semantic_fragmentation": {
+        "pairs": 639,
+        "injected_longer": 639,
+        "confounder_longer": 0,
+        "equal": 0,
+        "rank_by_hidden_chars": 1.0
+      },
+      "split_text_objects": {
+        "pairs": 672,
+        "injected_longer": 601,
+        "confounder_longer": 63,
+        "equal": 8,
+        "rank_by_hidden_chars": 0.9003
+      },
+      "steganographic_acrostic": {
+        "pairs": 792,
+        "injected_longer": 278,
+        "confounder_longer": 514,
+        "equal": 0,
+        "rank_by_hidden_chars": 0.351
+      }
+    }
+  },
+  "techniques": {
+    "benign_confounder": {
+      "pdf.render-mode-3": 2920,
+      "pdf.white-text;pdf.offpage-text": 2446,
+      "pdf.tiny-font;pdf.offpage-text": 2407,
+      "pdf.offpage-text": 2001
+    },
+    "existing_stream_patch": {
+      "pdf.render-mode-3": 635
+    },
+    "header_footer_like": {
+      "pdf.white-text;pdf.offpage-text": 201,
+      "pdf.render-mode-3": 183,
+      "pdf.tiny-font;pdf.offpage-text": 142,
+      "pdf.offpage-text": 125
+    },
+    "in_page_invisible_text": {
+      "pdf.render-mode-3": 637
+    },
+    "in_page_low_contrast_text": {
+      "pdf.white-text;pdf.offpage-text": 682
+    },
+    "in_page_split_text_objects": {
+      "pdf.render-mode-3": 462
+    },
+    "in_page_tiny_text": {
+      "pdf.tiny-font;pdf.offpage-text": 660
+    },
+    "in_page_white_text": {
+      "pdf.white-text;pdf.offpage-text": 660
+    },
+    "layout_mimicry": {
+      "pdf.white-text;pdf.offpage-text": 669
+    },
+    "margin_microtext": {
+      "pdf.tiny-font;pdf.offpage-text": 618
+    },
+    "microglyph_steganography": {
+      "pdf.tiny-font;pdf.offpage-text": 696
+    },
+    "near_margin_normal_font": {
+      "pdf.offpage-text": 654
+    },
+    "plain_single_block": {
+      "pdf.offpage-text": 182,
+      "pdf.render-mode-3": 176,
+      "pdf.tiny-font;pdf.offpage-text": 153,
+      "pdf.white-text;pdf.offpage-text": 136
+    },
+    "semantic_fragmentation": {
+      "pdf.render-mode-3": 639
+    },
+    "split_text_objects": {
+      "pdf.offpage-text": 248,
+      "pdf.render-mode-3": 188,
+      "pdf.tiny-font;pdf.offpage-text": 138,
+      "pdf.white-text;pdf.offpage-text": 98
+    },
+    "steganographic_acrostic": {
+      "pdf.offpage-text": 792
+    }
+  }
+}

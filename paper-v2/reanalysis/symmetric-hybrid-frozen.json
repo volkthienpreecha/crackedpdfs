@@ -1,0 +1,277 @@
+{
+  "hybrid_symmetric_sanitizer": {
+    "cell": "frozen_test",
+    "rows": 2919,
+    "threshold": 0.5874838560753298,
+    "f1": 0.9984575835475579,
+    "positives": 973,
+    "negatives": 1946,
+    "roc_auc": 0.9999947186576095,
+    "pr_auc": 0.99998950839463,
+    "paired_rank_vs_confounder": {
+      "pairs": 973,
+      "accuracy": 1.0,
+      "ties": 0,
+      "reversed": 0,
+      "bootstrap_by_document": {
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "samples": 1000
+      }
+    },
+    "paired_rank_vs_original": {
+      "pairs": 973,
+      "accuracy": 1.0,
+      "ties": 0,
+      "reversed": 0
+    },
+    "bootstrap_by_document": {
+      "f1": {
+        "ci95_low": 0.9965735822395662,
+        "ci95_high": 1.0,
+        "samples": 1000
+      },
+      "roc_auc": {
+        "ci95_low": 0.9999807124007567,
+        "ci95_high": 1.0,
+        "samples": 1000
+      },
+      "pr_auc": {
+        "ci95_low": 0.9999617891344779,
+        "ci95_high": 1.0,
+        "samples": 1000
+      }
+    },
+    "bootstrap_by_payload": {
+      "f1": {
+        "ci95_low": 0.9964841788046208,
+        "ci95_high": 1.0,
+        "samples": 1000
+      },
+      "roc_auc": {
+        "ci95_low": 0.9999797250398818,
+        "ci95_high": 1.0,
+        "samples": 1000
+      },
+      "pr_auc": {
+        "ci95_low": 0.9999614568373226,
+        "ci95_high": 1.0,
+        "samples": 1000
+      }
+    },
+    "effective_sample_size_by_document": {
+      "n": 2919,
+      "clusters": 498,
+      "mean_cluster_size": 5.86144578313253,
+      "icc": 0.0,
+      "deff": 1.0,
+      "n_effective": 2919.0
+    },
+    "top_weights": {
+      "top_positive": [
+        [
+          "text__char__ d ",
+          6.834900573528604
+        ],
+        [
+          "text__char__ v ",
+          4.178259532469757
+        ],
+        [
+          "text__word__as",
+          3.9146683231513455
+        ],
+        [
+          "text__word__instructions",
+          3.3933001217885406
+        ],
+        [
+          "text__char__dde",
+          3.285304454496614
+        ],
+        [
+          "text__char__ w ",
+          3.176219352241596
+        ],
+        [
+          "text__word__hidden",
+          3.114798017633552
+        ],
+        [
+          "text__word__do",
+          2.994934567262918
+        ],
+        [
+          "text__word__answer",
+          2.9858955734210957
+        ],
+        [
+          "text__word__do not",
+          2.966654334876981
+        ],
+        [
+          "text__word__confidential",
+          2.6846839485013385
+        ],
+        [
+          "text__char__ as ",
+          2.573366947406415
+        ],
+        [
+          "text__char__instr",
+          2.5508596761425575
+        ],
+        [
+          "text__char__inst",
+          2.5220839457503343
+        ],
+        [
+          "text__char__hid",
+          2.474366668301961
+        ],
+        [
+          "text__char__hidd",
+          2.474366668301961
+        ],
+        [
+          "text__char__idd",
+          2.474366668301961
+        ],
+        [
+          "text__char__idden",
+          2.474366668301961
+        ],
+        [
+          "text__char__dden",
+          2.474366668301961
+        ],
+        [
+          "text__char__hidde",
+          2.474366668301961
+        ],
+        [
+          "text__char__idde",
+          2.474366668301961
+        ],
+        [
+          "text__word__context",
+          2.4209342770534463
+        ],
+        [
+          "text__char__ ins",
+          2.40728604533277
+        ],
+        [
+          "text__word__the document",
+          2.369073516791245
+        ],
+        [
+          "text__char__eve",
+          2.337237307062448
+        ]
+      ],
+      "top_negative": [
+        [
+          "text__char__ b ",
+          -6.353544960177004
+        ],
+        [
+          "text__char__ g ",
+          -6.269566717612824
+        ],
+        [
+          "text__char__ x ",
+          -5.462875658685877
+        ],
+        [
+          "text__char__ y ",
+          -5.163379624180181
+        ],
+        [
+          "text__char__ m ",
+          -4.359912960959722
+        ],
+        [
+          "text__char__ l ",
+          -3.6284197906655478
+        ],
+        [
+          "text__char__ . ",
+          -3.3783052362943358
+        ],
+        [
+          "text__char__ n ",
+          -3.255431453441737
+        ],
+        [
+          "text__char__ i ",
+          -2.7146549480647035
+        ],
+        [
+          "text__char__ k ",
+          -2.6713935819031955
+        ],
+        [
+          "text__char__ o ",
+          -2.5779630613996685
+        ],
+        [
+          "text__word__benign",
+          -2.425098223061309
+        ],
+        [
+          "text__word__benign layout",
+          -1.8697786411068134
+        ],
+        [
+          "text__word__layout",
+          -1.853341381025311
+        ],
+        [
+          "text__char__ r ",
+          -1.8352095360587946
+        ],
+        [
+          "text__char__enign",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__nign",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__enig",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__benig",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__beni",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__nig",
+          -1.7694901981175895
+        ],
+        [
+          "text__char__ben",
+          -1.6581444360712885
+        ],
+        [
+          "text__char__ t ",
+          -1.636221261261709
+        ],
+        [
+          "text__char__ beni",
+          -1.635438268655532
+        ],
+        [
+          "text__char__ c ",
+          -1.567488383957692
+        ]
+      ]
+    }
+  }
+}
