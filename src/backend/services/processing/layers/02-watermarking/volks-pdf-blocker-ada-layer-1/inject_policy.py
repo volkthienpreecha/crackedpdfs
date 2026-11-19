@@ -172,8 +172,46 @@ def validate_resolved_injection_config(raw_config):
     ):
         raise ValueError("compatibility_notes must be an array of strings.")
 
+    visibility_control = raw_config.get("visibility_control", False)
+    if not isinstance(visibility_control, bool):
+        raise ValueError("visibility_control must be a boolean.")
+
+    target_pages = raw_config.get("target_pages")
+    if target_pages is not None:
+        if (
+            not isinstance(target_pages, list)
+            or not target_pages
+            or not all(isinstance(index, int) and not isinstance(index, bool) for index in target_pages)
+            or any(index < 0 for index in target_pages)
+        ):
+            raise ValueError("target_pages must be a non-empty array of page indices >= 0.")
+
+    # An anchor moves a flowed in-page payload to a chosen spot, as fractions
+    # of the visible page box, so a builder can put hidden text over blank
+    # page area instead of over existing content.
+    anchor = raw_config.get("anchor")
+    if anchor is not None:
+        if (
+            not isinstance(anchor, list)
+            or len(anchor) != 2
+            or not all(isinstance(value, (int, float)) and not isinstance(value, bool) for value in anchor)
+            or not all(0.0 <= value <= 1.0 for value in anchor)
+        ):
+            raise ValueError("anchor must be a numeric [x, y] array with fractions in [0, 1].")
+        if (
+            coordinates_mode != "regime"
+            or spatial_regime != "inside_page"
+            or attack_family not in IN_PAGE_ATTACK_FAMILIES
+            or attack_family in {"steganographic_acrostic", "microglyph_steganography"}
+        ):
+            raise ValueError("anchor applies only to regime-mode inside_page families with flowed text.")
+
+    # A visibility control is the same payload drawn visibly on purpose (the
+    # visible member of a benchmark v2 quintet), so the guard against an
+    # unresolved on-page visible regime does not apply to it.
     if (
-        attack_family != "near_margin_normal_font"
+        not visibility_control
+        and attack_family != "near_margin_normal_font"
         and attack_family not in {
             "layout_mimicry",
             "semantic_fragmentation",
@@ -202,6 +240,9 @@ def validate_resolved_injection_config(raw_config):
         "render_mode": int(render_mode),
         "color": [float(color[0]), float(color[1]), float(color[2])],
         "compatibility_notes": list(compatibility_notes),
+        **({"visibility_control": True} if visibility_control else {}),
+        **({"target_pages": sorted(set(target_pages))} if target_pages is not None else {}),
+        **({"anchor": [float(anchor[0]), float(anchor[1])]} if anchor is not None else {}),
     }
 
 
@@ -332,6 +373,8 @@ def _resolve_page_coordinates(config, page_width, page_height):
         return page_width - inset, page_height * 0.5
 
     if attack_family in IN_PAGE_ATTACK_FAMILIES:
+        if config.get("anchor") is not None:
+            return page_width * config["anchor"][0], page_height * config["anchor"][1]
         if attack_family == "steganographic_acrostic":
             return page_width * 0.12, page_height * 0.78
         if attack_family == "microglyph_steganography":
@@ -976,7 +1019,10 @@ def _text_object(runs, render_mode, color, font_name, artifact_wrapper, position
 
 def inject_policy_artifact(input_path: str, output_path: str, policy_text: str, injection_config: dict) -> dict:
     """
-    Injects a policy text block into every page of a PDF.
+    Injects a policy text block into every page of a PDF, or only into the
+    zero-based page indices listed in the optional ``target_pages`` key. An
+    optional ``anchor`` ([x, y] fractions of the visible page box) moves a
+    flowed in-page payload to that spot; the placement contract still holds.
 
     The text is:
     1. Optionally wrapped in /Artifact BMC ... EMC (for structural control).
@@ -1015,8 +1061,15 @@ def inject_policy_artifact(input_path: str, output_path: str, policy_text: str, 
     segment_result = _segment_policy_lines(policy_lines, attack_family, attack_strength)
     emitted_segments = segment_result["segments"]
     page_placements = []
+    target_pages = injection_config.get("target_pages")
+    if target_pages is not None and max(target_pages) >= len(pdf.pages):
+        raise ValueError(
+            f"target_pages {target_pages} out of range for a {len(pdf.pages)}-page document."
+        )
 
     for i, page in enumerate(pdf.pages):
+        if target_pages is not None and i not in target_pages:
+            continue
         print(f"Processing page {i+1}...")
 
         # 1. Ensure a standard 14 Type1 Helvetica reference under a resource

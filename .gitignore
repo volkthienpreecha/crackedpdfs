@@ -90,3 +90,8 @@ next-env.d.ts
 /src/backend/services/processing/layers/02-watermarking/confusion-matrix-layer/rust/target/
 /src/backend/services/processing/layers/02-watermarking/confusion-matrix-layer/rust/vgg16.ot
 .git.backup/
+
+# virtual environments anywhere in the tree
+.venv/
+.ruff_cache/
+.pytest_cache/

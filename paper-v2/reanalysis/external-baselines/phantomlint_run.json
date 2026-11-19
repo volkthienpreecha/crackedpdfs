@@ -1,0 +1,28 @@
+{
+  "command_template": "/Users/karthik/crackedpdfs-work/baselines/phantom-lint/.venv/bin/phantomlint <pdf> --output <dir> --analyze nlp  (executed in-process by phantomlint_worker.py with identical component defaults)",
+  "commit": "7f6200145abf9d1592118780e117d14541a18dae",
+  "detector": "phantomlint",
+  "errors": 0,
+  "files": 180,
+  "flag_rule": "at least one hidden suspicious phrase reported (console script exit status 1)",
+  "invocations": 1,
+  "license": "BSD-3-Clause",
+  "options": {
+    "analyze": "nlp",
+    "bad_list": "built-in DEFAULT_BADLIST",
+    "diff": "word_exact",
+    "dpi": 300,
+    "split": "noop",
+    "threshold": 0.75
+  },
+  "python": "Python 3.12.13",
+  "reports_dir": "/Users/karthik/crackedpdfs-work/baselines/phantomlint_reports/nlp",
+  "repository": "https://github.com/tobycmurray/phantom-lint",
+  "score_rule": "number of characters highlighted as hidden in hidden_suspicious_phrases.txt",
+  "subsample": "60 triads sampled with seed 0, stratified by attack family",
+  "timeout_seconds": 600.0,
+  "timeouts": 2,
+  "version": "0.1 (setup.py)",
+  "wall_clock_seconds": 2649.8,
+  "workers": 2
+}

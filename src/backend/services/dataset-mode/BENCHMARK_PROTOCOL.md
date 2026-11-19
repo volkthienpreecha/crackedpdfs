@@ -35,6 +35,21 @@ Envelope requirement for each archetype file:
 - Must start with `<SYSTEM_POLICY_DO_NOT_REMOVE>`
 - Must end with `</SYSTEM_POLICY_DO_NOT_REMOVE>`
 
+The envelope above is the storage format of the message library. What is
+written into a PDF depends on `scaffoldMode`:
+
+- `shared` (default): the injected payload and its matched confounder both use
+  the marker line followed by `<DOCUMENT_NOTE>` and `</DOCUMENT_NOTE>`. The
+  confounder body is neutral document prose drawn deterministically from a
+  fixed sentence bank and cut to exactly the payload's character length. No
+  token distinguishes the two roles; only the message content does.
+- `role_specific`: the paper v1 scheme. Injected payloads keep the
+  `SYSTEM_POLICY_DO_NOT_REMOVE` tags and confounders use
+  `DOCUMENT_LAYOUT_NOTE` with repeated calibration filler. The wrapper tags
+  identify the role on their own; this mode exists only to rebuild that corpus.
+
+The run manifest records `scaffold_mode`.
+
 Length band constraints (word count):
 
 - short: `8-45`

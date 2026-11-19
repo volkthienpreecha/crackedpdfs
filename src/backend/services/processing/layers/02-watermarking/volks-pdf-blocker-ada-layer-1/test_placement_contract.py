@@ -464,6 +464,69 @@ class PlacementContractTests(unittest.TestCase):
         self.assertTrue(stats["placement"]["contract_satisfied"])
         self.assert_parsed_inside(output, (0, 0, 612, 792))
 
+    def test_target_pages_limit_injection_to_listed_pages(self):
+        pdf = pikepdf.new()
+        for _ in range(3):
+            pdf.add_blank_page(page_size=(612, 792))
+        for page in pdf.pages:
+            page.Contents = pikepdf.Stream(pdf, b"BT /F1 10 Tf 72 720 Td (Benign body text.) Tj ET")
+        source = self.tmp / "three-pages.pdf"
+        pdf.save(source)
+        config = resolved_config(attack_family="in_page_invisible_text", target_pages=[1])
+        output, stats = self.inject_into(source, config)
+        self.assertEqual(len(stats["placement"]["pages"]), 1)
+        with pikepdf.open(output) as injected:
+            streams = [
+                b"".join(
+                    part.read_bytes()
+                    for part in (
+                        page.Contents if isinstance(page.Contents, pikepdf.Array) else [page.Contents]
+                    )
+                )
+                for page in injected.pages
+            ]
+        self.assertNotIn(b"3 Tr", streams[0])
+        self.assertIn(b"3 Tr", streams[1])
+        self.assertNotIn(b"3 Tr", streams[2])
+
+    def test_target_pages_out_of_range_is_rejected(self):
+        config = resolved_config(attack_family="in_page_invisible_text", target_pages=[4])
+        with self.assertRaises(ValueError):
+            self.inject(config)
+
+    def test_malformed_target_pages_are_rejected(self):
+        for bad in ([], [-1], ["0"], [True], "0"):
+            with self.subTest(target_pages=bad), self.assertRaises(ValueError):
+                resolved_config(target_pages=bad)
+
+    def test_visible_on_page_regime_requires_an_explicit_visibility_control(self):
+        visible = {"rendering_regime": "normal_visible", "render_mode": 0, "color": [0, 0, 0]}
+        with self.assertRaises(ValueError):
+            resolved_config(attack_family="in_page_white_text", **visible)
+        config = resolved_config(attack_family="in_page_white_text", visibility_control=True, **visible)
+        output, stats = self.inject(config)
+        self.assertTrue(stats["placement"]["contract_satisfied"])
+        self.assert_parsed_inside(output, (0, 0, 612, 792))
+
+    def test_anchor_moves_a_flowed_payload_and_keeps_it_on_the_page(self):
+        lows = {}
+        for anchor in ([0.1, 0.9], [0.5, 0.25]):
+            config = resolved_config(attack_family="in_page_white_text", anchor=anchor)
+            self.assertEqual(config["anchor"], anchor)
+            output, stats = self.inject(config)
+            self.assertTrue(stats["placement"]["contract_satisfied"])
+            glyphs = self.assert_parsed_inside(output, (0, 0, 612, 792))
+            lows[tuple(anchor)] = min(box[1] for _, box, _ in glyphs)
+        self.assertGreater(lows[(0.1, 0.9)], lows[(0.5, 0.25)] + 200)
+
+    def test_malformed_or_misapplied_anchor_is_rejected(self):
+        for bad in ([0.5], [0.5, 1.5], ["0.5", 0.5], "top"):
+            with self.subTest(anchor=bad), self.assertRaises(ValueError):
+                resolved_config(attack_family="in_page_white_text", anchor=bad)
+        for family in ("plain_single_block", "steganographic_acrostic", "microglyph_steganography"):
+            with self.subTest(family=family), self.assertRaises(ValueError):
+                resolved_config(attack_family=family, anchor=[0.5, 0.5])
+
 
 if __name__ == "__main__":
     unittest.main()
